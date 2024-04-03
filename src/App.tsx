@@ -1,3 +1,11 @@
+import { Header } from './common/components/Header'
+import Main from './pages/Main'
+
 export const App = () => {
-  return <h1 className="text-3xl font-bold text-red-500">Hello world!</h1>
+  return (
+    <div>
+      <Header />
+      <Main />
+    </div>
+  )
 }
