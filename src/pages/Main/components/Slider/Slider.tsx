@@ -50,7 +50,7 @@ const Slider = () => {
   // }, [slider])
 
   return (
-    <div className="w-full mb-20 pt-32 h-screen">
+    <div className="w-full mb-32 pt-32 h-screen overflow-hidden">
       {sliderData.map((slide, i) => (
         <SliderItem
           key={slide.img}
