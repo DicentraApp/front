@@ -1,9 +1,15 @@
-const Search = () => {
+import { FC } from 'react'
+
+interface ISearch {
+  searchIconPath: string
+}
+
+const Search: FC<ISearch> = ({ searchIconPath }) => {
   return (
     <div className="w-42 flex items-center">
-      <img src="images/search/search.svg" />
+      <img src={searchIconPath} alt="user-logo" />
       <input
-        className="focus:outline-none p-2 font-light text-base font-ubuntu text-dark placeholder-shown:font-light text-base font-inter text-dark"
+        className="focus:ring-transparent focus:outline-none p-2 font-light text-base font-ubuntu text-dark placeholder-shown:font-light text-base font-inter text-dark border-none"
         type="text"
         placeholder="Search"
       />

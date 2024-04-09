@@ -18,7 +18,7 @@ const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
       <div
         className={`${activeClass ? 'active-content' : 'translate-y-full'} ${bg} w-2/6 flex items-center justify-center transition-all`}
       >
-        <div className="w-80 text-light font-roboto ">
+        <div className="w-80 text-light">
           <h2 className="font-black text-3xl mb-5 font-ubuntu">
             Only the best bouquets!
           </h2>

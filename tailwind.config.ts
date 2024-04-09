@@ -1,9 +1,8 @@
+const flowbite = require('flowbite-react/tailwind')
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{ts,tsx}', flowbite.content()],
   theme: {
     container: {
       screens: {
@@ -14,9 +13,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        roboto: "Roboto, sans-serif",
-        ubuntu: "Ubuntu, sans-serif",
-        openSans: "Open Sans, sans-serif",
+        roboto: 'Roboto, sans-serif',
+        ubuntu: 'Ubuntu, sans-serif',
+        openSans: 'Open Sans, sans-serif',
       },
       colors: {
         dark: '#292933',
@@ -38,10 +37,18 @@ export default {
         btnDisabledDark: '#696970',
       },
       borderRadius: {
-        '26': '26px'
-      }
+        '26': '26px',
+      },
+      keyframes: {
+        fade: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
+      animation: {
+        fade: 'fade 2s easy-out',
+      },
     },
   },
-  plugins: [],
+  plugins: [flowbite.plugin()],
 }
-

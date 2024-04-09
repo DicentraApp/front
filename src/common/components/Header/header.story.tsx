@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Header } from './index'
+import { Header, navData } from '.'
+
+import '@/index.css'
 
 const meta = {
   title: 'Common/Header',
@@ -11,7 +13,13 @@ type Story = StoryObj<typeof meta>
 
 export const View: Story = {
   args: {
-    primary: true,
-    label: 'Header',
+    phoneNumber: '+380 (98) 997-19-91',
+    imageLogoPath: 'images/logo/logo_dicentra.png',
+    subtitleLogo: 'Choose with heart',
+    searchIconPath: 'images/user/icon_user.svg',
+    iconUserPath: 'images/user/icon_user.svg',
+    cartIconPath: 'images/user/icon_cart.svg',
+    cartNumber: 89,
+    data: navData,
   },
 }
