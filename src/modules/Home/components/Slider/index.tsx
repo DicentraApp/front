@@ -1,26 +1,16 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import SliderItem from './SliderItem'
+import { ISliderData } from '@/common/dto/getSliderDto'
 
-const sliderData = [
-  {
-    bg: 'bg-dark',
-    img: 'slider-1',
-  },
-  {
-    bg: 'bg-green',
-    img: 'slider-2',
-  },
-  {
-    bg: 'bg-bordo',
-    img: 'slider-3',
-  },
-]
+interface ISlider {
+  data: ISliderData
+}
 
-const Slider = () => {
+const Slider: FC<ISlider> = ({ data }) => {
   const [slider, setSlider] = useState(0)
 
   const handleNext = (index: number) => {
-    if (index === sliderData.length - 1) {
+    if (index === data.length - 1) {
       setSlider(0)
     } else {
       setSlider(index + 1)
@@ -29,7 +19,7 @@ const Slider = () => {
 
   const handlePrev = (index: number) => {
     if (index === 0) {
-      setSlider(sliderData.length - 1)
+      setSlider(data.length - 1)
     } else {
       setSlider(index - 1)
     }
@@ -38,8 +28,8 @@ const Slider = () => {
   // useEffect(() => {
   //   const timeout = setTimeout(() => {
   //     if (slider === 0) {
-  //       setSlider(sliderData.length - 1)
-  //     } else if (slider === sliderData.length - 1) {
+  //       setSlider(data.length - 1)
+  //     } else if (slider === data.length - 1) {
   //       setSlider(0)
   //     } else {
   //       setSlider(slider + 1)
@@ -51,7 +41,7 @@ const Slider = () => {
 
   return (
     <div className="w-full mb-32 pt-32 h-screen overflow-hidden">
-      {sliderData.map((slide, i) => (
+      {data?.map((slide, i) => (
         <SliderItem
           key={slide.img}
           bg={slide.bg}

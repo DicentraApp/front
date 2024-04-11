@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Spinner } from 'flowbite-react'
-import BestsellersItem from './BestsellersItem'
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks'
 import { getFlowers, setFlowers } from '@/features/flowers/flowersSlice'
 import { useSelector } from 'react-redux'
 import { selectedFlowers } from '@/features/flowers/flowersSelector'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
+import FlowersItem from '@/common/components/FlowersItem'
 
 const Bestsellers = () => {
   const filteredList = useSelector(selectedFlowers)
@@ -32,7 +32,7 @@ const Bestsellers = () => {
   }
 
   return (
-    <section className="bg-light py-16 mb-24">
+    <section className="bg-light py-16 mb-26">
       <div className="container">
         <h2 className="text-4xl mb-8 text-center font-medium">
           Our bestsellers
@@ -51,10 +51,10 @@ const Bestsellers = () => {
             )
           })}
         </ul>
-        <div className="flex justify-between">
+        <div className={`flex justify-between transition-opacity`}>
           {flowers?.map((elem) => {
             if (elem.IsBestsellers) {
-              return <BestsellersItem key={elem.id} {...elem} />
+              return <FlowersItem key={elem.id} data={elem} />
             } else return null
           })}
         </div>
