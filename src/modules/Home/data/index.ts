@@ -1,6 +1,4 @@
-import { ISliderData } from '@/common/dto/getSliderDto'
-
-export const sliderData: ISliderData = [
+export const sliderData = [
   {
     id: crypto.randomUUID(),
     bg: 'bg-dark',
@@ -49,3 +47,40 @@ export const introDataSecond = [
     marginToTop: 'mt-32',
   },
 ]
+
+export const selectionFormData = {
+  flowers: {
+    title: 'Flowers',
+    data: [
+      'Roses',
+      'Tulips',
+      'Chrysanths',
+      'Peonies',
+      'Carnations',
+      'Gerberas',
+      'Daisies',
+      'Lilies',
+      'Orchids',
+    ],
+  },
+  events: {
+    title: 'Events',
+    data: [
+      'Birthday',
+      'Wedding',
+      'Anniversary',
+      'Unforgettable Date',
+      "Valentine's Day",
+      'Other',
+    ],
+  },
+  budget: {
+    title: 'Budget',
+    data: [
+      'from 5 to 10',
+      'from 10 to 20',
+      'from 20 to 30',
+      'from 30 and higher',
+    ],
+  },
+}

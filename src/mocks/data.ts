@@ -142,7 +142,7 @@ export const flowersData = [
       },
       {
         id: crypto.randomUUID(),
-        name: 'Bouquet No. 14 Peonies ',
+        name: 'Bouquet No. 14 Peonies',
         img: 'peonies-14',
         price: 25,
         IsBestsellers: true,

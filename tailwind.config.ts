@@ -48,6 +48,9 @@ export default {
       animation: {
         fade: 'fade 2s easy-out',
       },
+      backgroundImage: {
+        'selection-form': 'url(images/selection-form-bg.jpg)',
+      },
     },
   },
   plugins: [flowbite.plugin()],

@@ -1,6 +1,7 @@
 import ActionCarousel from './components/ActionCarousel'
 import Bestsellers from './components/Bestsellers'
 import Intro from './components/Intro'
+import QuickSelectionForm from './components/QuickSelectionForm'
 import Slider from './components/Slider'
 import { sliderData, introDataFirst, introDataSecond } from './data'
 
@@ -16,6 +17,7 @@ const Home = () => {
       <Bestsellers />
       <Intro data={introDataSecond} />
       <ActionCarousel />
+      <QuickSelectionForm />
     </div>
   )
 }
