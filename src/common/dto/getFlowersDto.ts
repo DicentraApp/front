@@ -6,6 +6,12 @@ export interface IFlowerItem {
   IsBestsellers?: boolean | undefined
   isAction?: boolean | undefined
   actionPrice?: number | undefined
+  togetherWith?: {
+    name: string
+    price: number
+    actionPrice: number
+    imgPath: string
+  }
 }
 
 export interface IFlowerKind {

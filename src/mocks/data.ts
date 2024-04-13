@@ -181,6 +181,12 @@ export const flowersData = [
         name: 'Bouquet No. 44 Georgia',
         img: 'roses-georgia-44',
         price: 27,
+        togetherWith: {
+          name: 'Raffaello Piatta',
+          price: 12,
+          actionPrice: 9,
+          imgPath: 'raffaello.png',
+        },
       },
       {
         id: crypto.randomUUID(),
@@ -216,14 +222,20 @@ export const flowersData = [
         name: 'Bouquet No. 49 Mondial',
         img: 'roses-mondial-49',
         price: 30,
-        isAction: true,
-        actionPrice: 23,
+        togetherWith: {
+          name: 'Fererro Rocher',
+          price: 14,
+          actionPrice: 11,
+          imgPath: 'ferrero.png',
+        },
       },
       {
         id: crypto.randomUUID(),
         name: 'Bouquet No. 50 Velvet',
         img: 'roses-velvet-50',
         price: 31,
+        isAction: true,
+        actionPrice: 24,
       },
       {
         id: crypto.randomUUID(),
@@ -238,7 +250,14 @@ export const flowersData = [
         name: 'Bouquet No. 61 Roses Mix',
         img: 'roses-mix-61',
         price: 30,
+        togetherWith: {
+          name: 'Raffaello Piatta',
+          price: 12,
+          actionPrice: 9,
+          imgPath: 'raffaello.png',
+        },
       },
+
       {
         id: crypto.randomUUID(),
         name: 'Bouquet No. 62 Roses Mix',
@@ -252,12 +271,24 @@ export const flowersData = [
         name: 'Bouquet No. 63 Roses Mix',
         img: 'roses-mix-63',
         price: 31,
+        togetherWith: {
+          name: 'Fererro Rocher',
+          price: 14,
+          actionPrice: 11,
+          imgPath: 'ferrero.png',
+        },
       },
       {
         id: crypto.randomUUID(),
         name: 'Bouquet No. 64 Roses Mix',
         img: 'roses-mix-64',
         price: 29,
+        togetherWith: {
+          name: 'Raffaello Piatta',
+          price: 12,
+          actionPrice: 9,
+          imgPath: 'raffaello.png',
+        },
       },
       {
         id: crypto.randomUUID(),
@@ -284,6 +315,12 @@ export const flowersData = [
         name: 'Bouquet No.21 Chrysanths',
         img: 'chryz-21',
         price: 14,
+        togetherWith: {
+          name: 'Fererro Rocher',
+          price: 14,
+          actionPrice: 11,
+          imgPath: 'ferrero.png',
+        },
       },
       {
         id: crypto.randomUUID(),

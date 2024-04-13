@@ -12,16 +12,16 @@ const QuickSelectionForm = () => {
   console.log(data)
 
   return (
-    <section className="bg-selection-form bg-no-repeat bg-cover bg-left-top w-full h-[343px] text-light text-center">
+    <section className="bg-selection-form bg-no-repeat bg-cover bg-left-top w-full text-light text-center py-24">
       <div className="container">
-        <h2 className="text-4xl font-medium pt-20">
+        <h2 className="text-4xl font-medium">
           A beautiful bouquet is the best gift!
         </h2>
         <p className="text-lg font-light mt-4">
           Quick selection (we will select the ideal option for you)
         </p>
 
-        <form className="mt-11 w-9/12 flex justify-between mx-auto">
+        <form className="mt-11 w-10/12 flex justify-between mx-auto">
           <QuickSelectionSelect
             selectData={selectionFormData.flowers}
             onChange={onOptionChangeHandler}

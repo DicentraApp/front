@@ -2,6 +2,7 @@ import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { useAppSelector } from '@/common/hooks/hooks'
 import { Spinner } from 'flowbite-react'
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import AddCartBtn from '../UI/Buttons/CartBtn'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -26,7 +27,7 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
   }, [setItemWidth])
 
   return (
-    <div className="min-w-[300px] cursor-pointer pr-14 last:mr-0" ref={itemRef}>
+    <div className="min-w-[254px] cursor-pointer pr-[10px]" ref={itemRef}>
       <div className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative">
         {isLoading && (
           <div className="text-center">
@@ -48,7 +49,6 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
       </div>
       <h4 className="font-normal text-center mb-3">{name}</h4>
       <div className="text-center mb-4">
-        {' '}
         <span
           className={`${!actionPrice ? 'text-dark' : 'mr-2 text-gold line-through'} font-semibold text-xl `}
         >
@@ -56,14 +56,12 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
         </span>
         <span className="font-semibold text-xl ">
           {!actionPrice ? null : actionPrice}
-        </span>
+        </span>{' '}
         $
       </div>
 
       <div className="flex flex-col items-center">
-        <button className="mb-2 bg-dark hover:bg-btnPressedDark transition-all py-3 px-7 text-white rounded-3xl">
-          Add to cart
-        </button>
+        <AddCartBtn />
         <a
           href=""
           className="text-gold hover:text-btnPressedGold transition-all"

@@ -4,6 +4,7 @@ import { useAppSelector } from '@/common/hooks/hooks'
 import { useSelector } from 'react-redux'
 import { selectedActionFlowers } from '@/features/flowers/flowersSelector'
 import FlowersItem from '@/common/components/FlowersItem'
+import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
 
 const ActionCarousel = () => {
   const actionFlowersData = useSelector(selectedActionFlowers)
@@ -20,6 +21,7 @@ const ActionCarousel = () => {
   }
 
   const handleNextClick = () => {
+    if (countSlide === actionFlowersData.length) return
     setOffset((prev) => prev - itemWidth)
     setCountSlide((prev) => prev + 1)
   }
@@ -57,18 +59,12 @@ const ActionCarousel = () => {
           </div>
         </div>
 
-        <button
-          className={`${!offset ? 'hidden' : 'block'} top-1/2 -translate-y-full -left-2 w-12 h-12 bg-white text-3xl border-2 border-gold border-solid text-dark rounded-full absolute z-10 font-semibold flex items-center justify-center`}
-          onClick={handlePrevClick}
-        >
-          &lsaquo;
-        </button>
-        <button
-          className={`${countSlide === actionFlowersData.length ? 'hidden' : 'block'} top-1/2 -translate-y-full -right-2 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-dark text-3xl absolute z-10 font-semibold flex items-center justify-center`}
-          onClick={handleNextClick}
-        >
-          &rsaquo;
-        </button>
+        <ArrowPrev offset={!!offset} handleClick={handlePrevClick} />
+        <ArrowNext
+          countSlide={countSlide}
+          dataLenght={actionFlowersData.length}
+          handleClick={handleNextClick}
+        />
       </div>
     </section>
   )
