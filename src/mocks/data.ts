@@ -395,3 +395,36 @@ export const flowersData = [
     ],
   },
 ]
+
+export const reviewsData = [
+  {
+    id: crypto.randomUUID(),
+    text: 'Thank you for the fast and high-quality decoration and delivery of flowers, the lilies are excellent!)',
+    wrote: 'Angela Romanchenko',
+  },
+  {
+    id: crypto.randomUUID(),
+    text: 'Hi all! I want to recommend the guys! It was snowing and they delivered everything on time! Well done!!!)))) The flowers are very fresh. The birthday girl is happy!!!',
+    wrote: 'Olia Marchenko',
+  },
+  {
+    id: crypto.randomUUID(),
+    text: "I ordered a bridal bouquet of red peonies. He's just great. Thanks to the staff, they listened to all the wishes and did everything perfectly. The photo was sent the day before. Special thanks to the courier, delivery on time!!!",
+    wrote: 'Natasha Yurchenko',
+  },
+  {
+    id: crypto.randomUUID(),
+    text: '3 hours passed from order to receipt. Everything is on time. We previously sent a photo of the bouquet to WhatsApp. I’m very pleased, I’ll be back. Thank you!',
+    wrote: 'Daryna Hlushko',
+  },
+  {
+    id: crypto.randomUUID(),
+    text: 'They responded promptly and placed the order clearly. Specified the recipient, date and convenient delivery interval, address. 25-30 minutes after the call the bouquet was delivered. Cute spring bouquet of tulips, the number of flowers is correct.',
+    wrote: 'Anna Bila',
+  },
+  {
+    id: crypto.randomUUID(),
+    text: 'Excellent bouquet, quickly collected and delivered. The bouquet is very delicate, airy, like a shiny pearl:) My sister was delighted) Thank you very much!!',
+    wrote: 'Kateryna Bobenko',
+  },
+]

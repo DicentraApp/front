@@ -2,33 +2,68 @@ import { FC } from 'react'
 
 interface IArrow {
   offset?: boolean | undefined
-  countSlide?: number | undefined
+  countSlides?: number | undefined
   dataLenght?: number | undefined
+  cssStyles?: string | undefined
+  fillColor?: string | undefined
   handleClick: () => void
 }
 
-export const ArrowPrev: FC<IArrow> = ({ offset, handleClick }) => {
+export const ArrowPrev: FC<IArrow> = ({
+  offset,
+  handleClick,
+  cssStyles,
+  fillColor = '#292933',
+}) => {
   return (
     <button
-      className={`${!offset ? 'hidden' : 'block'} top-[225px] -left-2 w-12 h-12 bg-white border-2 border-gold border-solid rounded-full absolute z-10 flex items-center justify-center`}
+      className={`w-12 h-12 border-2 border-solid rounded-full absolute z-10 flex items-center justify-center disabled:opacity-75 ${cssStyles}`}
       onClick={handleClick}
+      disabled={!offset}
     >
-      <img className="mr-1" src="images/slider/arrow-prev.svg" alt="prev" />
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="mr-1"
+      >
+        <path
+          d="M20.2812 22.3438L14.8125 16.0938L20.2812 9.84375L19.1875 7.34375L11.5312 16.0938L19.1875 24.8438L20.2812 22.3438Z"
+          fill={fillColor}
+        />
+      </svg>
     </button>
   )
 }
 
 export const ArrowNext: FC<IArrow> = ({
-  countSlide,
+  countSlides,
   handleClick,
   dataLenght,
+  cssStyles,
+  fillColor = '#292933',
 }) => {
   return (
     <button
-      className={`${countSlide === dataLenght ? 'hidden' : 'block'} top-[225px] -right-2 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid absolute z-10 flex items-center justify-center`}
+      className={`w-12 h-12 rounded-full border-2 border-solid absolute z-10 flex items-center justify-center disabled:opacity-75 ${cssStyles}`}
       onClick={handleClick}
+      disabled={countSlides === dataLenght}
     >
-      <img className="ml-1" src="images/slider/arrow-next.svg" alt="next" />
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="ml-1"
+      >
+        <path
+          d="M11.7188 22.3438L17.1875 16.0938L11.7188 9.84375L12.8125 7.34375L20.4688 16.0938L12.8125 24.8438L11.7188 22.3438Z"
+          fill={fillColor}
+        />
+      </svg>
     </button>
   )
 }

@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
 import CheaperTogetherCarouselItem from './TogetherWithCarouselItem'
 import { useAppSelector } from '@/common/hooks/hooks'
-import { selectedTogetherWithFlowers } from '@/features/flowers/flowersSelector'
 import { Spinner } from 'flowbite-react'
+import { IFlowerItem } from '@/common/dto/getFlowersDto'
 
-const TogetherWithCarousel = () => {
-  const togetherWith = useAppSelector(selectedTogetherWithFlowers)
+interface ICarouselProps {
+  childen: JSX.Element[]
+  data: IFlowerItem[]
+}
+
+const CarouselWithTwoSlides: FC<ICarouselProps> = ({ childen, data }) => {
   const { isLoading } = useAppSelector((state) => state.flowers)
   const [countSlides, setCountSlides] = useState(2)
   const [offset, setOffset] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
-  const trackWidth = itemWidth * togetherWith.length
+  const trackWidth = itemWidth * data.length
 
   const handlePrevClick = () => {
     if (!offset) return
@@ -22,7 +26,7 @@ const TogetherWithCarousel = () => {
   const handleNextClick = () => {
     setOffset((prev) => prev - itemWidth)
     setCountSlides((prev) => prev + 1)
-    if (countSlides === togetherWith.length) return
+    if (countSlides === data.length) return
   }
 
   if (isLoading) {
@@ -49,7 +53,7 @@ const TogetherWithCarousel = () => {
               transform: `translateX(${offset}px)`,
             }}
           >
-            {togetherWith.map((item) => (
+            {data.map((item) => (
               <CheaperTogetherCarouselItem
                 key={item.id}
                 data={item}
@@ -59,20 +63,15 @@ const TogetherWithCarousel = () => {
           </div>
         </div>
 
-        <ArrowPrev
-          offset={!!offset}
-          handleClick={handlePrevClick}
-          cssStyles="top-[225px] -left-2 bg-white border-gold"
-        />
+        <ArrowPrev offset={!!offset} handleClick={handlePrevClick} />
         <ArrowNext
-          dataLenght={togetherWith.length}
+          dataLenght={data.length}
           countSlides={countSlides}
           handleClick={handleNextClick}
-          cssStyles="top-[225px] -right-2 bg-white border-gold"
         />
       </div>
     </section>
   )
 }
 
-export default TogetherWithCarousel
+export default CarouselWithTwoSlides

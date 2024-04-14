@@ -10,20 +10,20 @@ const ActionCarousel = () => {
   const actionFlowersData = useSelector(selectedActionFlowers)
   const { isLoading } = useAppSelector((state) => state.flowers)
   const [offset, setOffset] = useState(0)
-  const [countSlide, setCountSlide] = useState(5)
+  const [countSlides, setCountSlides] = useState(5)
   const [itemWidth, setItemWidth] = useState(0)
   const trackWidth = Math.ceil(itemWidth * actionFlowersData.length)
 
   const handlePrevClick = () => {
     if (!offset) return
     setOffset((prev) => prev + itemWidth)
-    setCountSlide((prev) => prev - 1)
+    setCountSlides((prev) => prev - 1)
   }
 
   const handleNextClick = () => {
-    if (countSlide === actionFlowersData.length) return
+    if (countSlides === actionFlowersData.length) return
     setOffset((prev) => prev - itemWidth)
-    setCountSlide((prev) => prev + 1)
+    setCountSlides((prev) => prev + 1)
   }
 
   if (isLoading) {
@@ -41,7 +41,6 @@ const ActionCarousel = () => {
         <h2 className="text-4xl mb-8 text-center font-medium">
           Promotional offers
         </h2>
-
         <div className="w-full overflow-x-hidden">
           <div
             className={`flex w-[${trackWidth}px] transition-transform`}
@@ -59,11 +58,16 @@ const ActionCarousel = () => {
           </div>
         </div>
 
-        <ArrowPrev offset={!!offset} handleClick={handlePrevClick} />
+        <ArrowPrev
+          offset={!!offset}
+          handleClick={handlePrevClick}
+          cssStyles="top-[225px] -left-2 bg-white border-gold"
+        />
         <ArrowNext
-          countSlide={countSlide}
+          countSlides={countSlides}
           dataLenght={actionFlowersData.length}
           handleClick={handleNextClick}
+          cssStyles="top-[225px] -right-2 bg-white border-gold"
         />
       </div>
     </section>

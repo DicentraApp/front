@@ -12,6 +12,7 @@ import {
   selectionFormData,
 } from './data'
 import AboutFlowers from './components/AboutFlowers'
+import ReviewsCarousel from './components/ReviewsCarousel'
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
         title="Flowers are not just an occasion gift, they are another way to emphasize your uniqueness."
         data={introDataThird}
       />
+      <ReviewsCarousel />
     </div>
   )
 }

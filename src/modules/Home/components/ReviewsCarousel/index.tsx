@@ -1,17 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
-import CheaperTogetherCarouselItem from './TogetherWithCarouselItem'
-import { useAppSelector } from '@/common/hooks/hooks'
-import { selectedTogetherWithFlowers } from '@/features/flowers/flowersSelector'
 import { Spinner } from 'flowbite-react'
+import { useGetReviewsApiQuery } from '@/features/api/apiSlise'
+import ReviewsCarouselItem from './ReviewsCarouselItem'
 
-const TogetherWithCarousel = () => {
-  const togetherWith = useAppSelector(selectedTogetherWithFlowers)
-  const { isLoading } = useAppSelector((state) => state.flowers)
+const ReviewsCarousel = () => {
+  const { data, isLoading, isError } = useGetReviewsApiQuery()
   const [countSlides, setCountSlides] = useState(2)
   const [offset, setOffset] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
-  const trackWidth = itemWidth * togetherWith.length
+  const [trackWidth, setTrackWidth] = useState(0)
+  console.log(itemWidth)
 
   const handlePrevClick = () => {
     if (!offset) return
@@ -22,8 +21,14 @@ const TogetherWithCarousel = () => {
   const handleNextClick = () => {
     setOffset((prev) => prev - itemWidth)
     setCountSlides((prev) => prev + 1)
-    if (countSlides === togetherWith.length) return
+    if (countSlides === data!.length) return
   }
+
+  useEffect(() => {
+    if (data) {
+      setTrackWidth(itemWidth * data.length)
+    }
+  }, [data, itemWidth])
 
   if (isLoading) {
     return (
@@ -34,14 +39,22 @@ const TogetherWithCarousel = () => {
     )
   }
 
+  if (isError) {
+    return (
+      <p className="text-center text-red text-md">
+        Something went wrong, please try again!
+      </p>
+    )
+  }
+
   return (
     <section className="bg-light py-24">
       <div className="container relative">
         <h1 className="text-4xl mb-8 text-center font-medium">
-          Cheaper together
+          Customer Reviews
         </h1>
 
-        <div className="overflow-x-hidden">
+        <div className="overflow-hidden">
           <div
             className="flex justify-between transition-transform"
             style={{
@@ -49,8 +62,8 @@ const TogetherWithCarousel = () => {
               transform: `translateX(${offset}px)`,
             }}
           >
-            {togetherWith.map((item) => (
-              <CheaperTogetherCarouselItem
+            {data?.map((item) => (
+              <ReviewsCarouselItem
                 key={item.id}
                 data={item}
                 setItemWidth={setItemWidth}
@@ -62,17 +75,19 @@ const TogetherWithCarousel = () => {
         <ArrowPrev
           offset={!!offset}
           handleClick={handlePrevClick}
-          cssStyles="top-[225px] -left-2 bg-white border-gold"
+          cssStyles="-bottom-6 right-20 bg-dark border-dark"
+          fillColor="#fff"
         />
         <ArrowNext
-          dataLenght={togetherWith.length}
+          dataLenght={data?.length}
           countSlides={countSlides}
           handleClick={handleNextClick}
-          cssStyles="top-[225px] -right-2 bg-white border-gold"
+          cssStyles="-bottom-6 right-7 bg-dark border-dark"
+          fillColor="#fff"
         />
       </div>
     </section>
   )
 }
 
-export default TogetherWithCarousel
+export default ReviewsCarousel
