@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Spinner } from 'flowbite-react'
-import { useAppSelector } from '@/common/hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 import { useSelector } from 'react-redux'
 import { selectedActionFlowers } from '@/features/flowers/flowersSelector'
 import FlowersItem from '@/common/components/FlowersItem'

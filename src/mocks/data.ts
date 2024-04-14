@@ -404,7 +404,7 @@ export const reviewsData = [
   },
   {
     id: crypto.randomUUID(),
-    text: 'Hi all! I want to recommend the guys! It was snowing and they delivered everything on time! Well done!!!)))) The flowers are very fresh. The birthday girl is happy!!!',
+    text: 'HiI want to recommend the guys! It was snowing and they delivered everything on time! Well done!!!)))) The flowers are very fresh. The birthday girl is happy!!!',
     wrote: 'Olia Marchenko',
   },
   {
@@ -426,5 +426,26 @@ export const reviewsData = [
     id: crypto.randomUUID(),
     text: 'Excellent bouquet, quickly collected and delivered. The bouquet is very delicate, airy, like a shiny pearl:) My sister was delighted) Thank you very much!!',
     wrote: 'Kateryna Bobenko',
+  },
+]
+
+export const blogData = [
+  {
+    id: crypto.randomUUID(),
+    title: 'Caring for Succulents',
+    text: 'Succulents have recently become extremely popular; exotic plants can be seen more and more often on windowsills.',
+    imgPath: 'blog-1.jpg',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Wedding decoration',
+    text: 'Wedding floristry is not just a magnificent bridal bouquet. This is the whole art of creating a magical wedding celebration.',
+    imgPath: 'blog-2.jpg',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Peonies - garden decoration',
+    text: 'Peony is a perennial bushy plant. In large gardens, it is better to plant them in groups, and the distance between plants is maintained at 60-100 cm.',
+    imgPath: 'blog-3.jpg',
   },
 ]

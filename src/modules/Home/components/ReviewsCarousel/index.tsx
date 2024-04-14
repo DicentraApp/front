@@ -10,7 +10,6 @@ const ReviewsCarousel = () => {
   const [offset, setOffset] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
   const [trackWidth, setTrackWidth] = useState(0)
-  console.log(itemWidth)
 
   const handlePrevClick = () => {
     if (!offset) return
@@ -48,7 +47,7 @@ const ReviewsCarousel = () => {
   }
 
   return (
-    <section className="bg-light py-24">
+    <section className="bg-light pb-24 pt-20">
       <div className="container relative">
         <h1 className="text-4xl mb-8 text-center font-medium">
           Customer Reviews

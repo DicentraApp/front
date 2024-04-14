@@ -13,6 +13,8 @@ import {
 } from './data'
 import AboutFlowers from './components/AboutFlowers'
 import ReviewsCarousel from './components/ReviewsCarousel'
+import Blog from './components/Blog'
+import Footer from '@/common/components/Footer'
 
 const Home = () => {
   return (
@@ -33,6 +35,8 @@ const Home = () => {
         data={introDataThird}
       />
       <ReviewsCarousel />
+      <Blog title="Portal Dicentra" />
+      <Footer />
     </div>
   )
 }

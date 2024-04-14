@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Spinner } from 'flowbite-react'
-import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { getFlowers, setFlowers } from '@/features/flowers/flowersSlice'
 import { useSelector } from 'react-redux'
 import { selectedFlowers } from '@/features/flowers/flowersSelector'

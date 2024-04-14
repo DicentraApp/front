@@ -1,5 +1,5 @@
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
-import { useAppSelector } from '@/common/hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 import { Spinner } from 'flowbite-react'
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import AddCartBtn from '../UI/Buttons/CartBtn'
@@ -61,7 +61,7 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <AddCartBtn />
+        <AddCartBtn text="Add to cart" />
         <a
           href=""
           className="text-gold hover:text-btnPressedGold transition-all"

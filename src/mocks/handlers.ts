@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { flowersData, reviewsData } from './data'
+import { blogData, flowersData, reviewsData } from './data'
 
 export const handlers = [
   http.get('/flowers', () => {
@@ -7,5 +7,8 @@ export const handlers = [
   }),
   http.get('/reviews', () => {
     return HttpResponse.json(reviewsData)
+  }),
+  http.get('/blog', () => {
+    return HttpResponse.json(blogData)
   }),
 ]

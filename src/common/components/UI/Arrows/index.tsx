@@ -17,7 +17,7 @@ export const ArrowPrev: FC<IArrow> = ({
 }) => {
   return (
     <button
-      className={`w-12 h-12 border-2 border-solid rounded-full absolute z-10 flex items-center justify-center disabled:opacity-75 ${cssStyles}`}
+      className={`w-12 h-12 border-2 border-solid rounded-full absolute z-10 flex items-center justify-center disabled:opacity-75 disabled:cursor-not-allowed ${cssStyles}`}
       onClick={handleClick}
       disabled={!offset}
     >
@@ -47,7 +47,7 @@ export const ArrowNext: FC<IArrow> = ({
 }) => {
   return (
     <button
-      className={`w-12 h-12 rounded-full border-2 border-solid absolute z-10 flex items-center justify-center disabled:opacity-75 ${cssStyles}`}
+      className={`w-12 h-12 rounded-full border-2 border-solid absolute z-10 flex items-center justify-center disabled:opacity-75 disabled:cursor-not-allowed ${cssStyles}`}
       onClick={handleClick}
       disabled={countSlides === dataLenght}
     >

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
 import CheaperTogetherCarouselItem from './TogetherWithCarouselItem'
-import { useAppSelector } from '@/common/hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 import { Spinner } from 'flowbite-react'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 
