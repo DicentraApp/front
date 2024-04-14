@@ -1,15 +1,31 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { selectionFormData } from '../../data'
 import QuickSelectionSelect from './QuickSelectionSelect'
 
-const QuickSelectionForm = () => {
-  const [data, setData] = useState('')
+interface IQuickSelectionForm {
+  data: {
+    flowers: {
+      title: string
+      data: string[]
+    }
+    events: {
+      title: string
+      data: string[]
+    }
+    budget: {
+      title: string
+      data: string[]
+    }
+  }
+}
+
+const QuickSelectionForm: FC<IQuickSelectionForm> = ({ data }) => {
+  const [formData, setFormData] = useState('')
 
   const onOptionChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
-    setData(event.currentTarget.value)
+    setFormData(event.currentTarget.value)
+    console.log(formData)
   }
-
-  console.log(data)
 
   return (
     <section className="bg-selection-form bg-no-repeat bg-cover bg-left-top w-full text-light text-center py-24">
@@ -23,15 +39,15 @@ const QuickSelectionForm = () => {
 
         <form className="mt-11 w-10/12 flex justify-between mx-auto">
           <QuickSelectionSelect
-            selectData={selectionFormData.flowers}
+            selectData={data.flowers}
             onChange={onOptionChangeHandler}
           />
           <QuickSelectionSelect
-            selectData={selectionFormData.events}
+            selectData={data.events}
             onChange={onOptionChangeHandler}
           />
           <QuickSelectionSelect
-            selectData={selectionFormData.budget}
+            selectData={data.budget}
             onChange={onOptionChangeHandler}
           />
 

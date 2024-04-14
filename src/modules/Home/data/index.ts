@@ -48,6 +48,50 @@ export const introDataSecond = [
   },
 ]
 
+export const introDataThird = [
+  {
+    id: crypto.randomUUID(),
+    title: 'Bouquets',
+    text: 'The freshest and coolest bouquets are always available on our website. Order.',
+    imgPath: 'intro-5.jpg',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Roses',
+    text: 'A bouquet of roses can be endlessly supplemented with other plants and elements: they are always perfect - both in combination and independently.',
+    imgPath: 'intro-6.jpg',
+    marginToTop: '-mt-40',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Flowers',
+    text: 'Give your loved ones a bouquet of flowers, show them your true feelings ❤.',
+    imgPath: 'intro-7.jpg',
+    marginToTop: '-mt-80',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Services',
+    text: '',
+    imgPath: 'intro-8.jpg',
+    marginToTop: 'mt-20',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Houseplants',
+    text: 'A bouquet of roses can be endlessly supplemented with other plants and elements: they are always perfect - both in combination and independently.',
+    imgPath: 'intro-9.jpg',
+    marginToTop: '-mt-20',
+  },
+  {
+    id: crypto.randomUUID(),
+    title: 'Gifts',
+    text: 'The freshest and coolest bouquets are always available on our website. Order.',
+    imgPath: 'intro-10.jpg',
+    marginToTop: '-mt-40',
+  },
+]
+
 export const selectionFormData = {
   flowers: {
     title: 'Flowers',

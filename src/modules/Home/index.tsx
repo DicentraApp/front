@@ -4,7 +4,14 @@ import TogetherWithCarousel from './components/TogetherWithCarousel'
 import Intro from './components/Intro'
 import QuickSelectionForm from './components/QuickSelectionForm'
 import Slider from './components/Slider'
-import { sliderData, introDataFirst, introDataSecond } from './data'
+import {
+  sliderData,
+  introDataFirst,
+  introDataSecond,
+  introDataThird,
+  selectionFormData,
+} from './data'
+import AboutFlowers from './components/AboutFlowers'
 
 const Home = () => {
   return (
@@ -18,8 +25,12 @@ const Home = () => {
       <Bestsellers />
       <Intro data={introDataSecond} />
       <ActionCarousel />
-      <QuickSelectionForm />
+      <QuickSelectionForm data={selectionFormData} />
       <TogetherWithCarousel />
+      <AboutFlowers
+        title="Flowers are not just an occasion gift, they are another way to emphasize your uniqueness."
+        data={introDataThird}
+      />
     </div>
   )
 }

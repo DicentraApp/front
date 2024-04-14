@@ -12,7 +12,7 @@ const Intro: FC<IIntro> = ({ data, description }) => {
     <section className="container relative">
       <p className="font-medium text-xl w-5/12 mb-32">{description}</p>
 
-      <div className="flex justify-between mb-48">
+      <div className="flex justify-between mb-48 flex-wrap">
         {data?.map((item) => <IntroItem key={item.id} {...item} />)}
       </div>
 
