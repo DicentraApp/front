@@ -11,4 +11,8 @@ export const handlers = [
   http.get('/blog', () => {
     return HttpResponse.json(blogData)
   }),
+  http.post('/order_by_photo/success', async ({ request }) => {
+    const body = await request.json()
+    return HttpResponse.json(body)
+  }),
 ]

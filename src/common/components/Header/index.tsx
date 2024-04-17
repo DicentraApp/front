@@ -37,7 +37,7 @@ export const navData = [
   {
     id: crypto.randomUUID(),
     title: 'Order by photo',
-    link: '',
+    link: 'order_by_photo',
   },
 
   {
@@ -49,7 +49,7 @@ export const navData = [
 
 export const Header: FC<HeaderProps> = () => {
   return (
-    <div className="w-full bg-white flex flex-col items-center fixed z-50 py-5">
+    <header className="w-full bg-white flex flex-col items-center fixed z-50 py-5">
       <div className="container mb-6 flex items-center justify-between">
         <Phone phoneNumber="+380 (98) 997-19-91" />
         <Logo
@@ -64,6 +64,6 @@ export const Header: FC<HeaderProps> = () => {
         </div>
       </div>
       <Navigation data={navData} />
-    </div>
+    </header>
   )
 }

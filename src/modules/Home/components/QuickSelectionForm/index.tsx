@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-import { selectionFormData } from '../../data'
 import QuickSelectionSelect from './QuickSelectionSelect'
 
 interface IQuickSelectionForm {

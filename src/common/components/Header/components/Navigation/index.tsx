@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
 interface INavigation {
   id: string
@@ -17,12 +18,12 @@ const Navigation: FC<INavigationData> = ({ data }) => {
         {data.map((item) => {
           return (
             <li key={item.id}>
-              <a
+              <Link
                 className="uppercase text-sm font-roboto font-semibold text-dark"
-                href={item.link}
+                to={item.link}
               >
                 {item.title}
-              </a>
+              </Link>
             </li>
           )
         })}

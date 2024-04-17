@@ -1,11 +1,24 @@
-import { Header } from './common/components/Header'
-import Home from './modules/Home'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-export const App = () => {
-  return (
-    <div>
-      <Header />
-      <Home />
-    </div>
-  )
-}
+import Layout from './common/components/Layout'
+import Home from './modules/Home/index.tsx'
+import OrderByPhoto from './modules/OrderByPhoto/index.tsx'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        element: <Home />,
+        index: true,
+      },
+      {
+        element: <OrderByPhoto />,
+        path: 'order_by_photo',
+      },
+    ],
+  },
+])
+
+export const App = () => <RouterProvider router={router} />

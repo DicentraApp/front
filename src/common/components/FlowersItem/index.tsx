@@ -3,6 +3,7 @@ import { useAppSelector } from '@/hooks/hooks'
 import { Spinner } from 'flowbite-react'
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import AddCartBtn from '../UI/Buttons/CartBtn'
+import { Link } from 'react-router-dom'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -62,12 +63,12 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
 
       <div className="flex flex-col items-center">
         <AddCartBtn text="Add to cart" />
-        <a
-          href=""
+        <Link
+          to=""
           className="text-gold hover:text-btnPressedGold transition-all"
         >
           Quick order
-        </a>
+        </Link>
       </div>
     </div>
   )
