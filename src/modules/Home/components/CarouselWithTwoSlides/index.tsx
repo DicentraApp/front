@@ -6,11 +6,11 @@ import { Spinner } from 'flowbite-react'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 
 interface ICarouselProps {
-  childen: JSX.Element[]
+  children: JSX.Element[]
   data: IFlowerItem[]
 }
 
-const CarouselWithTwoSlides: FC<ICarouselProps> = ({ childen, data }) => {
+const CarouselWithTwoSlides: FC<ICarouselProps> = ({ children, data }) => {
   const { isLoading } = useAppSelector((state) => state.flowers)
   const [countSlides, setCountSlides] = useState(2)
   const [offset, setOffset] = useState(0)

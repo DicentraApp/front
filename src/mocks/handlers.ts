@@ -15,4 +15,8 @@ export const handlers = [
     const body = await request.json()
     return HttpResponse.json(body)
   }),
+  http.post('/contacts', async ({ request }) => {
+    const body = await request.json()
+    return HttpResponse.json(body)
+  }),
 ]

@@ -1,6 +1,6 @@
 import { useGetBlogApiQuery } from '@/features/api/apiSlise'
 import { FC } from 'react'
-import BlogItem from './BlogItem'
+import BlogItem from './components/BlogItem'
 import { Spinner } from 'flowbite-react'
 import AddCartBtn from '@/common/components/UI/Buttons/CartBtn'
 import { useNavigate } from 'react-router-dom'

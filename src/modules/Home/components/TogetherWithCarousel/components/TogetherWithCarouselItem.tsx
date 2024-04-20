@@ -75,7 +75,7 @@ const TogetherWithCarouselItem: FC<ITogetherWithCarouselItem> = ({
           <span className="mr-3 text-gold line-through">{priceWithout}</span>
           <span className="text-dark ">{priceWith}</span> $
         </div>
-        <AddCartBtn text="Add to cart" />
+        <AddCartBtn text="Add to cart" handleClick={() => {}} />
       </div>
     </div>
   )

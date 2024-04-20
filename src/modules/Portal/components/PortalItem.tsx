@@ -23,7 +23,7 @@ const PortalItem: FC<PortalItemProps> = ({ item }) => {
       relative="path"
     >
       <img
-        className="w-full h-56 object-cover mb-4"
+        className="w-full h-56 object-cover mb-4 bg-gray-200"
         src={`images/blog/${item.imgPath}`}
         alt={item.title}
       />

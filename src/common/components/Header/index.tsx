@@ -5,47 +5,9 @@ import UserIcon from './components/UserIcon'
 import CartIcon from './components/Cart'
 import Navigation from './components/Navigation'
 import Phone from './components/Phone'
+import { navData } from './data'
 
 interface HeaderProps {}
-
-export const navData = [
-  {
-    id: crypto.randomUUID(),
-    title: 'our shops',
-    link: '',
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'bouquets',
-    link: '',
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'Shipping and payment',
-    link: '',
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'About Us',
-    link: '',
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'Contacts',
-    link: '',
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'Order by photo',
-    link: 'order_by_photo',
-  },
-
-  {
-    id: crypto.randomUUID(),
-    title: 'Promotions',
-    link: '',
-  },
-]
 
 export const Header: FC<HeaderProps> = () => {
   return (
@@ -58,9 +20,9 @@ export const Header: FC<HeaderProps> = () => {
         />
 
         <div className="w-96 flex items-center justify-between">
-          <Search searchIconPath="images/search/search.svg" />
-          <UserIcon iconUserPath="images/user/icon_user.svg" />
-          <CartIcon cartIconPath="images/user/icon_cart.svg" cartNumber={89} />
+          <Search searchIconPath="images/icons/search.svg" />
+          <UserIcon iconUserPath="images/icons/icon_user.svg" />
+          <CartIcon cartIconPath="images/icons/icon_cart.svg" cartNumber={89} />
         </div>
       </div>
       <Navigation data={navData} />

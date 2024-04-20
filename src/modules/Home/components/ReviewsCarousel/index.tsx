@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
 import { Spinner } from 'flowbite-react'
 import { useGetReviewsApiQuery } from '@/features/api/apiSlise'
-import ReviewsCarouselItem from './ReviewsCarouselItem'
+import ReviewsCarouselItem from './components/ReviewsCarouselItem'
 
 const ReviewsCarousel = () => {
   const { data, isLoading, isError } = useGetReviewsApiQuery()

@@ -5,6 +5,9 @@ import OrderByPhoto from './modules/OrderByPhoto'
 import Portal from './modules/Portal'
 import SinglePortal from './modules/SinglePortal'
 import PageNotFound from './modules/PageNotFound'
+import ShippingAndPayment from './modules/ShippingAndPayment'
+import Shops from './modules/Shops'
+import Contacts from './modules/Contacts'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
       {
         element: <SinglePortal />,
         path: 'portal/:portalId',
+      },
+      {
+        element: <ShippingAndPayment />,
+        path: 'shipping_and_payment',
+      },
+      {
+        element: <Shops />,
+        path: 'shops',
+      },
+      {
+        element: <Contacts />,
+        path: 'contacts',
       },
     ],
   },

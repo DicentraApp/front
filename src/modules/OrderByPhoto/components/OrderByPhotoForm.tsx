@@ -148,7 +148,7 @@ const OrderByPhotoForm = () => {
         <div className="absolute w-full py-3 bg-gold top-0 left-0 right-0 rounded-full text-light text-md cursor-pointer flex justify-center">
           <img
             className={`${!fileName ? 'mr-2 block' : 'hidden'}`}
-            src="images/upload.svg"
+            src="images/icons/upload.svg"
             alt="upload"
           />
           {!fileName ? 'Upload a photo' : shortFileName(fileName)}

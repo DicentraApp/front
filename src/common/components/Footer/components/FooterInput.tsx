@@ -16,7 +16,7 @@ const FooterInput = () => {
           className="absolute right-5 top-1/2 -translate-y-1/2"
           type="submit"
         >
-          <img src="images/navigation.svg" alt="send" />
+          <img src="images/icons/navigation.svg" alt="send" />
         </button>
       </form>
       <div className="mt-7 flex">
@@ -25,14 +25,14 @@ const FooterInput = () => {
           to="https://www.facebook.com"
           target="_blank"
         >
-          <img src="images/facebook.svg" alt="facebook" />
+          <img src="/images/icons/facebook.svg" alt="facebook" />
         </Link>
         <Link
           className="border-gold border-2 border-solid rounded-full w-12 h-12 flex justify-center items-center"
           to="https://www.instagram.com"
           target="_blank"
         >
-          <img src="images/instagram.svg" alt="instagram" />
+          <img src="/images/icons/instagram.svg" alt="instagram" />
         </Link>
       </div>
     </div>

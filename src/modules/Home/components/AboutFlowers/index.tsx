@@ -19,7 +19,7 @@ const AboutFlowers: FC<IAboutFlowers> = ({ data, title }) => {
               className={`w-1/3 text-base ${item?.marginToTop}`}
             >
               <img
-                className={`object-cover w-[307px] ${!ind || ind === data.length - 1 ? 'h-[360px]' : 'h-[232px]'}`}
+                className={`bg-gray-200 object-cover w-[307px] ${!ind || ind === data.length - 1 ? 'h-[360px]' : 'h-[232px]'}`}
                 src={`images/intro/${item.imgPath}`}
                 alt={item.title}
               />

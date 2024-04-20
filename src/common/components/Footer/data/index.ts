@@ -8,11 +8,11 @@ export const forClientsNav = {
   nav: [
     {
       navItem: 'Shipping and payment',
-      navHref: '',
+      navHref: 'shipping_and_payment',
     },
     {
       navItem: 'Contacts',
-      navHref: '',
+      navHref: 'contacts',
     },
     {
       navItem: 'Replacement and return',
@@ -33,8 +33,8 @@ export const forCompanyNav = {
       navHref: '',
     },
     {
-      navItem: 'The shops',
-      navHref: '',
+      navItem: 'Our shops',
+      navHref: 'shops',
     },
     {
       navItem: 'Reviews',

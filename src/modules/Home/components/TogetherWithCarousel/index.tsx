@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
-import CheaperTogetherCarouselItem from './TogetherWithCarouselItem'
+import CheaperTogetherCarouselItem from './components/TogetherWithCarouselItem'
 import { useAppSelector } from '@/hooks/hooks'
 import { selectedTogetherWithFlowers } from '@/features/flowers/flowersSelector'
 import { Spinner } from 'flowbite-react'

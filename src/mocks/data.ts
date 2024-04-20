@@ -586,7 +586,7 @@ export const portalData = [
           'The ancient superstition, where the saying “trouble does not come alone” came from, has firmly entered our modern life. It is still believed that paired plants are placed in the coffin of a deceased person as a sign of respect and grief. Therefore, do not put yourself and others in an awkward position and follow traditions. Odd numbers carry a sacred meaning and are a kind of amulet against bad people who can harm you or your family.',
       },
       {
-        subtitle: 'transplantation',
+        subtitle: 'Tsransplantation',
         paragraph:
           "Orchids need to be replanted, particularly when the flower pot they have shown becomes too small for them, or when the substrate is used up, or the soil is no longer suitable for growing plants, for example due to too much salinity. Plants should be replanted by women for two to three years. It is best in spring or summer when the orchids turn white. We must do this if the soil is compact and the air does not reach the roots, or the substrate cannot dry out, or it takes a very long time. We replaced the orchid's flower pot and substrate when it grew larger than the container in which it is growing. For example, the plant turns over because it has a small pot, or all the growing orchids cannot fit into the pot.",
       },

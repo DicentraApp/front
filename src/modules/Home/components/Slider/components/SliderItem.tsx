@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import './slider.css'
+import '../slider.css'
 
 interface ISliderItem {
   bg: string
@@ -38,13 +38,13 @@ const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
           className="w-16 h-16 border border-gold rounded-full bg-white flex items-center justify-center mr-5"
           onClick={prev}
         >
-          <img className="mr-1" src="images/slider/arrow-prev.svg" alt="prev" />
+          <img className="mr-1" src="images/icons/arrow-prev.svg" alt="prev" />
         </button>
         <button
           className="w-16 h-16 border border-gold rounded-full bg-white flex items-center justify-center"
           onClick={next}
         >
-          <img className="ml-1" src="images/slider/arrow-next.svg" alt="next" />
+          <img className="ml-1" src="images/icons/arrow-next.svg" alt="next" />
         </button>
       </div>
     </div>

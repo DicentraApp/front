@@ -23,7 +23,11 @@ const ReviewsCarouselItem: FC<IReviewsCarouselItemProps> = ({
   return (
     <div className="min-w-[643px] pr-4 h-60" ref={itemRef}>
       <div className="bg-white p-10 flex h-full">
-        <img className="h-8 w-12 mr-6" src="images/comma.svg" alt={wrote} />
+        <img
+          className="h-8 w-12 mr-6"
+          src="images/icons/comma.svg"
+          alt={wrote}
+        />
         <div className="text-dark  mt-5">
           <p className="mb-4 font-light">{text}</p>
           <span className="font-semibold text-md">{wrote}</span>

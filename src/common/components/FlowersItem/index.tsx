@@ -37,7 +37,7 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
           </div>
         )}
         <img
-          className="w-48 h-52 object-contain animate-fade"
+          className="w-48 h-52 object-contain bg-white"
           src={`images/flowers/${img}.png`}
           alt={name}
         />
@@ -62,7 +62,7 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <AddCartBtn text="Add to cart" />
+        <AddCartBtn text="Add to cart" handleClick={() => {}} />
         <Link
           to=""
           className="text-gold hover:text-btnPressedGold transition-all"

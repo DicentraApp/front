@@ -1,5 +1,5 @@
 import { IIntroData } from '@/common/dto/getIntroDto'
-import IntroItem from './IntroItem'
+import IntroItem from './components/IntroItem'
 import { FC } from 'react'
 
 interface IIntro {

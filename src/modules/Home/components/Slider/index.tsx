@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import SliderItem from './SliderItem'
+import SliderItem from './components/SliderItem'
 import { ISliderData } from '@/common/dto/getSliderDto'
 
 interface ISlider {
