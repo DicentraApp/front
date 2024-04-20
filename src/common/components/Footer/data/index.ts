@@ -42,7 +42,7 @@ export const forCompanyNav = {
     },
     {
       navItem: 'Portal',
-      navHref: '',
+      navHref: 'portal',
     },
   ],
 }

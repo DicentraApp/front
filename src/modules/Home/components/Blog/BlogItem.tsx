@@ -14,7 +14,7 @@ const BlogItem: FC<IBlogItemProps> = ({ data }) => {
         alt={data.title}
       />
       <h3 className="text-center text-xl font-semibold mb-3">{data.title}</h3>
-      <p className="text-center px-3">{data.text}</p>
+      <p className="text-center px-3">{data.describing}</p>
     </div>
   )
 }

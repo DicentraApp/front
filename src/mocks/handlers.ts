@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { blogData, flowersData, reviewsData } from './data'
+import { portalData, flowersData, reviewsData } from './data'
 
 export const handlers = [
   http.get('/flowers', () => {
@@ -8,8 +8,8 @@ export const handlers = [
   http.get('/reviews', () => {
     return HttpResponse.json(reviewsData)
   }),
-  http.get('/blog', () => {
-    return HttpResponse.json(blogData)
+  http.get('/portal', () => {
+    return HttpResponse.json(portalData)
   }),
   http.post('/order_by_photo/success', async ({ request }) => {
     const body = await request.json()

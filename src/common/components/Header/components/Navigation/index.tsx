@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 interface INavigation {
   id: string
@@ -17,13 +17,18 @@ const Navigation: FC<INavigationData> = ({ data }) => {
       <ul className="flex justify-between">
         {data.map((item) => {
           return (
-            <li key={item.id}>
-              <Link
-                className="uppercase text-sm font-roboto font-semibold text-dark"
+            <li
+              key={item.id}
+              className="uppercase text-sm font-roboto font-semibold"
+            >
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? 'text-gold' : 'text-dark'
+                }}
                 to={item.link}
               >
                 {item.title}
-              </Link>
+              </NavLink>
             </li>
           )
         })}

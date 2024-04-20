@@ -15,7 +15,7 @@ export const apiSlice = createApi({
       query: () => '/reviews',
     }),
     getBlogApi: builder.query<IBlogData, void>({
-      query: () => '/blog',
+      query: () => `/portal`,
     }),
   }),
 })

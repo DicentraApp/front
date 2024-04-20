@@ -15,7 +15,6 @@ export default {
       fontFamily: {
         roboto: 'Roboto, sans-serif',
         ubuntu: 'Ubuntu, sans-serif',
-        openSans: 'Open Sans, sans-serif',
       },
       colors: {
         dark: '#292933',
@@ -49,7 +48,7 @@ export default {
         fade: 'fade 2s easy-out',
       },
       backgroundImage: {
-        'selection-form': 'url(images/selection-form-bg.jpg)',
+        'selection-form': 'url(/images/selection-form-bg.jpg)',
       },
     },
   },

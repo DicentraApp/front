@@ -1,10 +1,12 @@
 import { apiSlice } from '@/features/api/apiSlise'
 import { configureStore } from '@reduxjs/toolkit'
 import flowersSlice from './flowers/flowersSlice'
+import portalSlice from './portal/portalSlice'
 
 export const store = configureStore({
   reducer: {
     flowers: flowersSlice,
+    portal: portalSlice,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
