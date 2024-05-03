@@ -8,6 +8,11 @@ import PageNotFound from './modules/PageNotFound'
 import ShippingAndPayment from './modules/ShippingAndPayment'
 import Shops from './modules/Shops'
 import Contacts from './modules/Contacts'
+import AboutUs from './modules/AboutUs'
+import Promotions from './modules/Promotions'
+import Bouquets from './modules/Bouquets'
+import SingleBouquet from './modules/SingleBouquet'
+import Cart from './modules/Cart'
 
 const router = createBrowserRouter([
   {
@@ -42,6 +47,26 @@ const router = createBrowserRouter([
       {
         element: <Contacts />,
         path: 'contacts',
+      },
+      {
+        element: <AboutUs />,
+        path: 'about_us',
+      },
+      {
+        element: <Promotions />,
+        path: 'promotions',
+      },
+      {
+        element: <Bouquets />,
+        path: 'bouquets',
+      },
+      {
+        element: <SingleBouquet />,
+        path: 'bouquets/:bouquetsId',
+      },
+      {
+        element: <Cart />,
+        path: 'cart',
       },
     ],
   },

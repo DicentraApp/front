@@ -1,18 +1,24 @@
-import { FC } from 'react'
+import { useAppSelector } from '@/hooks/hooks'
+import { Link } from 'react-router-dom'
 
-interface ICartIcon {
-  cartIconPath: string
-  cartNumber: number
-}
+const CartIcon = () => {
+  const { cart } = useAppSelector((state) => state.cart)
 
-const CartIcon: FC<ICartIcon> = ({ cartIconPath, cartNumber }) => {
   return (
-    <button className="ml-3 flex items-center">
-      <img src={cartIconPath} />
-      <div className="w-9 h-9 bg-dark rounded-full ml-0.5 flex items-center justify-center">
-        <span className="text-white text-sm font-inter">{cartNumber}</span>
+    <Link className="ml-2 flex items-center" to="cart">
+      <div className="relative">
+        <img className="w-7 h-7" src="/images/icons/icon_cart.svg" />
+        {!cart.length ? (
+          ''
+        ) : (
+          <div className="w-6 h-6 bg-dark rounded-full flex items-center justify-center absolute -top-3 -right-3">
+            <span className="text-white text-sm font-semibold">
+              {cart.length}
+            </span>
+          </div>
+        )}
       </div>
-    </button>
+    </Link>
   )
 }
 

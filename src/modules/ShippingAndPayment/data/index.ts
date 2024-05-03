@@ -36,5 +36,5 @@ export const paymentData = {
     'to a bank card (PrivatBank);',
     'Visa/Mastercard bank card.',
   ],
-  imgPathItems: ['portmone.png', 'visa.png', 'mastercard.png', 'liqpay.png'],
+  imgPathItems: ['visa.png', 'portmone.png', 'mastercard.png', 'liqpay.png'],
 }

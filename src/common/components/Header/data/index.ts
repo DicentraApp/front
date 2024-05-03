@@ -1,13 +1,13 @@
 export const navData = [
   {
     id: crypto.randomUUID(),
-    title: 'our shops',
+    title: 'Our shops',
     link: 'shops',
   },
   {
     id: crypto.randomUUID(),
-    title: 'bouquets',
-    link: '',
+    title: 'Bouquets',
+    link: 'bouquets',
   },
   {
     id: crypto.randomUUID(),
@@ -17,7 +17,7 @@ export const navData = [
   {
     id: crypto.randomUUID(),
     title: 'About Us',
-    link: '',
+    link: 'about_us',
   },
   {
     id: crypto.randomUUID(),
@@ -33,6 +33,6 @@ export const navData = [
   {
     id: crypto.randomUUID(),
     title: 'Promotions',
-    link: '',
+    link: 'promotions',
   },
 ]

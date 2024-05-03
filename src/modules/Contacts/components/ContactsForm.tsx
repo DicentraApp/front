@@ -1,9 +1,10 @@
+import { useState } from 'react'
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { BASE_URL } from '@/utils/constans'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Spinner } from 'flowbite-react'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { CircularProgress } from '@mui/material'
 
 const detailsShema = z.object({
   fullName: z.string().min(4).max(50),
@@ -12,10 +13,17 @@ const detailsShema = z.object({
   email: z.string(),
 })
 
+enum State {
+  idle = 'idle',
+  loading = 'loading',
+  error = 'error',
+  resolve = 'resolve',
+}
+
 type DetailsShemValues = z.infer<typeof detailsShema>
 
 const ContactsForm = () => {
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState<State>(State.idle)
   const {
     register,
     handleSubmit,
@@ -32,7 +40,7 @@ const ContactsForm = () => {
   })
 
   const onSubmit = handleSubmit(async (data) => {
-    setStatus('loading')
+    setStatus(State.loading)
 
     try {
       const newData = {
@@ -48,14 +56,14 @@ const ContactsForm = () => {
       })
 
       if (res.status === 200) {
-        setStatus('resolve')
+        setStatus(State.resolve)
       }
     } catch (error) {
-      setStatus('error')
+      setStatus(State.error)
     }
 
     reset()
-    setTimeout(() => setStatus('idle'), 3000)
+    setTimeout(() => setStatus(State.idle), 3000)
   })
 
   return (
@@ -67,18 +75,21 @@ const ContactsForm = () => {
         <div className="flex mb-4">
           <div className="w-6/12 mr-4">
             <input
-              className="w-full rounded-full py-3 px-5 border-none font-roboto focus:ring-transparent"
+              className={`w-full rounded-full py-3 px-5 border-none font-roboto focus:outline-gold ${errors.fullName?.message ? 'focus:outline-red-600' : 'focus:outline-gold'}`}
               type="text"
               placeholder="First and last name"
               required
-              {...register('fullName')}
+              {...register('fullName', {
+                onChange: (e) =>
+                  (e.target.value = e.target.value.replace(/[^a-zA-Z]+/g, '')),
+              })}
             />
             <div className="text-xs ml-5 text-red-600 h-4 my-1">
               {errors.fullName?.message}
             </div>
 
             <input
-              className="w-full rounded-full py-3 px-5 border-none font-roboto focus:ring-transparent"
+              className={`w-full rounded-full py-3 px-5 border-none font-roboto ${errors.phone?.message ? 'focus:outline-red-600' : 'focus:outline-gold'}`}
               type="text"
               placeholder="Phone number"
               required
@@ -92,7 +103,7 @@ const ContactsForm = () => {
             </div>
 
             <input
-              className="w-full rounded-full py-3 px-5 border-none font-roboto focus:ring-transparent"
+              className="w-full rounded-full py-3 px-5 border-none font-roboto focus:outline-gold"
               type="text"
               placeholder="Email (optional)"
               {...register('email')}
@@ -100,30 +111,31 @@ const ContactsForm = () => {
           </div>
           <div className="w-6/12">
             <textarea
-              className="w-full h-48 py-4 px-5 border-none rounded-3xl font-roboto focus:ring-transparent resize-none"
+              className="w-full h-48 py-4 px-5 border-none rounded-3xl font-roboto focus:outline-gold resize-none"
               placeholder="Comment (optional)"
               {...register('comment')}
             />
           </div>
         </div>
-        <button
-          className="w-40 bg-dark text-xl text-white py-4 text-center rounded-full border-none hover:bg-btnPressedDark transition-all"
+        <DarktBtn
+          width="w-40 h-12"
           type="submit"
-        >
-          {status === 'loading' ? (
-            <Spinner size={'sm'} color={'#fff'} />
-          ) : (
-            'Send'
-          )}
-        </button>
+          text={
+            status === State.loading ? (
+              <CircularProgress color="inherit" size={16} />
+            ) : (
+              'Send'
+            )
+          }
+        />
 
-        {status === 'resolve' && (
+        {status === State.resolve && (
           <span className="ml-32">
             Thank you! Expect a call within an hour!
           </span>
         )}
 
-        {status === 'error' && (
+        {status === State.error && (
           <span className="text-red-600 ml-32">
             Something went wrong! Please, try again!
           </span>

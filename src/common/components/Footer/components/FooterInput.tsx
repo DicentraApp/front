@@ -8,7 +8,7 @@ const FooterInput = () => {
       </h5>
       <form className="relative">
         <input
-          className="rounded-full p-4 pr-12 w-full text-dark font-roboto focus:ring-transparent focus:outline-none border-none"
+          className="rounded-full p-4 pr-12 w-full text-dark font-roboto focus:outline-transparent focus:outline-none border-none"
           type="text"
           placeholder="Your email"
         />
@@ -16,7 +16,7 @@ const FooterInput = () => {
           className="absolute right-5 top-1/2 -translate-y-1/2"
           type="submit"
         >
-          <img src="images/icons/navigation.svg" alt="send" />
+          <img src="/images/icons/navigation.svg" alt="send" />
         </button>
       </form>
       <div className="mt-7 flex">

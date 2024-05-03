@@ -1,15 +1,21 @@
 import { FC } from 'react'
 
-interface IArrow {
-  offset?: boolean | undefined
-  countSlides?: number | undefined
-  dataLenght?: number | undefined
+interface IArrowPrev {
+  offset: boolean
   cssStyles?: string | undefined
   fillColor?: string | undefined
   handleClick: () => void
 }
 
-export const ArrowPrev: FC<IArrow> = ({
+interface IArrowNext {
+  countSlides: number
+  dataLenght: number | undefined
+  cssStyles?: string | undefined
+  fillColor?: string | undefined
+  handleClick: () => void
+}
+
+export const ArrowPrev: FC<IArrowPrev> = ({
   offset,
   handleClick,
   cssStyles,
@@ -38,7 +44,7 @@ export const ArrowPrev: FC<IArrow> = ({
   )
 }
 
-export const ArrowNext: FC<IArrow> = ({
+export const ArrowNext: FC<IArrowNext> = ({
   countSlides,
   handleClick,
   dataLenght,

@@ -1,7 +1,7 @@
 import { useGetBlogApiQuery } from '@/features/api/apiSlise'
 import PortalItem from './components/PortalItem'
-import { Spinner } from 'flowbite-react'
 import PageWrapper from '@/common/components/PageWrapper'
+import { CircularProgress } from '@mui/material'
 
 const navArr = [{ nav: 'Portal Dicentra', link: '', isActive: true }]
 
@@ -12,7 +12,7 @@ const Portal = () => {
     return (
       <div className="text-center py-28">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }

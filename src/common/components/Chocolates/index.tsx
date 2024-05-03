@@ -1,0 +1,55 @@
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import { useGetChocolatesApiQuery } from '@/features/api/apiSlise'
+import { addToCart } from '@/features/cart/cartSlice'
+import { useAppDispatch } from '@/hooks/hooks'
+import { CircularProgress } from '@mui/material'
+
+const Chocolates = () => {
+  const { data, isLoading } = useGetChocolatesApiQuery()
+  const dispatch = useAppDispatch()
+
+  if (!data) return
+
+  if (isLoading) {
+    return (
+      <div className="text-center">
+        {' '}
+        <CircularProgress color="secondary" />
+      </div>
+    )
+  }
+
+  return (
+    <div className="text-dark my-20">
+      <h4 className="flex items-center justify-center text-xl font-medium uppercase">
+        <img className="mr-4" src="/images/icons/gift.svg" alt="gift" />
+
+        <span className="relative mt-3 after:content-[''] after:absolute after:w-full after:h-[1px] after:left-0 after:-bottom-3 after:bg-gold">
+          Buy together
+        </span>
+      </h4>
+      <div className="flex justify-between mt-8">
+        {data?.map((item) => (
+          <div key={item.id} className="w-[244px] text-center">
+            <div className="w-full h-[344px] bg-white flex justify-center items-center mb-3">
+              <img
+                className="w-[190px] h-[190px] object-contain "
+                src={`/images/togetherWith/${item.imgPath}`}
+                alt={item.name}
+              />
+            </div>
+            <div className="mb-3">{item.name}</div>
+            <div className="font-medium text-xl mb-3">{item.price} $</div>
+            <DarktBtn
+              text="Add to cart"
+              width="w-32"
+              handleClick={() => dispatch(addToCart(item))}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default Chocolates

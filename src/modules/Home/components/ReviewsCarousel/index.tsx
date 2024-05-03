@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
-import { Spinner } from 'flowbite-react'
+import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
 import { useGetReviewsApiQuery } from '@/features/api/apiSlise'
 import ReviewsCarouselItem from './components/ReviewsCarouselItem'
+import { CircularProgress } from '@mui/material'
 
 const ReviewsCarousel = () => {
   const { data, isLoading, isError } = useGetReviewsApiQuery()
@@ -33,7 +33,7 @@ const ReviewsCarousel = () => {
     return (
       <div className="text-center">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }

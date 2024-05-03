@@ -46,7 +46,7 @@ const OrderByPhotoForm = () => {
   const [fileName, setFileName] = useState('')
   const [file, setFile] = useState<File | undefined>()
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const {
     register,
@@ -79,7 +79,7 @@ const OrderByPhotoForm = () => {
       formData.append('id', id)
       formData.append('name', data.name)
       formData.append('phone', data.phone)
-      formData.append('photo', JSON.stringify(file))
+      formData.append('photo', file)
 
       // const order = {
       //   id: crypto.randomUUID(),
@@ -97,7 +97,8 @@ const OrderByPhotoForm = () => {
       })
 
       if (res.status === 200) {
-        navigate('success', { replace: true })
+        // navigate('success', { replace: true })
+        console.log('succes')
       }
     } catch (error) {
       console.log(error)
@@ -112,7 +113,7 @@ const OrderByPhotoForm = () => {
         {errors.name?.message}
       </div>
       <input
-        className="w-full py-3 px-5 mb-2 rounded-full bg-white border-none focus:ring-gold"
+        className="w-full py-3 px-5 mb-2 rounded-full bg-white border-none focus:outline-gold"
         type="text"
         placeholder="Name"
         {...register('name', { minLength: 2, required: 'Name is required!' })}
@@ -122,7 +123,7 @@ const OrderByPhotoForm = () => {
         {errors.phone?.message}
       </div>
       <input
-        className="w-full py-3 px-5 rounded-full bg-white border-none focus:ring-gold"
+        className="w-full py-3 px-5 rounded-full bg-white border-none focus:outline-gold"
         type="text"
         placeholder="Phone"
         {...register('phone', {
@@ -137,7 +138,7 @@ const OrderByPhotoForm = () => {
       </div>
       <div className="w-full mt-3 rounded-full relative">
         <input
-          className="w-full absolute top-0 left-0 right-0 py-3 rounded-full bg-transparent border-none focus:ring-gold opacity-0 z-10"
+          className="w-full absolute top-0 left-0 right-0 py-3 rounded-full bg-transparent border-none focus:outline-gold opacity-0 z-10"
           type="file"
           accept="image/png, image/pdf, image/jpg"
           {...register('photo', {

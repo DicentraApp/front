@@ -20,7 +20,7 @@ export const forClientsNav = {
     },
     {
       navItem: 'Promotions',
-      navHref: '',
+      navHref: 'promotions',
     },
   ],
 }
@@ -30,7 +30,7 @@ export const forCompanyNav = {
   nav: [
     {
       navItem: 'About Us',
-      navHref: '',
+      navHref: 'about_us',
     },
     {
       navItem: 'Our shops',

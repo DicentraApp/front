@@ -15,9 +15,9 @@ interface PageWrapperProps {
 
 const PageWrapper: FC<PageWrapperProps> = ({ children, title, navArr }) => {
   return (
-    <section className="bg-light pt-48 pb-40">
+    <section className="bg-light pt-48 pb-40 font-roboto">
       <div className="container">
-        <ul className="flex justify-center mb-8 text-sm font-thin text-dark">
+        <ul className="flex justify-center mb-8 text-sm text-dark">
           <li className="pr-1 after:content-['/'] after:pl-1">
             <NavLink to="/">Home</NavLink>
           </li>
@@ -29,7 +29,7 @@ const PageWrapper: FC<PageWrapperProps> = ({ children, title, navArr }) => {
             >
               <NavLink
                 to={n.link}
-                className={n.isActive ? 'font-medium' : 'font-thin'}
+                className={n.isActive ? 'font-semibold' : 'font-normal'}
               >
                 {n.nav}
               </NavLink>
@@ -37,7 +37,9 @@ const PageWrapper: FC<PageWrapperProps> = ({ children, title, navArr }) => {
           ))}
         </ul>
 
-        <h1 className="text-center text-4xl font-medium mb-9">{title}</h1>
+        <h1 className="text-center text-4xl font-medium mb-9 text-dark">
+          {title}
+        </h1>
 
         <div className="border border-gold border-solid p-10">{children}</div>
       </div>

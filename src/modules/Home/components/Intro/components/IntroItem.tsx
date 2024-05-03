@@ -10,7 +10,7 @@ const IntroItem: FC<IIntroItem> = ({ imgPath, title, text, marginToTop }) => {
         className="w-[420px] h-56 bg-gray-200"
       />
       <h4 className="text-xl my-5 font-semibold">{title}</h4>
-      <p className="w-8/12">{text}</p>
+      <p className="w-[330px]">{text}</p>
     </div>
   )
 }

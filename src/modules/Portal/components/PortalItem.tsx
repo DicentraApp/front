@@ -24,7 +24,7 @@ const PortalItem: FC<PortalItemProps> = ({ item }) => {
     >
       <img
         className="w-full h-56 object-cover mb-4 bg-gray-200"
-        src={`images/blog/${item.imgPath}`}
+        src={`/images/blog/${item.imgPath}`}
         alt={item.title}
       />
       <div className="text-sm mb-2">{item.date}</div>

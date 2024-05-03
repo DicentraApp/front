@@ -1,9 +1,9 @@
 import { useGetBlogApiQuery } from '@/features/api/apiSlise'
 import { FC } from 'react'
 import BlogItem from './components/BlogItem'
-import { Spinner } from 'flowbite-react'
-import AddCartBtn from '@/common/components/UI/Buttons/CartBtn'
 import { useNavigate } from 'react-router-dom'
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import { CircularProgress } from '@mui/material'
 
 interface IBlogProps {
   title: string
@@ -17,7 +17,7 @@ const Blog: FC<IBlogProps> = ({ title }) => {
     return (
       <div className="text-center py-28">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }
@@ -41,8 +41,9 @@ const Blog: FC<IBlogProps> = ({ title }) => {
         </div>
 
         <div className="text-center">
-          <AddCartBtn
+          <DarktBtn
             text="See all portal"
+            width="w-36"
             handleClick={() => navigate('portal')}
           />
         </div>

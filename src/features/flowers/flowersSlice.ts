@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { BASE_URL } from '@/utils/constans'
-import { IFlowerItem, IFlowersData } from '@/common/dto/getFlowersDto'
+import {
+  IFlowerItem,
+  IFlowersData,
+  IReviewItem,
+} from '@/common/dto/getFlowersDto'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export const getFlowers = createAsyncThunk('@@flowers', async (_, thunkAPI) => {
@@ -15,9 +19,11 @@ export const getFlowers = createAsyncThunk('@@flowers', async (_, thunkAPI) => {
 })
 
 export interface IInitialState {
-  list: IFlowersData
-  filtered: IFlowersData
-  flowers: IFlowerItem[]
+  list: IFlowersData | []
+  filtered: IFlowersData | []
+  flowers: IFlowerItem[] | []
+  flowerItem: IFlowerItem
+  priceWithCount: number
   isLoading: boolean
 }
 
@@ -27,11 +33,40 @@ const flowersSlice = createSlice({
     list: [],
     filtered: [],
     flowers: [],
+    flowerItem: {},
     isLoading: false,
+    priceWithCount: 0,
   } as IInitialState,
   reducers: {
     setFlowers: (state, action: PayloadAction<IFlowerItem[]>) => {
       state.flowers = action.payload
+    },
+    setFlowerItem: (state, action: PayloadAction<IFlowerItem>) => {
+      state.flowerItem = action.payload
+    },
+    setPriceWithCount: (state) => {
+      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
+        state.priceWithCount = state.flowerItem.actionPrice
+      } else {
+        state.priceWithCount = state.flowerItem.price
+      }
+    },
+    addPriceWithCount: (state) => {
+      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
+        state.priceWithCount += state.flowerItem.actionPrice
+      } else {
+        state.priceWithCount += state.flowerItem.price
+      }
+    },
+    minusPriceWithCount: (state) => {
+      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
+        state.priceWithCount -= state.flowerItem.actionPrice
+      } else {
+        state.priceWithCount -= state.flowerItem.price
+      }
+    },
+    addReview: (state, action: PayloadAction<IReviewItem>) => {
+      state.flowerItem.reviews!.push(action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +87,13 @@ const flowersSlice = createSlice({
   },
 })
 
-export const { setFlowers } = flowersSlice.actions
+export const {
+  setFlowers,
+  setFlowerItem,
+  addPriceWithCount,
+  minusPriceWithCount,
+  setPriceWithCount,
+  addReview,
+} = flowersSlice.actions
 
-export default flowersSlice.reducer
+export const flowersReducer = flowersSlice.reducer

@@ -1,18 +1,17 @@
-import AddCartBtn from '@/common/components/UI/Buttons/CartBtn'
-import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import { IFlowerItem } from '@/common/dto/getFlowersDto'
+import { addToCart } from '@/features/cart/cartSlice'
+import { useAppDispatch } from '@/hooks/hooks'
 
-interface ITogetherWithCarouselItem {
+interface ITogetherWithItem {
   data: IFlowerItem
-  setItemWidth: Dispatch<SetStateAction<number>> | undefined
+  setItemWidth?: Dispatch<SetStateAction<number>> | undefined
 }
 
-const TogetherWithCarouselItem: FC<ITogetherWithCarouselItem> = ({
-  data,
-  setItemWidth,
-}) => {
+const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
   const itemRef = useRef<HTMLDivElement | null>(null)
-
+  const dispatch = useAppDispatch()
   const { img, name, togetherWith, price } = data
   const priceWithout = price + togetherWith!.price
   const priceWith = price + togetherWith!.actionPrice
@@ -31,13 +30,13 @@ const TogetherWithCarouselItem: FC<ITogetherWithCarouselItem> = ({
           <div className="w-[308px] h-[330px] bg-white flex items-center justify-center">
             <img
               className="w-52 h-52 object-contain"
-              src={`images/flowers/${img}.png`}
+              src={`/images/flowers/${img}`}
               alt={name}
             />
           </div>
-          <h3 className="font-normal text-center my-4">Bouquet {name}</h3>
+          <h3 className="font-normal text-center my-4">{name}</h3>
           <div className="text-center mb-4">
-            <span className="font-semibold text-xl ">{price}</span> $
+            <span className="font-semibold text-xl">{price}</span> $
           </div>
         </div>
 
@@ -49,7 +48,7 @@ const TogetherWithCarouselItem: FC<ITogetherWithCarouselItem> = ({
           <div className="w-[308px] h-[330px] bg-white flex items-center justify-center">
             <img
               className="w-48 h-48 object-contain"
-              src={`images/${togetherWith?.imgPath}`}
+              src={`/images/togetherWith/${togetherWith?.imgPath}`}
               alt={name}
             />
           </div>
@@ -75,10 +74,14 @@ const TogetherWithCarouselItem: FC<ITogetherWithCarouselItem> = ({
           <span className="mr-3 text-gold line-through">{priceWithout}</span>
           <span className="text-dark ">{priceWith}</span> $
         </div>
-        <AddCartBtn text="Add to cart" handleClick={() => {}} />
+        <DarktBtn
+          text="Add to cart"
+          width="w-32"
+          handleClick={() => dispatch(addToCart(data))}
+        />
       </div>
     </div>
   )
 }
 
-export default TogetherWithCarouselItem
+export default TogetherWithItem

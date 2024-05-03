@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Spinner } from 'flowbite-react'
 import { useAppSelector } from '@/hooks/hooks'
 import { useSelector } from 'react-redux'
 import { selectedActionFlowers } from '@/features/flowers/flowersSelector'
 import FlowersItem from '@/common/components/FlowersItem'
-import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
+import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
+import { CircularProgress } from '@mui/material'
 
 const ActionCarousel = () => {
   const actionFlowersData = useSelector(selectedActionFlowers)
@@ -30,7 +30,7 @@ const ActionCarousel = () => {
     return (
       <div className="text-center">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }

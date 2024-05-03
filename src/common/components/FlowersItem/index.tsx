@@ -1,9 +1,11 @@
-import { IFlowerItem } from '@/common/dto/getFlowersDto'
-import { useAppSelector } from '@/hooks/hooks'
-import { Spinner } from 'flowbite-react'
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
-import AddCartBtn from '../UI/Buttons/CartBtn'
 import { Link } from 'react-router-dom'
+import { IFlowerItem } from '@/common/dto/getFlowersDto'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { setFlowerItem } from '@/features/flowers/flowersSlice'
+import DarktBtn from '../../UI/Buttons/DarkBtn'
+import { CircularProgress } from '@mui/material'
+import { addToCart } from '@/features/cart/cartSlice'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -11,7 +13,8 @@ interface IFlowersItemData {
 }
 
 const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
-  const { img, name, price, actionPrice } = data
+  const dispatch = useAppDispatch()
+  const { id, img, name, price, actionPrice } = data
   const { isLoading } = useAppSelector((state) => state.flowers)
   const itemRef = useRef<HTMLDivElement | null>(null)
   let actionPercent
@@ -21,6 +24,10 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
     actionPercent = 100 - diff
   }
 
+  const handleLinkClick = () => {
+    dispatch(setFlowerItem(data))
+  }
+
   useEffect(() => {
     if (setItemWidth) {
       setItemWidth(itemRef!.current!.offsetWidth)
@@ -28,17 +35,21 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
   }, [setItemWidth])
 
   return (
-    <div className="min-w-[254px] cursor-pointer pr-[10px]" ref={itemRef}>
-      <div className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative">
+    <div className="min-w-[254px] pr-[10px] mb-12" ref={itemRef}>
+      <Link
+        className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative"
+        to={`${id}`}
+        onClick={handleLinkClick}
+      >
         {isLoading && (
           <div className="text-center">
             {' '}
-            <Spinner color="info" size="md" />
+            <CircularProgress color="secondary" />
           </div>
         )}
         <img
-          className="w-48 h-52 object-contain bg-white"
-          src={`images/flowers/${img}.png`}
+          className="w-48 h-52 object-contain bg-white cursor-pointer"
+          src={`images/flowers/${img}`}
           alt={name}
         />
 
@@ -47,8 +58,14 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
             -{actionPercent}%
           </div>
         )}
-      </div>
-      <h4 className="font-normal text-center mb-3">{name}</h4>
+      </Link>
+      <Link
+        className="font-normal mb-3 cursor-pointer"
+        to={`${id}`}
+        onClick={handleLinkClick}
+      >
+        <h4 className="text-center">{name}</h4>
+      </Link>
       <div className="text-center mb-4">
         <span
           className={`${!actionPrice ? 'text-dark' : 'mr-2 text-gold line-through'} font-semibold text-xl `}
@@ -62,10 +79,14 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <AddCartBtn text="Add to cart" handleClick={() => {}} />
+        <DarktBtn
+          text="Add to cart"
+          width="w-32"
+          handleClick={() => dispatch(addToCart(data))}
+        />
         <Link
           to=""
-          className="text-gold hover:text-btnPressedGold transition-all"
+          className="text-gold mt-3 hover:text-btnPressedGold transition-all"
         >
           Quick order
         </Link>

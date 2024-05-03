@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { ArrowNext, ArrowPrev } from '@/common/components/UI/Arrows'
-import CheaperTogetherCarouselItem from './components/TogetherWithCarouselItem'
+import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
+import TogetherWithItem from './components/TogetherWithItem'
 import { useAppSelector } from '@/hooks/hooks'
 import { selectedTogetherWithFlowers } from '@/features/flowers/flowersSelector'
-import { Spinner } from 'flowbite-react'
+import { CircularProgress } from '@mui/material'
 
 const TogetherWithCarousel = () => {
   const togetherWith = useAppSelector(selectedTogetherWithFlowers)
@@ -29,7 +29,7 @@ const TogetherWithCarousel = () => {
     return (
       <div className="text-center">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }
@@ -50,7 +50,7 @@ const TogetherWithCarousel = () => {
             }}
           >
             {togetherWith.map((item) => (
-              <CheaperTogetherCarouselItem
+              <TogetherWithItem
                 key={item.id}
                 data={item}
                 setItemWidth={setItemWidth}

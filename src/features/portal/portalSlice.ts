@@ -20,4 +20,4 @@ const portalSlice = createSlice({
 
 export const { setArticle } = portalSlice.actions
 
-export default portalSlice.reducer
+export const portalReducer = portalSlice.reducer

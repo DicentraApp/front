@@ -10,10 +10,10 @@ export const selectedFlowers = (state: RootState) => {
 
 export const selectedActionFlowers = (state: RootState) => {
   const actionFlowersData: IActionFlowersData = []
+
   state.flowers.list.forEach((item) => {
     item.flowers.filter((f) => f.isAction && actionFlowersData.push(f))
   })
-
   return actionFlowersData
 }
 

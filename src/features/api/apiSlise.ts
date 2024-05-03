@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IFlowersData } from '@/common/dto/getFlowersDto'
+import { IFlowersData, ITogetherWith } from '@/common/dto/getFlowersDto'
 import { IReviewsData } from '@/common/dto/getReviewsDto'
 import { BASE_URL } from '@/utils/constans'
 import { IBlogData } from '@/common/dto/getBlogDto'
@@ -17,6 +17,9 @@ export const apiSlice = createApi({
     getBlogApi: builder.query<IBlogData, void>({
       query: () => `/portal`,
     }),
+    getChocolatesApi: builder.query<ITogetherWith[], void>({
+      query: () => `/togetherWith`,
+    }),
   }),
 })
 
@@ -24,4 +27,5 @@ export const {
   useGetFlowersApiQuery,
   useGetReviewsApiQuery,
   useGetBlogApiQuery,
+  useGetChocolatesApiQuery,
 } = apiSlice

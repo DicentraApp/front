@@ -33,7 +33,7 @@ const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
         src={`images/slider/${img}.jpg`}
       />
 
-      <div className="absolute bottom-20 left-1/4 pl-12 flex z-40">
+      <div className="absolute bottom-20 left-1/4 pl-12 flex z-30">
         <button
           className="w-16 h-16 border border-gold rounded-full bg-white flex items-center justify-center mr-5"
           onClick={prev}

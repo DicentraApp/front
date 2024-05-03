@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Spinner } from 'flowbite-react'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { getFlowers, setFlowers } from '@/features/flowers/flowersSlice'
 import { useSelector } from 'react-redux'
 import { selectedFlowers } from '@/features/flowers/flowersSelector'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import FlowersItem from '@/common/components/FlowersItem'
+import { CircularProgress } from '@mui/material'
 
 const Bestsellers = () => {
   const filteredList = useSelector(selectedFlowers)
@@ -13,20 +13,20 @@ const Bestsellers = () => {
   const dispatch = useAppDispatch()
   const [tabInd, setTabInd] = useState(0)
 
-  const handleTabClick = (index: number, flow: IFlowerItem[]) => {
+  const handleTabClick = (index: number, content: IFlowerItem[]) => {
     setTabInd(index)
-    dispatch(setFlowers(flow))
+    dispatch(setFlowers(content))
   }
 
   useEffect(() => {
     dispatch(getFlowers())
-  }, [])
+  }, [dispatch])
 
   if (isLoading) {
     return (
       <div className="text-center">
         {' '}
-        <Spinner color="info" size="md" />
+        <CircularProgress color="secondary" />
       </div>
     )
   }
@@ -51,6 +51,7 @@ const Bestsellers = () => {
             )
           })}
         </ul>
+
         <div className={`flex justify-between transition-opacity`}>
           {flowers?.map((elem) => {
             if (elem.IsBestsellers) {
