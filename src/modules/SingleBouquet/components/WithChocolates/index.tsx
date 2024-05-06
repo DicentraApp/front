@@ -21,7 +21,7 @@ const WithChocolates: FC<ITogetherWithItem> = ({ data }) => {
           <div className="flex items-center justify-center mr-4">
             <img
               className="w-[133px] h-[148px] object-contain"
-              src={`/images/flowers/${img}`}
+              src={`/images/products/${img}`}
               alt={name}
             />
           </div>
@@ -41,7 +41,7 @@ const WithChocolates: FC<ITogetherWithItem> = ({ data }) => {
           <div className="flex items-center justify-center mr-4">
             <img
               className="w-[120px] h-[116px] object-contain"
-              src={`/images/togetherWith/${togetherWith?.imgPath}`}
+              src={`/images/products/${togetherWith?.img}`}
               alt={name}
             />
           </div>

@@ -1,14 +1,50 @@
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import CartTable from './components/CartTable'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { setTotalPrice } from '@/features/cart/cartSlice'
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import Phone from '@/common/components/PhoneInput'
 
 const Cart = () => {
-  return (
-    <div className="pt-48 bg-light relative font-roboto">
-      <div className="container">
-        <h2 className="text-center text-3xl font-medium mb-10">
-          You have added to cart
-        </h2>
+  const { cart } = useAppSelector((state) => state.cart)
+  const dispatch = useAppDispatch()
+  const title = !cart.length
+    ? 'You have not order yet! Please, go to shop and choose products'
+    : 'You have added to cart'
 
-        <CartTable />
+  const total = cart.reduce((prev, el) => prev + el.priceWithCount, 0)
+
+  useEffect(() => {
+    dispatch(setTotalPrice(total))
+  }, [dispatch, total])
+
+  return (
+    <div className="pt-48 pb-28 bg-light relative font-roboto min-h-screen">
+      <div className="container">
+        <h2 className="text-center text-3xl font-medium mb-10">{title}</h2>
+
+        {!cart.length ? null : <CartTable />}
+
+        <div className="w-[400px] mt-6 mx-auto">
+          <div className="flex justify-between items-center mb-6">
+            <Link
+              to="/"
+              className="text-gold text-md hover:text-btnPressedGold transition-all"
+            >
+              Continue shopping
+            </Link>
+            <div className="text-2xl font-bold">Total: {total} $</div>
+          </div>
+          <DarktBtn
+            text="Checkout"
+            width="w-full py-4 uppercase"
+            handleClick={() => {}}
+          />
+          <div>
+            <Phone />
+          </div>
+        </div>
       </div>
     </div>
   )

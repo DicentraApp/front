@@ -17,9 +17,10 @@ interface IFlowerChar {
 export interface ITogetherWith {
   id: string
   name: string
+  article: number | string
   price: number
   actionPrice: number
-  imgPath: string
+  img: string
 }
 
 export interface IFlowerItem {
@@ -32,7 +33,7 @@ export interface IFlowerItem {
   IsBestsellers?: boolean | undefined
   isAction?: boolean | undefined
   actionPrice?: number | undefined
-  togetherWith?: ITogetherWith | undefined
+  togetherWith?: ITogetherWith
   characteristic: IFlowerChar
   reviews: IReviewItem[] | undefined
   description: string

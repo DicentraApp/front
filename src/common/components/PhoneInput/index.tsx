@@ -58,7 +58,7 @@ const Phone = () => {
           </p>
         ) : (
           <form
-            className="border border-gold border-solid rounded-full py-2 px-8 flex justify-between"
+            className="border border-gold border-solid rounded-full py-2 px-8 flex justify-between bg-transparent"
             onSubmit={onSubmit}
           >
             <PhoneInput
@@ -67,12 +67,13 @@ const Phone = () => {
               inputClass="focus:ring-transparent"
               inputStyle={{
                 fontSize: 18,
+                background: 'transparent',
                 border: 'none',
                 outline: 'transparent',
                 outlineOffset: 0,
                 outlineColor: 'transparent',
               }}
-              buttonStyle={{ background: 'none', border: 'none' }}
+              buttonStyle={{ border: 'none', background: 'transparent' }}
               value={phone}
               onChange={handleChange}
             />

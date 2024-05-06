@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { setFlowerItem } from '@/features/flowers/flowersSlice'
 import DarktBtn from '../../UI/Buttons/DarkBtn'
 import { CircularProgress } from '@mui/material'
-import { addToCart } from '@/features/cart/cartSlice'
+import { addItemToCart } from '@/features/cart/cartSlice'
+import { currentPrice, isAddedToCart } from '@/utils/helpers'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -13,19 +14,36 @@ interface IFlowersItemData {
 }
 
 const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
-  const dispatch = useAppDispatch()
   const { id, img, name, price, actionPrice } = data
+  const dispatch = useAppDispatch()
   const { isLoading } = useAppSelector((state) => state.flowers)
+  const { cart } = useAppSelector((state) => state.cart)
+
+  const isAdded = isAddedToCart(id, cart)
+  const priceEnd = currentPrice(data)
+
   const itemRef = useRef<HTMLDivElement | null>(null)
+
   let actionPercent
 
   if (actionPrice) {
-    const diff = Math.round((actionPrice / price) * 100)
-    actionPercent = 100 - diff
+    const different = Math.round((actionPrice / price) * 100)
+    actionPercent = 100 - different
   }
 
   const handleLinkClick = () => {
     dispatch(setFlowerItem(data))
+  }
+
+  const addProcuctToCart = () => {
+    dispatch(
+      addItemToCart({
+        product: data,
+        count: 1,
+        price: priceEnd,
+        priceWithCount: priceEnd,
+      })
+    )
   }
 
   useEffect(() => {
@@ -41,17 +59,18 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
         to={`${id}`}
         onClick={handleLinkClick}
       >
-        {isLoading && (
+        {isLoading ? (
           <div className="text-center">
             {' '}
             <CircularProgress color="secondary" />
           </div>
+        ) : (
+          <img
+            className="w-48 h-52 object-contain bg-white cursor-pointer"
+            src={`images/products/${img}`}
+            alt={name}
+          />
         )}
-        <img
-          className="w-48 h-52 object-contain bg-white cursor-pointer"
-          src={`images/flowers/${img}`}
-          alt={name}
-        />
 
         {actionPrice && (
           <div className="top-4 left-4 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-gold text-sm absolute z-10 font-semibold flex items-center justify-center">
@@ -79,11 +98,16 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <DarktBtn
-          text="Add to cart"
-          width="w-32"
-          handleClick={() => dispatch(addToCart(data))}
-        />
+        {isAdded ? (
+          <div className="h-12 pt-4">Product added to cart</div>
+        ) : (
+          <DarktBtn
+            text="Add to cart"
+            width="w-32"
+            handleClick={addProcuctToCart}
+          />
+        )}
+
         <Link
           to=""
           className="text-gold mt-3 hover:text-btnPressedGold transition-all"

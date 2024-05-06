@@ -26,7 +26,7 @@ const MainImg: FC<MainImgProps> = ({ imgMainPath }) => {
       ) : (
         <img
           className="w-full h-[466px] object-contain"
-          src={`/images/flowers/${imgMainPath}`}
+          src={`/images/products/${imgMainPath}`}
           alt={flowerItem.name}
         />
       )}

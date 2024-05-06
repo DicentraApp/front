@@ -34,8 +34,8 @@ const flowersSlice = createSlice({
     filtered: [],
     flowers: [],
     flowerItem: {},
-    isLoading: false,
     priceWithCount: 0,
+    isLoading: false,
   } as IInitialState,
   reducers: {
     setFlowers: (state, action: PayloadAction<IFlowerItem[]>) => {

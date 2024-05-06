@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import GoldBtn from '@/common/UI/Buttons/GoldBtn'
 import { getFlowers } from '@/features/flowers/flowersSlice'
-import { setReviewsModal } from '@/features/reviews/reviewsSlice'
+import { setReviewsModal } from '@/features/modal/modalSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import TotalRating from './TotalRating'
 import ReviewsItem from './ReviewsItem'

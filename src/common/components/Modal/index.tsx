@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { setReviewsModal } from '@/features/modal/modalSlice'
-import ReviewsModalForm from './components/ReviewsModalForm'
 import { Drawer } from '@mui/material'
 
-const ReviewsModal = () => {
+const Modal = ({ children }) => {
   const dispatch = useAppDispatch()
   const { reviewsModal } = useAppSelector((state) => state.modal)
 
@@ -32,7 +31,7 @@ const ReviewsModal = () => {
             <h2 className="text-2xl font-medium text-center mb-6">
               Write a review
             </h2>
-            <ReviewsModalForm />
+            {children}
           </div>
         </div>
       </Drawer>
@@ -40,4 +39,4 @@ const ReviewsModal = () => {
   )
 }
 
-export default ReviewsModal
+export default Modal

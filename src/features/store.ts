@@ -5,7 +5,7 @@ import { persistReducer } from 'redux-persist'
 import { apiSlice } from '@/features/api/apiSlise'
 import { flowersReducer } from './flowers/flowersSlice'
 import { portalReducer } from './portal/portalSlice'
-import { reviewsReducer } from './reviews/reviewsSlice'
+import { modalReducer } from './modal/modalSlice'
 import { cartReducer } from './cart/cartSlice'
 
 const persistConfig = {
@@ -17,7 +17,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   flowers: flowersReducer,
   portal: portalReducer,
-  reviews: reviewsReducer,
+  modal: modalReducer,
   cart: cartReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 })

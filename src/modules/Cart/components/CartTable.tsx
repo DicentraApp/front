@@ -1,4 +1,10 @@
-import { useAppSelector } from '@/hooks/hooks'
+import CountInput from '@/common/components/CountInput'
+import {
+  deleteFromCart,
+  setProductCountToDown,
+  setProductCountToUp,
+} from '@/features/cart/cartSlice'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import {
   Table,
   TableBody,
@@ -7,42 +13,69 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material'
+import CartTableImg from './CartTableImg'
 
 const CartTable = () => {
   const { cart } = useAppSelector((state) => state.cart)
+  const dispatch = useAppDispatch()
+
+  const handleCountToDown = (id: string, count: number) => {
+    if (count === 1) {
+      return
+    } else {
+      dispatch(setProductCountToDown(id))
+    }
+  }
 
   return (
-    <TableContainer className="bg-light border-none">
-      <Table className="bg-light border-t shadow-transparent text-md font-roboto font-medium">
-        <TableHead className="py-3">
+    <TableContainer className="bg-light border-none font-medium text-xl">
+      <Table className="bg-light border-t shadow-transparent font-roboto text-dark py-3">
+        <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Sum</TableCell>
-            <TableCell> </TableCell>
+            <TableCell sx={{ fontSize: 18 }}>Name</TableCell>
+            <TableCell align="center" sx={{ fontSize: 18 }}>
+              Price
+            </TableCell>
+            <TableCell align="center" sx={{ fontSize: 18 }}>
+              Quantity
+            </TableCell>
+            <TableCell align="center" sx={{ fontSize: 18 }}>
+              Sum
+            </TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {cart.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell>
-                <img src={`/images/flowers/${row.}`}/>
-                <div>{row.name}</div>
-              </TableCell>
-              <TableCell>{row.price} $</TableCell>
-              {/* <TableCell>{row.qty}</TableCell> */}
-              {/* <TableCell>{row.totalPrice}</TableCell> */}
-              <TableCell>
-                <button>
-                  <img src="/images/icons/basket.svg" alt="basket.svg" />
-                </button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {cart.map(({ product, count, price, priceWithCount }) => {
+            return (
+              <TableRow key={product.id}>
+                <TableCell>
+                  <CartTableImg item={product} />
+                </TableCell>
+                <TableCell
+                  className="w-[158px] text-xl font-medium"
+                  align="center"
+                >
+                  <div className="text-xl font-medium">{price} $</div>
+                </TableCell>
+                <TableCell className="w-[158px]" align="center">
+                  <CountInput
+                    count={count}
+                    countToDown={() => handleCountToDown(product.id, count)}
+                    countToUp={() => dispatch(setProductCountToUp(product.id))}
+                  />
+                </TableCell>
+                <TableCell className="w-[158px]" align="center">
+                  <div className="text-xl font-medium">{priceWithCount} $</div>
+                </TableCell>
+                <TableCell align="center">
+                  <button onClick={() => dispatch(deleteFromCart(product.id))}>
+                    <img src="/images/icons/basket.svg" alt="basket.svg" />
+                  </button>
+                </TableCell>
+              </TableRow>
+            )
+          })}
         </TableBody>
       </Table>
     </TableContainer>

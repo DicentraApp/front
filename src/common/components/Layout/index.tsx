@@ -6,10 +6,10 @@ import ScrollToTop from '../ScrollToTop'
 
 const Layout = () => {
   return (
-    <>
+    <div className="flex flex-col">
       <ScrollToTop />
       <Header />
-      <main>
+      <main className="min-h-screen">
         <Outlet></Outlet>
       </main>
       <Footer
@@ -17,7 +17,7 @@ const Layout = () => {
         navForClients={forClientsNav}
         navForCompany={forCompanyNav}
       />
-    </>
+    </div>
   )
 }
 

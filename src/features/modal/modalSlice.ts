@@ -2,21 +2,21 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface IInitialState {
-  reviewsFormModal: boolean
+  reviewsModal: boolean
 }
 
-const reviewsSlice = createSlice({
-  name: '@@reviews',
+const modalSlice = createSlice({
+  name: '@@modal',
   initialState: {
-    reviewsFormModal: false,
+    reviewsModal: false,
   } as IInitialState,
   reducers: {
     setReviewsModal: (state, action: PayloadAction<boolean>) => {
-      state.reviewsFormModal = action.payload
+      state.reviewsModal = action.payload
     },
   },
 })
 
-export const { setReviewsModal } = reviewsSlice.actions
+export const { setReviewsModal } = modalSlice.actions
 
-export const reviewsReducer = reviewsSlice.reducer
+export const modalReducer = modalSlice.reducer

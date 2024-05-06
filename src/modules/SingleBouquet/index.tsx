@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import { setPriceWithCount } from '@/features/flowers/flowersSlice'
 import Promotion from './components/Promotion/Promotion'
 import Price from './components/Price/Price'
-import Count from './components/Count/Count'
 import Tabs from './components/Tabs'
 import Article from './components/Article'
 import MainImg from './components/MainImg'
@@ -13,6 +12,7 @@ import Reviews from './components/Reviews'
 import ReviewsModal from './components/ReviewsModal'
 import WithChocolates from './components/WithChocolates'
 import Phone from '@/common/components/PhoneInput'
+import Count from './components/Count'
 
 const imagesArray = Array(4).fill(0)
 
@@ -65,7 +65,7 @@ const SingleBouquet = () => {
               >
                 <img
                   className="w-[135px] h-[140px] object-contain"
-                  src={`/images/flowers/${flowerItem.img}`}
+                  src={`/images/products/${flowerItem.img}`}
                   alt={flowerItem.name}
                 />
               </div>

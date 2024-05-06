@@ -6,7 +6,6 @@ import CartIcon from './components/Cart'
 import Navigation from './components/Navigation'
 import Phone from './components/Phone'
 import { navData } from './data'
-import { Alert } from '@mui/material'
 
 interface HeaderProps {}
 
@@ -27,10 +26,6 @@ export const Header: FC<HeaderProps> = () => {
         </div>
       </div>
       <Navigation data={navData} />
-
-      <Alert severity="success" className="absolute right-32">
-        Product added to cart!
-      </Alert>
     </header>
   )
 }

@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
-import { addToCart } from '@/features/cart/cartSlice'
+import { addItemToCart } from '@/features/cart/cartSlice'
 import { useAppDispatch } from '@/hooks/hooks'
 
 interface ITogetherWithItem {
@@ -17,6 +17,10 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
   const priceWith = price + togetherWith!.actionPrice
   const saving = priceWithout - priceWith
 
+  const addProductToCart = () => {
+    dispatch(addItemToCart(data))
+  }
+
   useEffect(() => {
     if (setItemWidth) {
       setItemWidth(itemRef!.current!.offsetWidth)
@@ -30,7 +34,7 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
           <div className="w-[308px] h-[330px] bg-white flex items-center justify-center">
             <img
               className="w-52 h-52 object-contain"
-              src={`/images/flowers/${img}`}
+              src={`/images/products/${img}`}
               alt={name}
             />
           </div>
@@ -48,7 +52,7 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
           <div className="w-[308px] h-[330px] bg-white flex items-center justify-center">
             <img
               className="w-48 h-48 object-contain"
-              src={`/images/togetherWith/${togetherWith?.imgPath}`}
+              src={`/images/products/${togetherWith?.img}`}
               alt={name}
             />
           </div>
@@ -77,7 +81,7 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
         <DarktBtn
           text="Add to cart"
           width="w-32"
-          handleClick={() => dispatch(addToCart(data))}
+          handleClick={addProductToCart}
         />
       </div>
     </div>

@@ -1,12 +1,20 @@
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import { ITogetherWith } from '@/common/dto/getFlowersDto'
 import { useGetChocolatesApiQuery } from '@/features/api/apiSlise'
-import { addToCart } from '@/features/cart/cartSlice'
-import { useAppDispatch } from '@/hooks/hooks'
+import { addChocolateToCart } from '@/features/cart/cartSlice'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { isAddedToCart } from '@/utils/helpers'
 import { CircularProgress } from '@mui/material'
 
 const Chocolates = () => {
   const { data, isLoading } = useGetChocolatesApiQuery()
+  const { cart } = useAppSelector((state) => state.cart)
+
   const dispatch = useAppDispatch()
+
+  const addChocoToCart = (data: ITogetherWith) => {
+    dispatch(addChocolateToCart(data))
+  }
 
   if (!data) return
 
@@ -29,24 +37,32 @@ const Chocolates = () => {
         </span>
       </h4>
       <div className="flex justify-between mt-8">
-        {data?.map((item) => (
-          <div key={item.id} className="w-[244px] text-center">
-            <div className="w-full h-[344px] bg-white flex justify-center items-center mb-3">
-              <img
-                className="w-[190px] h-[190px] object-contain "
-                src={`/images/togetherWith/${item.imgPath}`}
-                alt={item.name}
-              />
+        {data?.map((item) => {
+          const isAdded = isAddedToCart(item.id, cart)
+          return (
+            <div key={item.id} className="w-[244px] text-center">
+              <div className="w-full h-[344px] bg-white flex justify-center items-center mb-3">
+                <img
+                  className="w-[190px] h-[190px] object-contain "
+                  src={`/images/products/${item.img}`}
+                  alt={item.name}
+                />
+              </div>
+              <div className="mb-3">{item.name}</div>
+              <div className="font-medium text-xl mb-3">{item.price} $</div>
+
+              {isAdded ? (
+                <div className="h-12 pt-4">Product added to cart</div>
+              ) : (
+                <DarktBtn
+                  text="Add to cart"
+                  width="w-32"
+                  handleClick={() => addChocoToCart(item)}
+                />
+              )}
             </div>
-            <div className="mb-3">{item.name}</div>
-            <div className="font-medium text-xl mb-3">{item.price} $</div>
-            <DarktBtn
-              text="Add to cart"
-              width="w-32"
-              handleClick={() => dispatch(addToCart(item))}
-            />
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

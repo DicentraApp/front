@@ -1,5 +1,5 @@
 import GoldBtn from '@/common/UI/Buttons/GoldBtn'
-import { setReviewsModal } from '@/features/reviews/reviewsSlice'
+import { setReviewsModal } from '@/features/modal/modalSlice'
 import { useAppDispatch } from '@/hooks/hooks'
 
 const EmptyReviews = () => {
