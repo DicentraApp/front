@@ -30,4 +30,12 @@ export const handlers = [
     const body = await request.json()
     return HttpResponse.json(body)
   }),
+  http.post('/registration', async ({ request }) => {
+    const body = await request.json()
+    return HttpResponse.json(body)
+  }),
+  http.post('/login', async ({ request }) => {
+    const body = await request.json()
+    return HttpResponse.json(body)
+  }),
 ]

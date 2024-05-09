@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { setTotalPrice } from '@/features/cart/cartSlice'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
-import Phone from '@/common/components/PhoneInput'
+import QuickOrderPhone from '@/common/components/QuickOrderPhone'
 
 const Cart = () => {
   const { cart } = useAppSelector((state) => state.cart)
@@ -42,7 +42,7 @@ const Cart = () => {
             handleClick={() => {}}
           />
           <div>
-            <Phone />
+            <QuickOrderPhone />
           </div>
         </div>
       </div>

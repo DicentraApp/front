@@ -13,6 +13,8 @@ import Promotions from './modules/Promotions'
 import Bouquets from './modules/Bouquets'
 import SingleBouquet from './modules/SingleBouquet'
 import Cart from './modules/Cart'
+import Login from './modules/Login'
+import Registration from './modules/Registration'
 
 const router = createBrowserRouter([
   {
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
       {
         element: <Cart />,
         path: 'cart',
+      },
+      {
+        element: <Login />,
+        path: '/login',
+      },
+      {
+        element: <Registration />,
+        path: '/registration',
       },
     ],
   },

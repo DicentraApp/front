@@ -1,25 +1,24 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
-import { setReviewsModal } from '@/features/modal/modalSlice'
 import { Drawer } from '@mui/material'
+import { FC } from 'react'
 
-const Modal = ({ children }) => {
-  const dispatch = useAppDispatch()
-  const { reviewsModal } = useAppSelector((state) => state.modal)
+interface ModalProps {
+  children: JSX.Element
+  isOpen: boolean
+  closeModal: () => void
+  title: string
+}
 
-  const handleCloseModal = () => {
-    dispatch(setReviewsModal(false))
-  }
-
+const Modal: FC<ModalProps> = ({ children, isOpen, closeModal, title }) => {
   return (
     <>
-      <Drawer anchor={'right'} open={reviewsModal} onClose={handleCloseModal}>
+      <Drawer anchor={'right'} open={isOpen} onClose={closeModal}>
         <div
-          className="w-[580px] h-full bg-light flex justify-center items-center"
+          className="w-[580px] h-full bg-light flex justify-center items-center "
           onClick={(e) => e.stopPropagation()}
         >
           <div
             className="absolute right-6 top-6 cursor-pointer"
-            onClick={handleCloseModal}
+            onClick={closeModal}
           >
             <img
               className="w-9 h-9"
@@ -28,12 +27,15 @@ const Modal = ({ children }) => {
             />
           </div>
           <div className="w-80 text-dark">
-            <h2 className="text-2xl font-medium text-center mb-6">
-              Write a review
-            </h2>
+            <h2 className="text-2xl font-medium text-center mb-6">{title}</h2>
             {children}
           </div>
         </div>
+        <img
+          className="absolute bottom-0 right-0"
+          src="/images/fones/tulips.png"
+          alt=""
+        />
       </Drawer>
     </>
   )

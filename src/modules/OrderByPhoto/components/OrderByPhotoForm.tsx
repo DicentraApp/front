@@ -2,7 +2,6 @@ import { shortFileName } from '@/utils/helpers'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 const MAX_FILE_SIZE = 2000000

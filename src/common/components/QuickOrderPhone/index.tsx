@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import { BASE_URL } from '@/utils/constans'
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+import Phone from './components/Phone'
 
-const Phone = () => {
+const QuickOrderPhone = () => {
   const [phone, setPhone] = useState('')
   const [title, setTitle] = useState('')
   const [isSend, setIsSend] = useState(false)
   const [numberOfOrder] = useState(Date.now())
 
-  const handleChange = (value: string) => {
+  const handleChangePhone = (value: string) => {
     setPhone(value)
   }
 
@@ -61,22 +60,7 @@ const Phone = () => {
             className="border border-gold border-solid rounded-full py-2 px-8 flex justify-between bg-transparent"
             onSubmit={onSubmit}
           >
-            <PhoneInput
-              country={'ua'}
-              searchClass="border-0 focus:ring-transparent"
-              inputClass="focus:ring-transparent"
-              inputStyle={{
-                fontSize: 18,
-                background: 'transparent',
-                border: 'none',
-                outline: 'transparent',
-                outlineOffset: 0,
-                outlineColor: 'transparent',
-              }}
-              buttonStyle={{ border: 'none', background: 'transparent' }}
-              value={phone}
-              onChange={handleChange}
-            />
+            <Phone value={phone} changeValue={handleChangePhone} />
             <button
               className="uppercase text-gold text-md font-medium hover:text-btnPressedGold transition-all"
               type="submit"
@@ -90,4 +74,4 @@ const Phone = () => {
   )
 }
 
-export default Phone
+export default QuickOrderPhone

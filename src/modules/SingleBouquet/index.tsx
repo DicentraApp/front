@@ -11,7 +11,7 @@ import Chocolates from '@/common/components/Chocolates'
 import Reviews from './components/Reviews'
 import ReviewsModal from './components/ReviewsModal'
 import WithChocolates from './components/WithChocolates'
-import Phone from '@/common/components/PhoneInput'
+import QuickOrderPhone from '@/common/components/QuickOrderPhone'
 import Count from './components/Count'
 
 const imagesArray = Array(4).fill(0)
@@ -78,7 +78,7 @@ const SingleBouquet = () => {
             <Promotion />
             <Price />
             <Count />
-            <Phone />
+            <QuickOrderPhone />
             <Tabs />
           </div>
         </div>
