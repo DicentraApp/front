@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { setReviewsModal } from '@/features/modal/modalSlice'
-import Rating from '@/common/components/Rating'
+import Rating from '@/common/UI/Icons/Rating'
 import { BASE_URL } from '@/utils/constans'
 import { addReview } from '@/features/flowers/flowersSlice'
 

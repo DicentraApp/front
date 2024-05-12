@@ -5,9 +5,10 @@ import 'react-phone-input-2/lib/style.css'
 interface PhoneProps {
   value: string
   changeValue: (value: string) => void
+  onFocus?: () => void
 }
 
-const Phone: FC<PhoneProps> = ({ value, changeValue }) => {
+const Phone: FC<PhoneProps> = ({ value, changeValue, onFocus }) => {
   return (
     <PhoneInput
       country={'ua'}
@@ -22,6 +23,7 @@ const Phone: FC<PhoneProps> = ({ value, changeValue }) => {
       buttonStyle={{ border: 'none', background: 'transparent' }}
       value={value}
       onChange={changeValue}
+      onFocus={onFocus}
     />
   )
 }

@@ -19,7 +19,7 @@ export const Header: FC<HeaderProps> = () => {
           subtitleLogo="Choose with heart"
         />
 
-        <div className="w-92 flex items-center justify-between">
+        <div className=" flex items-center justify-between">
           <Search />
           <UserIcon />
           <CartIcon />

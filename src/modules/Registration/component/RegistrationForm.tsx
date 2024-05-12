@@ -9,6 +9,7 @@ import { BASE_URL } from '@/utils/constans'
 import { setRegistrationStatus } from '@/features/modal/modalSlice'
 import { useAppDispatch } from '@/hooks/hooks'
 import { setUsers } from '@/features/users/usersSlice'
+import PasswordIcon from '@/common/UI/Icons/PasswordIcon'
 
 const detailsShema = z
   .object({
@@ -41,8 +42,9 @@ const RegistrationForm = () => {
   const imgConfirmPaswordPath =
     confirmType === 'password' ? 'eye-slash.svg' : 'eye.svg'
   const phoneErorrMessage =
-    (!phoneInput ? 'Phone is required' : '') ||
-    (phoneInput.length < 12 ? 'Phone number too much short' : '')
+    (!phoneInput ? 'Phone is required' : '') || phoneInput.length < 12
+      ? 'Phone number too much short'
+      : ''
 
   const {
     register,
@@ -126,11 +128,9 @@ const RegistrationForm = () => {
             placeholder="Password"
             {...register('password')}
           />
-          <img
-            className="absolute right-4 top-4 w-5 h-4 cursor-pointer opacity-75"
-            src={`/images/icons/${imgPaswordPath}`}
-            alt="password"
-            onClick={() =>
+          <PasswordIcon
+            imgPath={imgPaswordPath}
+            setType={() =>
               setPasswordType(passwordType === 'password' ? 'text' : 'password')
             }
           />
@@ -146,11 +146,9 @@ const RegistrationForm = () => {
             placeholder="Confirm password"
             {...register('confirmPassword')}
           />
-          <img
-            className="absolute right-4 top-4 w-5 h-4 cursor-pointer opacity-75"
-            src={`/images/icons/${imgConfirmPaswordPath}`}
-            alt="password"
-            onClick={() =>
+          <PasswordIcon
+            imgPath={imgConfirmPaswordPath}
+            setType={() =>
               setConfirmType(confirmType === 'password' ? 'text' : 'password')
             }
           />

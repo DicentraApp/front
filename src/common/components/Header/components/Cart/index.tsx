@@ -5,7 +5,7 @@ const CartIcon = () => {
   const { cart } = useAppSelector((state) => state.cart)
 
   return (
-    <Link className="ml-2 flex items-center" to="cart">
+    <Link className="ml-3 flex items-center" to="cart">
       <div className="relative">
         <img className="w-7 h-7" src="/images/icons/icon_cart.svg" />
         {!cart.length ? (

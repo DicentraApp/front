@@ -15,6 +15,7 @@ import SingleBouquet from './modules/SingleBouquet'
 import Cart from './modules/Cart'
 import Login from './modules/Login'
 import Registration from './modules/Registration'
+import MyProfile from './modules/MyProfile'
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         element: <Registration />,
         path: '/registration',
+      },
+      {
+        element: <MyProfile />,
+        path: 'my-profile',
       },
     ],
   },

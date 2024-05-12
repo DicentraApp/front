@@ -12,7 +12,7 @@ import { usersReducer } from './users/usersSlice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['portal', 'cart', 'users', 'modal'],
+  whitelist: ['portal', 'cart', 'modal', 'users'],
 }
 
 const rootReducer = combineReducers({

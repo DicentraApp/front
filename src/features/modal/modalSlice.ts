@@ -14,7 +14,7 @@ const modalSlice = createSlice({
   name: '@@modal',
   initialState: {
     reviewsModal: false,
-    loginModal: true,
+    loginModal: false,
     registrationModal: false,
     registrationStatus: 'idle',
   } as IInitialState,
