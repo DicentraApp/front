@@ -1,36 +1,39 @@
-import { useAppSelector } from '@/hooks/hooks'
+import PersonalData from './components/PersonalData'
+import AdressData from './components/AdressData'
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import { useAppDispatch } from '@/hooks/hooks'
+import { resetCurrentUser } from '@/features/users/usersSlice'
+import { useNavigate } from 'react-router-dom'
 
 const MyProfile = () => {
-  const { currentUser } = useAppSelector((state) => state.users)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const handleLogOut = () => {
+    dispatch(resetCurrentUser())
+    navigate('/')
+  }
 
   return (
-    <div className="bg-light pt-48 pb-40 h-screen">
+    <div className="bg-light h-screen text-dark pt-56">
       <div className="container">
-        <h2 className="text-3xl font-semibold">Personal data</h2>
+        <div className="border border-white p-16 flex justify-between relative mb-10">
+          <PersonalData />
+          <AdressData />
 
-        <div className="w-6/12 bg-white p-6 mt-6">
-          <div className="mb-2">
-            Name: <span className="text-xl ml-4">{currentUser?.name}</span>
-          </div>
-          <div className="mb-2">
-            Phone: <span className="text-xl ml-4">+{currentUser?.phone}</span>
-          </div>
-          <div className="mb-2">
-            Email: <span className="text-xl ml-4">{currentUser?.email}</span>
-          </div>
-
-          <button className="flex items-center text-gold mt-6 mb-2">
-            <img
-              className="mr-2"
-              src="/images/icons/lock.svg"
-              alt="Change password"
-            />
-            Change password
-          </button>
-          <button className="flex items-center text-gold">
-            <img className="mr-2" src="/images/icons/pen.svg" alt="Edit data" />
-            Edit data
-          </button>
+          <img
+            className="absolute -right-28 top-1/2 -translate-y-1/2"
+            src="/images/intro/intro-fone.png"
+            alt="intro-fone"
+          />
+          <img
+            className="absolute left-0 bottom-0 opacity-75"
+            src="/images/fones/leaves.png"
+            alt="intro-fone"
+          />
+        </div>
+        <div className="text-center">
+          <DarktBtn width="w-36" text="Log out" handleClick={handleLogOut} />
         </div>
       </div>
     </div>

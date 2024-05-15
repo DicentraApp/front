@@ -5,7 +5,7 @@ import PasswordIcon from '@/common/UI/Icons/PasswordIcon'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { setLoginModal } from '@/features/modal/modalSlice'
-import ErrorInputMessage from '@/common/components/ErrorInputMessage'
+import ErrorInputMessage from '@/common/UI/Inputs/ErrorInputMessage'
 import { resetLoginError, loginUser } from '@/features/users/usersSlice'
 
 const LoginForm = () => {

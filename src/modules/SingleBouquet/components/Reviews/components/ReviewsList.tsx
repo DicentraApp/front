@@ -22,7 +22,7 @@ const ReviewsList = () => {
         <h2 className="font-medium text-3xl">Reviews</h2>
         <GoldBtn
           text="Write a review"
-          styles="w-52"
+          styles="w-52 py-4"
           handleClick={() => dispatch(setReviewsModal(true))}
         />
       </div>

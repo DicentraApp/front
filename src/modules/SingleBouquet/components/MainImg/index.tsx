@@ -4,9 +4,10 @@ import { CircularProgress } from '@mui/material'
 
 interface MainImgProps {
   imgMainPath: string
+  loading: boolean
 }
 
-const MainImg: FC<MainImgProps> = ({ imgMainPath }) => {
+const MainImg: FC<MainImgProps> = ({ imgMainPath, loading }) => {
   const { flowerItem } = useAppSelector((state) => state.flowers)
 
   let actionPercent
@@ -18,10 +19,10 @@ const MainImg: FC<MainImgProps> = ({ imgMainPath }) => {
 
   return (
     <div className="w-5/12 flex justify-center items-center relative mr-10 transition-all">
-      {!imgMainPath ? (
+      {loading ? (
         <div className="text-center">
           {' '}
-          <CircularProgress color="secondary" />
+          <CircularProgress color="primary" />
         </div>
       ) : (
         <img

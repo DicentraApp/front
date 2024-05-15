@@ -12,7 +12,7 @@ const EmptyReviews = () => {
       </p>
       <GoldBtn
         text="Write a review"
-        styles="w-56"
+        styles="w-56 py-4"
         handleClick={() => dispatch(setReviewsModal(true))}
       />
     </div>

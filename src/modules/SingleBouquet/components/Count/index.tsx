@@ -6,7 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { addItemToCart } from '@/features/cart/cartSlice'
-import CountInput from '@/common/components/CountInput'
+import CountInput from '@/common/UI/Inputs/CountInput'
 import { currentPrice, isAddedToCart } from '@/utils/helpers'
 
 const Count = () => {
@@ -45,7 +45,7 @@ const Count = () => {
     <div className="flex mt-5">
       {flowerItem.inStock ? (
         isAdded ? (
-          <div className="w-full text-center bg-light py-4 rounded-full">
+          <div className="w-full text-center bg-light py-4 rounded-xl">
             Product added to cart
           </div>
         ) : (
@@ -65,7 +65,7 @@ const Count = () => {
           </>
         )
       ) : (
-        <div className="w-full text-center bg-light py-4 rounded-full">
+        <div className="w-full text-center bg-light py-4 rounded-xl">
           Product temporarily absent
         </div>
       )}

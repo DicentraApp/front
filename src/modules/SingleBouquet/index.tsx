@@ -19,12 +19,17 @@ const imagesArray = Array(4).fill(0)
 const SingleBouquet = () => {
   const dispatch = useAppDispatch()
   const { flowerItem } = useAppSelector((state) => state.flowers)
+
   const [imgMainPath, setImgMainPath] = useState('')
   const [imgIndex, setImgIndex] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   const handleImgPath = (ind: number, path: string) => {
     setImgIndex(ind)
     setImgMainPath(path)
+    setLoading(true)
+
+    setTimeout(() => setLoading(false), 500)
   }
 
   useEffect(() => {
@@ -71,7 +76,7 @@ const SingleBouquet = () => {
               </div>
             ))}
           </div>
-          <MainImg imgMainPath={imgMainPath} />
+          <MainImg imgMainPath={imgMainPath} loading={loading} />
 
           <div className="w-5/12 pl-6 border-l border-light border-solid">
             <Article />

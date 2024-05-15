@@ -1,4 +1,4 @@
-import CountInput from '@/common/components/CountInput'
+import CountInput from '@/common/UI/Inputs/CountInput'
 import {
   deleteFromCart,
   setProductCountToDown,
