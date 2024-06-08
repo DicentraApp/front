@@ -1,29 +1,19 @@
-import { ChangeEvent, FC } from 'react'
+import { PropsWithRef, forwardRef } from 'react'
 
-interface InputProps {
-  value: string
-  placeholder: string
+interface InputProps extends PropsWithRef<JSX.IntrinsicElements['input']> {
   styles?: string
-  type?: 'text' | 'password'
-  change: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input: FC<InputProps> = ({
-  styles,
-  value,
-  type = 'text',
-  change,
-  placeholder,
-}) => {
-  return (
-    <input
-      className={`w-full font-roboto text-md bg-white py-3 px-5 border-none rounded-full focus:outline-gold ${styles}`}
-      type={type}
-      value={value}
-      onChange={change}
-      placeholder={placeholder}
-    />
-  )
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ styles, ...other }, ref) => {
+    return (
+      <input
+        className={`w-full font-roboto text-md bg-white py-3 px-5 border-none rounded-full ${styles}`}
+        ref={ref}
+        {...other}
+      />
+    )
+  }
+)
 
 export default Input

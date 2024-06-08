@@ -26,7 +26,7 @@ const Modal: FC<ModalProps> = ({ children, isOpen, closeModal, title }) => {
               alt="close"
             />
           </div>
-          <div className="w-80 text-dark">
+          <div className="w-[350px] text-dark">
             <h2 className="text-2xl font-medium text-center mb-6">{title}</h2>
             {children}
           </div>

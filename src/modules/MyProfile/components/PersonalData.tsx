@@ -62,9 +62,14 @@ const PersonalData = () => {
 
     if (!isNotEmpty) return
 
+    const newData = {
+      id: currentUser!.id,
+      ...personalData,
+    }
+
     handleLoading()
 
-    dispatch(changeCurrentUserData(personalData))
+    dispatch(changeCurrentUserData(newData))
     setEditForm(false)
   }
 

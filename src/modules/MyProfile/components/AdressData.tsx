@@ -58,9 +58,14 @@ const AdressData = () => {
 
     if (!isNotEmpty) return
 
+    const newAddressData = {
+      id: currentUser!.id,
+      ...addressData,
+    }
+
     handleLoading()
 
-    dispatch(setCurrentUserAddress(addressData))
+    dispatch(setCurrentUserAddress(newAddressData))
     setEditForm(false)
   }
 

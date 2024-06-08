@@ -11,21 +11,23 @@ interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = () => {
   return (
-    <header className="w-full bg-white flex flex-col items-center fixed z-40 py-5">
-      <div className="container mb-6 flex items-center justify-between">
-        <Phone phoneNumber="+380 (98) 997-19-91" />
-        <Logo
-          imageLogoPath="/images/logo/logo_dicentra.png"
-          subtitleLogo="Choose with heart"
-        />
+    <header className="w-full bg-white flex flex-col items-center fixed z-40 pb-5">
+      <div className="container">
+        <div className="my-6 flex items-center justify-between">
+          <Phone phoneNumber="+380 (98) 997-19-91" />
+          <Logo
+            imageLogoPath="/images/logo/logo_dicentra.png"
+            subtitleLogo="Choose with heart"
+          />
 
-        <div className=" flex items-center justify-between">
-          <Search />
-          <UserIcon />
-          <CartIcon />
+          <div className=" flex items-center justify-between">
+            <Search />
+            <UserIcon />
+            <CartIcon />
+          </div>
         </div>
+        <Navigation data={navData} />
       </div>
-      <Navigation data={navData} />
     </header>
   )
 }

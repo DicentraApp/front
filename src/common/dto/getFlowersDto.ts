@@ -1,5 +1,6 @@
 export interface IReviewItem {
-  id: string
+  userID: string
+  flowerID: string
   rating: number
   name: string
   comment: string

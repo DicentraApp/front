@@ -16,6 +16,7 @@ import Cart from './modules/Cart'
 import Login from './modules/Login'
 import Registration from './modules/Registration'
 import MyProfile from './modules/MyProfile'
+import Order from './modules/Order'
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         element: <MyProfile />,
         path: 'my-profile',
+      },
+      {
+        element: <Order />,
+        path: 'order',
       },
     ],
   },

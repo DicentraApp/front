@@ -25,17 +25,18 @@ const MainImg: FC<MainImgProps> = ({ imgMainPath, loading }) => {
           <CircularProgress color="primary" />
         </div>
       ) : (
-        <img
-          className="w-full h-[466px] object-contain"
-          src={`/images/products/${imgMainPath}`}
-          alt={flowerItem.name}
-        />
-      )}
-
-      {flowerItem.actionPrice && (
-        <div className="top-0 left-4 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-gold text-sm absolute z-10 font-semibold flex items-center justify-center">
-          -{actionPercent}%
-        </div>
+        <>
+          <img
+            className="w-full h-[466px] object-contain"
+            src={`/images/products/${imgMainPath}`}
+            alt={flowerItem.name}
+          />
+          {flowerItem.actionPrice && (
+            <div className="top-0 left-4 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-gold text-sm absolute z-10 font-semibold flex items-center justify-center">
+              -{actionPercent}%
+            </div>
+          )}
+        </>
       )}
     </div>
   )

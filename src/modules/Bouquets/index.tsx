@@ -2,21 +2,27 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import FlowersItem from '@/common/components/FlowersItem'
+import { flowersData } from './data'
 import { getFlowers } from '@/features/flowers/flowersSlice'
 
 const Bouquets = () => {
   const [tabInd, setTabInd] = useState(0)
   const [tabName, setTabName] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const { list } = useAppSelector((state) => state.flowers)
   const dispatch = useAppDispatch()
 
   const handleTabClick = (index: number, name: string) => {
+    setLoading(true)
     setTabInd(index)
     setTabName(name)
+
+    setTimeout(() => setLoading(false), 300)
   }
 
   useEffect(() => {
-    dispatch(getFlowers())
+    dispatch(getFlowers(flowersData))
     setTabName('mix')
   }, [dispatch])
 
@@ -55,7 +61,7 @@ const Bouquets = () => {
           {list?.map((elem) => {
             if (tabName.toLowerCase() === elem.title.toLowerCase()) {
               return elem.flowers.map((f) => (
-                <FlowersItem key={f.id} data={f} />
+                <FlowersItem key={f.id} data={f} isLoading={loading} />
               ))
             } else return null
           })}

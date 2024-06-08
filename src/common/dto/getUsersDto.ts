@@ -1,7 +1,17 @@
+import { IFlowerItem } from './getFlowersDto'
+
 export interface IUserAddress {
   city: string
   street: string
   number: string
+}
+
+export interface IUserReviews {
+  userID: string
+  flowerItem: IFlowerItem
+  rating: number
+  comment: string
+  createdAt: string
 }
 
 export interface IUser {
@@ -13,4 +23,5 @@ export interface IUser {
   confirmPassword: string
   createdAt: Date
   address?: IUserAddress | undefined
+  reviews?: IUserReviews[] | undefined
 }

@@ -10,7 +10,7 @@ export interface NavItemProps {
 interface PageWrapperProps {
   children: JSX.Element
   title: string
-  navArr: NavItemProps[]
+  navArr?: NavItemProps[]
 }
 
 const PageWrapper: FC<PageWrapperProps> = ({ children, title, navArr }) => {
@@ -22,7 +22,7 @@ const PageWrapper: FC<PageWrapperProps> = ({ children, title, navArr }) => {
             <NavLink to="/">Home</NavLink>
           </li>
 
-          {navArr.map((n) => (
+          {navArr?.map((n) => (
             <li
               key={n.link}
               className={`pr-1 after:pl-1 ${n?.isActive ? '' : "after:content-['/']"}`}

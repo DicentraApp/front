@@ -1,13 +1,14 @@
 import PersonalData from './components/PersonalData'
 import AdressData from './components/AdressData'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
-import { useAppDispatch } from '@/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { resetCurrentUser } from '@/features/users/usersSlice'
 import { useNavigate } from 'react-router-dom'
 
 const MyProfile = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const { currentUser } = useAppSelector((state) => state.users)
 
   const handleLogOut = () => {
     dispatch(resetCurrentUser())
@@ -35,6 +36,21 @@ const MyProfile = () => {
         <div className="text-center">
           <DarktBtn width="w-36" text="Log out" handleClick={handleLogOut} />
         </div>
+        {currentUser?.reviews && (
+          <>
+            <h4>My reviews</h4>
+            <div>
+              {currentUser?.reviews.map((item) => {
+                return (
+                  <>
+                    <div>{item.createdAt}</div>
+                    <div>{item.comment}</div>
+                  </>
+                )
+              })}
+            </div>{' '}
+          </>
+        )}
       </div>
     </div>
   )

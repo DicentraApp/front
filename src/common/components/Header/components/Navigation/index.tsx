@@ -13,7 +13,7 @@ interface INavigationData {
 
 const Navigation: FC<INavigationData> = ({ data }) => {
   return (
-    <nav className="container">
+    <nav>
       <ul className="flex justify-between">
         {data.map((item) => {
           return (

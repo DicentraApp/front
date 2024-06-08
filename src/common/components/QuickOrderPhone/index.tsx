@@ -14,6 +14,7 @@ const QuickOrderPhone = () => {
 
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     try {
       const quick_order = {
         id: crypto.randomUUID(),
@@ -57,13 +58,18 @@ const QuickOrderPhone = () => {
           </p>
         ) : (
           <form
-            className="border border-gold border-solid rounded-full py-2 px-8 flex justify-between bg-transparent"
+            className="border bg-white border-gold border-solid rounded-full pr-8 flex justify-between bg-transparent"
             onSubmit={onSubmit}
           >
-            <Phone value={phone} changeValue={handleChangePhone} />
+            <Phone
+              value={phone}
+              changeValue={handleChangePhone}
+              borderColor="transparent"
+            />
             <button
               className="uppercase text-gold text-md font-medium hover:text-btnPressedGold transition-all"
               type="submit"
+              disabled={phone.length < 12}
             >
               Send
             </button>

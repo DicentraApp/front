@@ -8,11 +8,12 @@ import { portalReducer } from './portal/portalSlice'
 import { modalReducer } from './modal/modalSlice'
 import { cartReducer } from './cart/cartSlice'
 import { usersReducer } from './users/usersSlice'
+import { orderReducer } from './order/orderSlice'
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['portal', 'cart', 'modal', 'users'],
+  whitelist: ['portal', 'cart', 'modal', 'flowers', 'users', 'order'],
 }
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   cart: cartReducer,
   users: usersReducer,
+  order: orderReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 })
 

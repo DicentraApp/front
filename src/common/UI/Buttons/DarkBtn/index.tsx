@@ -3,7 +3,7 @@ import { FC } from 'react'
 interface DarkBtnProps {
   text: string | JSX.Element
   width: string
-  type?: 'submit' | undefined
+  type?: 'submit' | 'button'
   handleClick?: () => void
   disabled?: boolean
 }

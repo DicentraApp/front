@@ -29,7 +29,7 @@ const SingleBouquet = () => {
     setImgMainPath(path)
     setLoading(true)
 
-    setTimeout(() => setLoading(false), 500)
+    setTimeout(() => setLoading(false), 300)
   }
 
   useEffect(() => {

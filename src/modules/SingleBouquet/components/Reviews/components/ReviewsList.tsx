@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import GoldBtn from '@/common/UI/Buttons/GoldBtn'
-import { getFlowers } from '@/features/flowers/flowersSlice'
 import { setReviewsModal } from '@/features/modal/modalSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import TotalRating from './TotalRating'
@@ -12,9 +10,9 @@ const ReviewsList = () => {
     flowerItem: { reviews },
   } = useAppSelector((state) => state.flowers)
 
-  useEffect(() => {
-    dispatch(getFlowers())
-  }, [dispatch])
+  const handleAddReview = () => {
+    dispatch(setReviewsModal(true))
+  }
 
   return (
     <div className="font-roboto relative -mt-4 mx-auto border border-gold py-12 px-24">
@@ -23,7 +21,7 @@ const ReviewsList = () => {
         <GoldBtn
           text="Write a review"
           styles="w-52 py-4"
-          handleClick={() => dispatch(setReviewsModal(true))}
+          handleClick={handleAddReview}
         />
       </div>
 
@@ -31,7 +29,7 @@ const ReviewsList = () => {
 
       <div className="mt-6">
         {reviews?.map((review) => (
-          <ReviewsItem key={review.id} review={review} />
+          <ReviewsItem key={review.userID} review={review} />
         ))}
       </div>
 

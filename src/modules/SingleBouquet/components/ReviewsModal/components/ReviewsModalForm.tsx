@@ -4,14 +4,14 @@ import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { setReviewsModal } from '@/features/modal/modalSlice'
 import Rating from '@/common/UI/Icons/Rating'
-import { BASE_URL } from '@/utils/constans'
 import { addReview } from '@/features/flowers/flowersSlice'
+import ErrorInputMessage from '@/common/UI/Inputs/ErrorInputMessage'
+import { addCurrentUserReview } from '@/features/users/usersSlice'
 
 const ReviewsModalForm = () => {
-  const {
-    flowerItem: { id },
-  } = useAppSelector((state) => state.flowers)
   const dispatch = useAppDispatch()
+  const { currentUser } = useAppSelector((state) => state.users)
+  const { flowerItem } = useAppSelector((state) => state.flowers)
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
   const {
@@ -21,7 +21,7 @@ const ReviewsModalForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
+      name: currentUser!.name || '',
       comment: '',
     },
   })
@@ -35,21 +35,26 @@ const ReviewsModalForm = () => {
       })
 
       const comment = {
-        id: crypto.randomUUID(),
+        userID: currentUser!.id,
         rating: currentIndex,
         createdAt: date,
-        ...data,
+        comment: data.comment,
       }
 
-      const res = await fetch(`${BASE_URL}/flowers/${id}/reviews`, {
-        method: 'POST',
-        body: JSON.stringify(comment),
-      })
-
-      if (res.status === 200) {
-        dispatch(addReview(comment))
-        dispatch(setReviewsModal(false))
+      const flowerReview = {
+        ...comment,
+        flowerID: flowerItem.id,
+        name: data.name,
       }
+
+      const userReview = {
+        ...comment,
+        flowerItem,
+      }
+
+      dispatch(addReview(flowerReview))
+      dispatch(addCurrentUserReview(userReview))
+      dispatch(setReviewsModal(false))
     } catch (error) {
       console.log(error)
     }
@@ -78,18 +83,9 @@ const ReviewsModalForm = () => {
             placeholder="Your name"
             {...register('name', {
               required: 'Name is required!',
-              min: {
-                message: 'Name must contain at least 2 characters',
-                value: 2,
-              },
-              // onChange: (e) => {
-              //   e.target.value = e.target.value.replace(/[^a-zA-Z]+/g, '')
-              // },
             })}
           />
-          <div className="text-red-600 h-3 text-xs ml-5">
-            {errors.name?.message}
-          </div>
+          <ErrorInputMessage message={errors.name?.message} />
         </div>
 
         <div className="mb-6">
@@ -100,9 +96,7 @@ const ReviewsModalForm = () => {
               required: 'Comment is required!',
             })}
           />
-          <div className="text-red-600 h-3 text-xs ml-5">
-            {errors.comment?.message}
-          </div>
+          <ErrorInputMessage message={errors.comment?.message} />
         </div>
 
         <DarktBtn

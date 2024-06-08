@@ -5,31 +5,28 @@ import { useSelector } from 'react-redux'
 import { selectedFlowers } from '@/features/flowers/flowersSelector'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import FlowersItem from '@/common/components/FlowersItem'
-import { CircularProgress } from '@mui/material'
+import { flowersData } from '@/modules/Bouquets/data'
 
 const Bestsellers = () => {
   const filteredList = useSelector(selectedFlowers)
-  const { isLoading, flowers } = useAppSelector((state) => state.flowers)
+  const { flowers } = useAppSelector((state) => state.flowers)
   const dispatch = useAppDispatch()
   const [tabInd, setTabInd] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   const handleTabClick = (index: number, content: IFlowerItem[]) => {
+    setLoading(true)
     setTabInd(index)
     dispatch(setFlowers(content))
+
+    setTimeout(() => setLoading(false), 300)
   }
 
   useEffect(() => {
-    dispatch(getFlowers())
-  }, [dispatch])
-
-  if (isLoading) {
-    return (
-      <div className="text-center">
-        {' '}
-        <CircularProgress color="secondary" />
-      </div>
-    )
-  }
+    dispatch(getFlowers(flowersData))
+    setTabInd(0)
+    //eslint-disable-next-line
+  }, [])
 
   return (
     <section className="bg-light py-16 mb-26">
@@ -55,7 +52,9 @@ const Bestsellers = () => {
         <div className={`flex justify-between transition-opacity`}>
           {flowers?.map((elem) => {
             if (elem.IsBestsellers) {
-              return <FlowersItem key={elem.id} data={elem} />
+              return (
+                <FlowersItem key={elem.id} data={elem} isLoading={loading} />
+              )
             } else return null
           })}
         </div>

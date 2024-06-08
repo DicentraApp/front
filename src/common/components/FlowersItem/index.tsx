@@ -10,13 +10,17 @@ import { currentPrice, isAddedToCart } from '@/utils/helpers'
 
 interface IFlowersItemData {
   data: IFlowerItem
+  isLoading?: boolean
   setItemWidth?: Dispatch<SetStateAction<number>> | undefined
 }
 
-const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
+const FlowersItem: FC<IFlowersItemData> = ({
+  data,
+  setItemWidth,
+  isLoading,
+}) => {
   const { id, img, name, price, actionPrice } = data
   const dispatch = useAppDispatch()
-  const { isLoading } = useAppSelector((state) => state.flowers)
   const { cart } = useAppSelector((state) => state.cart)
 
   const isAdded = isAddedToCart(id, cart)
@@ -56,31 +60,33 @@ const FlowersItem: FC<IFlowersItemData> = ({ data, setItemWidth }) => {
     <div className="min-w-[254px] pr-[10px] mb-12" ref={itemRef}>
       <Link
         className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative"
-        to={`${id}`}
+        to={`/bouquets/${id}`}
         onClick={handleLinkClick}
       >
         {isLoading ? (
           <div className="text-center">
             {' '}
-            <CircularProgress color="secondary" />
+            <CircularProgress color="primary" />
           </div>
         ) : (
-          <img
-            className="w-48 h-52 object-contain bg-white cursor-pointer"
-            src={`images/products/${img}`}
-            alt={name}
-          />
-        )}
+          <>
+            <img
+              className="w-48 h-52 object-contain bg-white cursor-pointer"
+              src={`images/products/${img}`}
+              alt={name}
+            />
 
-        {actionPrice && (
-          <div className="top-4 left-4 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-gold text-sm absolute z-10 font-semibold flex items-center justify-center">
-            -{actionPercent}%
-          </div>
+            {actionPrice && (
+              <div className="top-4 left-4 w-12 h-12 bg-white rounded-full border-2 border-gold border-solid text-gold text-sm absolute z-10 font-semibold flex items-center justify-center">
+                -{actionPercent}%
+              </div>
+            )}
+          </>
         )}
       </Link>
       <Link
         className="font-normal mb-3 cursor-pointer"
-        to={`${id}`}
+        to={`/bouquets/${id}`}
         onClick={handleLinkClick}
       >
         <h4 className="text-center">{name}</h4>

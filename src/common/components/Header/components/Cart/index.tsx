@@ -7,7 +7,10 @@ const CartIcon = () => {
   return (
     <Link className="ml-3 flex items-center" to="cart">
       <div className="relative">
-        <img className="w-7 h-7" src="/images/icons/icon_cart.svg" />
+        <img
+          className="w-6 h-6 object-cover"
+          src="/images/icons/icon_cart.svg"
+        />
         {!cart.length ? (
           ''
         ) : (

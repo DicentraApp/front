@@ -1,10 +1,7 @@
 import { http, HttpResponse } from 'msw'
-import { portalData, flowersData, reviewsData, chocolatesData } from './data'
+import { portalData, reviewsData, chocolatesData } from './data'
 
 export const handlers = [
-  http.get('/flowers', () => {
-    return HttpResponse.json(flowersData)
-  }),
   http.get('/reviews', () => {
     return HttpResponse.json(reviewsData)
   }),
@@ -27,18 +24,6 @@ export const handlers = [
     return HttpResponse.json(body)
   }),
   http.post('/flowers/:id/reviews', async ({ request }) => {
-    const body = await request.json()
-    return HttpResponse.json(body)
-  }),
-  http.post('/registration', async ({ request }) => {
-    const body = await request.json()
-    return HttpResponse.json(body)
-  }),
-  http.post('/login', async ({ request }) => {
-    const body = await request.json()
-    return HttpResponse.json(body)
-  }),
-  http.post('/login/password', async ({ request }) => {
     const body = await request.json()
     return HttpResponse.json(body)
   }),

@@ -122,7 +122,7 @@ const ContactsForm = () => {
           type="submit"
           text={
             status === State.loading ? (
-              <CircularProgress color="inherit" size={16} />
+              <CircularProgress color="primary" size={16} />
             ) : (
               'Send'
             )

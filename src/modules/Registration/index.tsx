@@ -2,18 +2,19 @@ import Modal from '@/common/components/Modal'
 import {
   setLoginModal,
   setRegistrationModal,
-  setRegistrationStatus,
 } from '@/features/modal/modalSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
-
 import LoginVsRegisterBottom from '@/common/components/LoginVsRegisterBottom'
 import RegistrationForm from './component/RegistrationForm'
 import { useEffect } from 'react'
+import {
+  resetRegistrationError,
+  resetRegistrationMessage,
+} from '@/features/users/usersSlice'
 
 const Registration = () => {
-  const { registrationModal, registrationStatus } = useAppSelector(
-    (state) => state.modal
-  )
+  const { registrationModal } = useAppSelector((state) => state.modal)
+  const { registrationStatus } = useAppSelector((state) => state.users)
   const dispatch = useAppDispatch()
 
   const title =
@@ -25,16 +26,19 @@ const Registration = () => {
 
   const handleCloseModal = () => {
     dispatch(setRegistrationModal(false))
+    dispatch(resetRegistrationError())
+    dispatch(resetRegistrationMessage())
   }
 
   const openLoginModal = () => {
     dispatch(setLoginModal(true))
-
     handleCloseModal()
   }
 
   useEffect(() => {
-    dispatch(setRegistrationStatus('idle'))
+    dispatch(resetRegistrationMessage())
+    dispatch(resetRegistrationError())
+    //eslint-disable-next-line
   }, [])
 
   return (

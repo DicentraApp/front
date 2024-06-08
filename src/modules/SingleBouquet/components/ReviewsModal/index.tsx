@@ -5,6 +5,9 @@ import Modal from '@/common/components/Modal'
 
 const ReviewsModal = () => {
   const dispatch = useAppDispatch()
+  const {
+    flowerItem: { name },
+  } = useAppSelector((state) => state.flowers)
   const { reviewsModal } = useAppSelector((state) => state.modal)
 
   const handleCloseModal = () => {
@@ -15,7 +18,7 @@ const ReviewsModal = () => {
     <Modal
       isOpen={reviewsModal}
       closeModal={handleCloseModal}
-      title="Write a review"
+      title={`Write a review about ${name}`}
     >
       <ReviewsModalForm />
     </Modal>

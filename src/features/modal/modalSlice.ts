@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-type Status = 'success' | 'error' | 'idle'
-
 interface IInitialState {
   reviewsModal: boolean
   loginModal: boolean
   registrationModal: boolean
-  registrationStatus: Status
+  paymentModal: boolean
+  successModal: boolean
 }
 
 const modalSlice = createSlice({
@@ -16,7 +15,8 @@ const modalSlice = createSlice({
     reviewsModal: false,
     loginModal: false,
     registrationModal: false,
-    registrationStatus: 'idle',
+    paymentModal: false,
+    successModal: false,
   } as IInitialState,
   reducers: {
     setReviewsModal: (state, action: PayloadAction<boolean>) => {
@@ -28,8 +28,16 @@ const modalSlice = createSlice({
     setRegistrationModal: (state, action: PayloadAction<boolean>) => {
       state.registrationModal = action.payload
     },
-    setRegistrationStatus: (state, action: PayloadAction<Status>) => {
-      state.registrationStatus = action.payload
+    setPaymentModal: (state, action: PayloadAction<boolean>) => {
+      state.paymentModal = action.payload
+    },
+    setSuccessModal: (state, action: PayloadAction<boolean>) => {
+      state.successModal = action.payload
+    },
+    resetAllModal: (state) => {
+      state.loginModal = false
+      state.registrationModal = false
+      state.reviewsModal = false
     },
   },
 })
@@ -38,7 +46,9 @@ export const {
   setReviewsModal,
   setLoginModal,
   setRegistrationModal,
-  setRegistrationStatus,
+  resetAllModal,
+  setPaymentModal,
+  setSuccessModal,
 } = modalSlice.actions
 
 export const modalReducer = modalSlice.reducer

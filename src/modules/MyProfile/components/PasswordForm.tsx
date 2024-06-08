@@ -69,10 +69,15 @@ const PasswordForm: FC<PasswordFormProps> = ({ cancelBtn }) => {
 
       if (!isNotEmpty) return
 
+      const newData = {
+        id: currentUser!.id!,
+        ...data,
+      }
+
       if (data.password !== currentUser?.password) {
         setPasswordError('Password entered incorrectly')
       } else {
-        dispatch(changeUserPassword(data))
+        dispatch(changeUserPassword(newData))
         handleResetPAsswordMessage()
         reset()
       }

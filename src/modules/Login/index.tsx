@@ -17,7 +17,6 @@ const Login = () => {
 
   const openRegistrationModal = () => {
     dispatch(setRegistrationModal(true))
-
     handleCloseModal()
   }
 

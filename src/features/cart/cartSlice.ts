@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IFlowerItem, ITogetherWith } from '@/common/dto/getFlowersDto'
+import { INotesData } from '@/common/dto/getOrderDto'
 
 // export type Product = IFlowerItem | ITogetherWith
 
 export interface ProductWithCount {
-  product: IFlowerItem | ITogetherWith
+  product: IFlowerItem | ITogetherWith | INotesData
   count: number
   price: number
   priceWithCount: number
@@ -29,14 +30,14 @@ const cartSlice = createSlice({
       )
 
       if (found) {
-        return
+        return state
       } else state.cart.push(payload)
     },
     addChocolateToCart: (state, { payload }: PayloadAction<ITogetherWith>) => {
       const found = state.cart.find((el) => el.product.id === payload.id)
 
       if (found) {
-        return
+        return state
       } else
         state.cart.push({
           product: payload,
@@ -44,6 +45,14 @@ const cartSlice = createSlice({
           price: payload.price,
           priceWithCount: payload.price,
         })
+    },
+    addCard: (state, { payload }: PayloadAction<INotesData>) => {
+      state.cart.push({
+        product: payload,
+        count: 1,
+        price: payload.price,
+        priceWithCount: payload.price,
+      })
     },
     deleteFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((el) => el.product.id !== action.payload)
@@ -67,16 +76,22 @@ const cartSlice = createSlice({
     setTotalPrice: (state, action: PayloadAction<number>) => {
       state.totalPrice = action.payload
     },
+    resetCart: (state) => {
+      state.cart = []
+      state.totalPrice = 0
+    },
   },
 })
 
 export const {
   addItemToCart,
   addChocolateToCart,
+  addCard,
   deleteFromCart,
   setProductCountToUp,
   setProductCountToDown,
   setTotalPrice,
+  resetCart,
 } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
