@@ -8,7 +8,7 @@ const Reviews = () => {
   } = useAppSelector((state) => state.flowers)
 
   return (
-    <div className="mt-6 bg-white py-24">
+    <div className="mt-24 bg-white py-24">
       <div className="container">
         {!reviews?.length ? <EmptyReviews /> : <ReviewsList />}
       </div>

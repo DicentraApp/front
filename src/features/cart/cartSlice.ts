@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IFlowerItem, ITogetherWith } from '@/common/dto/getFlowersDto'
-import { INotesData } from '@/common/dto/getOrderDto'
 
 // export type Product = IFlowerItem | ITogetherWith
 
 export interface ProductWithCount {
-  product: IFlowerItem | ITogetherWith | INotesData
+  product: IFlowerItem | ITogetherWith
   count: number
   price: number
   priceWithCount: number
@@ -46,14 +45,6 @@ const cartSlice = createSlice({
           priceWithCount: payload.price,
         })
     },
-    addCard: (state, { payload }: PayloadAction<INotesData>) => {
-      state.cart.push({
-        product: payload,
-        count: 1,
-        price: payload.price,
-        priceWithCount: payload.price,
-      })
-    },
     deleteFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((el) => el.product.id !== action.payload)
     },
@@ -86,7 +77,6 @@ const cartSlice = createSlice({
 export const {
   addItemToCart,
   addChocolateToCart,
-  addCard,
   deleteFromCart,
   setProductCountToUp,
   setProductCountToDown,

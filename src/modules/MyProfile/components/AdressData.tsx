@@ -91,9 +91,9 @@ const AdressData = () => {
           ) : (
             <>
               <div className="border-b border-light mb-6">
-                <DataItem prop="City" value={address?.city} />
-                <DataItem prop="Street" value={address?.street} />
-                <DataItem prop="Number" value={address?.number} />
+                <DataItem prop="City" value={addressData.city} />
+                <DataItem prop="Street" value={addressData.street} />
+                <DataItem prop="Number" value={addressData.number} />
               </div>
 
               <button

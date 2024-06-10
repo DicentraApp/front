@@ -1,21 +1,14 @@
-import { useEffect } from 'react'
 import PageWrapper from '@/common/components/PageWrapper'
 import { promotionData } from './data'
 import ActionCarousel from '../Home/components/ActionCarousel'
-import { useAppDispatch, usePromotionTime } from '@/hooks/hooks'
-import { getFlowers } from '@/features/flowers/flowersSlice'
+import { usePromotionTime } from '@/hooks/hooks'
 
 const navArr = [{ nav: 'Promotions', link: '', isActive: true }]
 
 const Promotions = () => {
-  const dispatch = useAppDispatch()
   const { days, hours, minutes, seconds } = usePromotionTime(
     promotionData.dataUntil
   )
-
-  useEffect(() => {
-    dispatch(getFlowers())
-  }, [dispatch])
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { IUserData, IUserDelivery } from '@/common/dto/getOrderDto'
+import { INotesData, IUserData, IUserDelivery } from '@/common/dto/getOrderDto'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -15,30 +15,32 @@ interface IPaymentData {
 }
 
 export interface IInitialState {
-  data: IUserData
-  delivery: IUserDelivery
+  data: IUserData | null
+  delivery: IUserDelivery | null
   noteMessage: string
-  activeCardData: ICardData
+  activeCardData: ICardData | null
   payment: string
-  paymentData: IPaymentData
+  paymentData: IPaymentData | null
   orderNumber: number
-  paymentStatus: 'paid' | 'cash'
+  paymentStatus: 'paid' | 'cash' | ''
+  card: INotesData | null
 }
 
-const inState = {
-  data: {},
-  delivery: {},
+const initialState: IInitialState = {
+  data: null,
+  delivery: null,
   noteMessage: '',
-  activeCardData: {},
+  activeCardData: null,
   payment: '',
-  paymentData: {},
+  paymentData: null,
   orderNumber: 0,
   paymentStatus: '',
+  card: null,
 }
 
 const orderSlice = createSlice({
   name: '@@order',
-  initialState: inState as IInitialState,
+  initialState: initialState,
   reducers: {
     addData: (state, { payload }: PayloadAction<IUserData>) => {
       state.data = payload
@@ -64,8 +66,11 @@ const orderSlice = createSlice({
     setPaymentStatus: (state, { payload }: PayloadAction<'paid' | 'cash'>) => {
       state.paymentStatus = payload
     },
+    setCart: (state, { payload }: PayloadAction<INotesData>) => {
+      state.card = payload
+    },
     resetOrder: (state) => {
-      Object.assign(state, inState)
+      Object.assign(state, initialState)
     },
   },
 })
@@ -80,6 +85,7 @@ export const {
   setPaymentStatus,
   resetOrder,
   setOrderNumber,
+  setCart,
 } = orderSlice.actions
 
 export const orderReducer = orderSlice.reducer

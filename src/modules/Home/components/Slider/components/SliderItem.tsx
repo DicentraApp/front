@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
 import '../slider.css'
 
@@ -23,9 +24,12 @@ const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
             Only the best bouquets!
           </h2>
           <p className="text-base font-light mb-12">24/7 delivery</p>
-          <button className="py-4 px-9 bg-gold rounded-26 font-normal">
+          <Link
+            className="py-4 px-9 bg-gold rounded-26 font-normal"
+            to={'/bouquets'}
+          >
             Choose a bouquet
-          </button>
+          </Link>
         </div>
       </div>
       <img

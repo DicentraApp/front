@@ -11,7 +11,7 @@ const Article = () => {
       </span>
       {!flowerItem.reviews?.length ? <span>No reviews</span> : <TotalRating />}
       <span className="bg-light py-1 px-3 rounded-full text-sm">
-        Article: {flowerItem.article}
+        Vendor code: {flowerItem.article}
       </span>
     </div>
   )

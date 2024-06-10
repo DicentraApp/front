@@ -1,4 +1,11 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Link } from 'react-router-dom'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
@@ -6,7 +13,7 @@ import { setFlowerItem } from '@/features/flowers/flowersSlice'
 import DarktBtn from '../../UI/Buttons/DarkBtn'
 import { CircularProgress } from '@mui/material'
 import { addItemToCart } from '@/features/cart/cartSlice'
-import { currentPrice, isAddedToCart } from '@/utils/helpers'
+import { currentPrice } from '@/utils/helpers'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -19,11 +26,11 @@ const FlowersItem: FC<IFlowersItemData> = ({
   setItemWidth,
   isLoading,
 }) => {
-  const { id, img, name, price, actionPrice } = data
+  const { id, img, name, price, actionPrice, inStock } = data
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state.cart)
 
-  const isAdded = isAddedToCart(id, cart)
+  const [isAdded, setIsAdded] = useState(false)
   const priceEnd = currentPrice(data)
 
   const itemRef = useRef<HTMLDivElement | null>(null)
@@ -55,6 +62,16 @@ const FlowersItem: FC<IFlowersItemData> = ({
       setItemWidth(itemRef!.current!.offsetWidth)
     } else return
   }, [setItemWidth])
+
+  useEffect(() => {
+    const found = cart.some((el) => el.product.id === id)
+
+    if (found) {
+      setIsAdded(true)
+    } else {
+      setIsAdded(false)
+    }
+  }, [cart, id])
 
   return (
     <div className="min-w-[254px] pr-[10px] mb-12" ref={itemRef}>
@@ -106,20 +123,25 @@ const FlowersItem: FC<IFlowersItemData> = ({
       <div className="flex flex-col items-center">
         {isAdded ? (
           <div className="h-12 pt-4">Product added to cart</div>
-        ) : (
+        ) : inStock ? (
           <DarktBtn
             text="Add to cart"
             width="w-32"
             handleClick={addProcuctToCart}
           />
+        ) : (
+          <div className="w-full text-center bg-light py-4 rounded-xl">
+            Product temporarily absent
+          </div>
         )}
-
-        <Link
-          to=""
-          className="text-gold mt-3 hover:text-btnPressedGold transition-all"
-        >
-          Quick order
-        </Link>
+        {inStock && (
+          <Link
+            to=""
+            className="text-gold mt-3 hover:text-btnPressedGold transition-all"
+          >
+            Quick order
+          </Link>
+        )}
       </div>
     </div>
   )

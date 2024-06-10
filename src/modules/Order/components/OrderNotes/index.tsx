@@ -3,8 +3,11 @@ import { notesData } from './data'
 import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
-import { setActiveCardData, setNoteMessage } from '@/features/order/orderSlice'
-import { addCard } from '@/features/cart/cartSlice'
+import {
+  setActiveCardData,
+  setCart,
+  setNoteMessage,
+} from '@/features/order/orderSlice'
 import { INotesData } from '@/common/dto/getOrderDto'
 
 interface OrderNotesProps {
@@ -21,21 +24,21 @@ const OrderNotes: FC<OrderNotesProps> = ({
   handleNext,
 }) => {
   const dispatch = useAppDispatch()
-  const { noteMessage, activeCardData } = useAppSelector((state) => state.order)
+  const { noteMessage, activeCardData, card } = useAppSelector(
+    (state) => state.order
+  )
 
   const itemWidth = 190
   const wrapperWidth = itemWidth * notesData.length
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(activeCardData?.cardOffset || 0)
   const [countSlides, setCountSlides] = useState(4)
-  const [activeIndex, setActiveIndex] = useState<number>(0)
-  const [activeCard, setActiveCard] = useState<INotesData>(notesData[0])
+  const [activeIndex, setActiveIndex] = useState(activeCardData?.cardIndex || 0)
   const [noteText, setNoteText] = useState(noteMessage || '')
 
   const [disabledNextBtn, setDisabledNextBtn] = useState(false)
 
   const handleRightClick = () => {
     setOffset((offset) => offset - itemWidth)
-    console.log('click r')
 
     if (countSlides === notesData.length) {
       return
@@ -46,7 +49,6 @@ const OrderNotes: FC<OrderNotesProps> = ({
 
   const handleLeftClick = () => {
     if (!offset) return
-    console.log('click l')
 
     setOffset((offset) => offset + itemWidth)
     setCountSlides((prev) => prev - 1)
@@ -54,24 +56,15 @@ const OrderNotes: FC<OrderNotesProps> = ({
 
   const handleAddCard = (index: number, card: INotesData) => {
     setActiveIndex(index)
-    setActiveCard(card)
+    dispatch(setCart(card))
   }
 
   const handleAddCardAndNotes = () => {
     dispatch(setNoteMessage(noteText))
     dispatch(setActiveCardData({ cardIndex: activeIndex, cardOffset: offset }))
 
-    dispatch(addCard(activeCard))
-
     handleNext()
   }
-
-  useEffect(() => {
-    if (activeCardData?.cardOffset) {
-      setActiveIndex(activeCardData.cardIndex)
-      setOffset(activeCardData.cardOffset)
-    }
-  }, [activeCardData])
 
   useEffect(() => {
     if (!noteText) {
@@ -80,6 +73,12 @@ const OrderNotes: FC<OrderNotesProps> = ({
       setDisabledNextBtn(false)
     }
   }, [noteText])
+
+  useEffect(() => {
+    if (!card) {
+      dispatch(setCart(notesData[0]))
+    }
+  }, [card, dispatch])
 
   return (
     <>

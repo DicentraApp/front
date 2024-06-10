@@ -83,7 +83,8 @@ const SingleBouquet = () => {
             <Promotion />
             <Price />
             <Count />
-            <QuickOrderPhone />
+            {flowerItem.inStock && <QuickOrderPhone />}
+
             <Tabs />
           </div>
         </div>

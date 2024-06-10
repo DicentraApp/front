@@ -17,7 +17,7 @@ const CartTableImgItem: FC<CartTableImgProps> = ({ name, article, img }) => {
       </div>
       <div>
         <div className="text-xl mb-2">{name}</div>
-        <div>Article: {article}</div>
+        <div>Vendor code: {article}</div>
       </div>
     </div>
   )
