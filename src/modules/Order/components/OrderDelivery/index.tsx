@@ -20,32 +20,29 @@ const OrderDeivery: FC<OrderDeiveryProps> = ({
   handleNext,
 }) => {
   const { currentUser } = useAppSelector((state) => state.users)
-  const {
-    delivery,
-    delivery: { recipientData },
-  } = useAppSelector((state) => state.order)
+  const { delivery } = useAppSelector((state) => state.order)
   const [disabledNextBtn, setDisabledNextBtn] = useState(false)
   const dispatch = useAppDispatch()
 
   const [dataAtr, setDataAtr] = useState('')
 
   const [recipient, setRecipient] = useState({
-    name: recipientData?.name || '',
-    phone: recipientData?.phone || '',
+    name: delivery?.recipientData?.name || '',
+    phone: delivery?.recipientData?.phone || '',
   })
 
   const [addressData, setAddressData] = useState({
-    city: currentUser?.address?.city || delivery.city || '',
-    street: currentUser?.address?.street || delivery.street || '',
-    number: currentUser?.address?.number || delivery.number || '',
-    recipient: delivery.recipient || '',
-    wishes: delivery.wishes || '',
+    city: currentUser?.address?.city || delivery?.city || '',
+    street: currentUser?.address?.street || delivery?.street || '',
+    number: currentUser?.address?.number || delivery?.number || '',
+    recipient: delivery?.recipient || '',
+    wishes: delivery?.wishes || '',
   })
 
   const [storeData, setStoreData] = useState({
-    storeIn: delivery.storeIn || '',
-    date: delivery.date || '',
-    hours: delivery.hours || '',
+    storeIn: delivery?.storeIn || '',
+    date: delivery?.date || '',
+    hours: delivery?.hours || '',
   })
 
   const handleChangeAddress = (
@@ -87,12 +84,12 @@ const OrderDeivery: FC<OrderDeiveryProps> = ({
   }
 
   useEffect(() => {
-    if (delivery.method) {
-      setDataAtr(delivery.method)
+    if (delivery?.method) {
+      setDataAtr(delivery?.method)
     } else {
       setDataAtr('byCourier')
     }
-  }, [delivery.method])
+  }, [delivery?.method])
 
   useEffect(() => {
     if (dataAtr === 'byCourier') {

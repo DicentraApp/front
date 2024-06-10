@@ -7,6 +7,7 @@ interface IInitialState {
   registrationModal: boolean
   paymentModal: boolean
   successModal: boolean
+  backCall: boolean
 }
 
 const modalSlice = createSlice({
@@ -16,23 +17,27 @@ const modalSlice = createSlice({
     loginModal: false,
     registrationModal: false,
     paymentModal: false,
+    backCall: false,
     successModal: false,
   } as IInitialState,
   reducers: {
-    setReviewsModal: (state, action: PayloadAction<boolean>) => {
-      state.reviewsModal = action.payload
+    setReviewsModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.reviewsModal = payload
     },
-    setLoginModal: (state, action: PayloadAction<boolean>) => {
-      state.loginModal = action.payload
+    setLoginModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.loginModal = payload
     },
-    setRegistrationModal: (state, action: PayloadAction<boolean>) => {
-      state.registrationModal = action.payload
+    setRegistrationModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.registrationModal = payload
     },
-    setPaymentModal: (state, action: PayloadAction<boolean>) => {
-      state.paymentModal = action.payload
+    setPaymentModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.paymentModal = payload
     },
-    setSuccessModal: (state, action: PayloadAction<boolean>) => {
-      state.successModal = action.payload
+    setSuccessModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.successModal = payload
+    },
+    setBackCallModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.backCall = payload
     },
     resetAllModal: (state) => {
       state.loginModal = false
@@ -49,6 +54,7 @@ export const {
   resetAllModal,
   setPaymentModal,
   setSuccessModal,
+  setBackCallModal,
 } = modalSlice.actions
 
 export const modalReducer = modalSlice.reducer

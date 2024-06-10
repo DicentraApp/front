@@ -17,7 +17,7 @@ const FooterNavigation: FC<IFooterNavProps> = ({ title, nav }) => {
       <h5 className="font-bold text-md">{title}</h5>
       <ul className="text-sm font-light mt-4">
         {nav.map((item) => (
-          <li className="mb-2 last:mb-0" key={item.navItem}>
+          <li className="mb-3 last:mb-0" key={item.navItem}>
             <Link to={item.navHref}>{item.navItem}</Link>
           </li>
         ))}

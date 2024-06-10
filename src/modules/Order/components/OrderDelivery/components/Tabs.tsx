@@ -16,14 +16,14 @@ const Tabs: FC<TabsProps> = ({ setDataAtr }) => {
   }
 
   useEffect(() => {
-    if (delivery.method) {
-      if (delivery.method === 'byCourier') {
+    if (delivery?.method) {
+      if (delivery?.method === 'byCourier') {
         setIndex(0)
       } else {
         setIndex(1)
       }
     }
-  }, [delivery.method])
+  }, [delivery?.method])
 
   return (
     <div className="flex mb-3">

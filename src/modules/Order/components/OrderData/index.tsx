@@ -106,7 +106,7 @@ const OrderData: FC<OrderDataProps> = ({
             <div className="w-[356px]">
               <div className="mb-2">
                 <Phone
-                  value={data.phone || phoneInput}
+                  value={data?.phone || phoneInput}
                   changeValue={(value) => handleChangePhone(value)}
                   borderColor={phoneErorrMessage && '#dc2626'}
                 />
@@ -114,7 +114,11 @@ const OrderData: FC<OrderDataProps> = ({
               </div>
               <div className="mb-2">
                 <Input
-                  styles={`${nameErorrMessage ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-transparent'}`}
+                  styles={`${
+                    nameErorrMessage
+                      ? 'border-red-600 focus:outline-red-600'
+                      : 'focus:outline-gold border-transparent'
+                  }`}
                   placeholder="First and last name"
                   value={dataValues.name}
                   name="name"

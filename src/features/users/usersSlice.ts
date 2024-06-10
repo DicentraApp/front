@@ -9,42 +9,6 @@ import {
   LoginUser,
   UserReview,
 } from './dto'
-// import { BASE_URL } from '@/utils/constans'
-// import { createAsyncThunk } from '@reduxjs/toolkit'
-
-// Request if server is running
-
-// export const loginUser = createAsyncThunk(
-//   '@@users/loginUser',
-//   async (payload: LoginUser, thunkAPI) => {
-//     try {
-//       const res = await fetch(BASE_URL + '/login', {
-//         method: 'POST',
-//         body: JSON.stringify(payload),
-//       })
-//       return await res.json()
-//     } catch (error) {
-//       console.log(error)
-//       return thunkAPI.rejectWithValue(error)
-//     }
-//   }
-// )
-
-// export const changeUserPassword = createAsyncThunk(
-//   '@@users/changePassword',
-//   async (payload: IPasswords, thunkAPI) => {
-//     try {
-//       const res = await fetch(BASE_URL + '/login/password', {
-//         method: 'POST',
-//         body: JSON.stringify(payload),
-//       })
-//       return await res.json()
-//     } catch (error) {
-//       console.log(error)
-//       return thunkAPI.rejectWithValue(error)
-//     }
-//   }
-// )
 
 const usersSlice = createSlice({
   name: '@@users',
@@ -143,41 +107,6 @@ const usersSlice = createSlice({
       state.registrationError = ''
     },
   },
-  // Reducers if server is running
-  //
-  // extraReducers: (builder) => {
-  //   builder.addCase(
-  //     loginUser.fulfilled,
-  //     (state, { payload }: PayloadAction<LoginUser>) => {
-  //       state.users.map((user) => {
-  //         if (
-  //           user.phone === payload.phone &&
-  //           user.password === payload.password
-  //         ) {
-  //           state.currentUser = user
-  //         } else {
-  //           return
-  //         }
-  //       })
-  //     }
-  //   ),
-  //     builder.addCase(
-  //       changeUserPassword.fulfilled,
-  //       (state, { payload }: PayloadAction<IPasswords>) => {
-  //         state.users.map((user) => {
-  //           if (user.id === payload.id) {
-  //             if (user.password === payload.password) {
-  //               user.password = payload.newPassword
-  //               user.confirmPassword = payload.confirmPassword
-  //               state.passwordMessage = 'Password changed successfully!'
-  //             } else {
-  //               return
-  //             }
-  //           } else return
-  //         })
-  //       }
-  //     )
-  // },
 })
 
 export const {

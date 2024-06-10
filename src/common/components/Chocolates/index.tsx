@@ -1,30 +1,17 @@
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { ITogetherWith } from '@/common/dto/getFlowersDto'
-import { useGetChocolatesApiQuery } from '@/features/api/apiSlise'
 import { addChocolateToCart } from '@/features/cart/cartSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { isAddedToCart } from '@/utils/helpers'
-import { CircularProgress } from '@mui/material'
+import { chocolatesData } from './data'
 
 const Chocolates = () => {
-  const { data, isLoading } = useGetChocolatesApiQuery()
   const { cart } = useAppSelector((state) => state.cart)
 
   const dispatch = useAppDispatch()
 
   const addChocoToCart = (data: ITogetherWith) => {
     dispatch(addChocolateToCart(data))
-  }
-
-  if (!data) return
-
-  if (isLoading) {
-    return (
-      <div className="text-center">
-        {' '}
-        <CircularProgress color="secondary" />
-      </div>
-    )
   }
 
   return (
@@ -37,7 +24,7 @@ const Chocolates = () => {
         </span>
       </h4>
       <div className="flex justify-between mt-8">
-        {data?.map((item) => {
+        {chocolatesData?.map((item) => {
           const isAdded = isAddedToCart(item.id, cart)
           return (
             <div key={item.id} className="w-[244px] text-center">

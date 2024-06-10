@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
-import { useGetReviewsApiQuery } from '@/features/api/apiSlise'
 import ReviewsCarouselItem from './components/ReviewsCarouselItem'
-import { CircularProgress } from '@mui/material'
+import { IReviewsData } from '@/common/dto/getReviewsDto'
 
-const ReviewsCarousel = () => {
-  const { data, isLoading, isError } = useGetReviewsApiQuery()
+interface ReviewsCarouselProps {
+  data: IReviewsData
+}
+
+const ReviewsCarousel: FC<ReviewsCarouselProps> = ({ data }) => {
   const [countSlides, setCountSlides] = useState(2)
   const [offset, setOffset] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
@@ -28,23 +30,6 @@ const ReviewsCarousel = () => {
       setTrackWidth(itemWidth * data.length)
     }
   }, [data, itemWidth])
-
-  if (isLoading) {
-    return (
-      <div className="text-center">
-        {' '}
-        <CircularProgress color="secondary" />
-      </div>
-    )
-  }
-
-  if (isError) {
-    return (
-      <p className="text-center text-red text-md">
-        Something went wrong, please try again!
-      </p>
-    )
-  }
 
   return (
     <section className="bg-light pb-24 pt-20">

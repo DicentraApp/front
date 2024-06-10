@@ -2,13 +2,13 @@ import storage from 'redux-persist/lib/storage'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import persistStore from 'redux-persist/es/persistStore'
 import { persistReducer } from 'redux-persist'
-import { apiSlice } from '@/features/api/apiSlise'
 import { flowersReducer } from './flowers/flowersSlice'
 import { portalReducer } from './portal/portalSlice'
 import { modalReducer } from './modal/modalSlice'
 import { cartReducer } from './cart/cartSlice'
 import { usersReducer } from './users/usersSlice'
 import { orderReducer } from './order/orderSlice'
+import { formsReducer } from './forms/formsSlice'
 
 const persistConfig = {
   key: 'root',
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   users: usersReducer,
   order: orderReducer,
-  [apiSlice.reducerPath]: apiSlice.reducer,
+  forms: formsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -33,7 +33,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(apiSlice.middleware),
+    }),
   devTools: process.env.NODE_ENV !== 'production',
 })
 

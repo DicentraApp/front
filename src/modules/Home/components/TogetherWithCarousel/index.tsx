@@ -3,15 +3,13 @@ import { ArrowNext, ArrowPrev } from '@/common/UI/Arrows'
 import TogetherWithItem from './components/TogetherWithItem'
 import { useAppSelector } from '@/hooks/hooks'
 import { selectedTogetherWithFlowers } from '@/features/flowers/flowersSelector'
-import { CircularProgress } from '@mui/material'
 
 const TogetherWithCarousel = () => {
-  const togetherWith = useAppSelector(selectedTogetherWithFlowers)
-  const { isLoading } = useAppSelector((state) => state.flowers)
+  const data = useAppSelector(selectedTogetherWithFlowers)
   const [countSlides, setCountSlides] = useState(2)
   const [offset, setOffset] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
-  const trackWidth = itemWidth * togetherWith.length
+  const trackWidth = data?.length ? itemWidth * data?.length : 0
 
   const handlePrevClick = () => {
     if (!offset) return
@@ -22,16 +20,7 @@ const TogetherWithCarousel = () => {
   const handleNextClick = () => {
     setOffset((prev) => prev - itemWidth)
     setCountSlides((prev) => prev + 1)
-    if (countSlides === togetherWith.length) return
-  }
-
-  if (isLoading) {
-    return (
-      <div className="text-center">
-        {' '}
-        <CircularProgress color="secondary" />
-      </div>
-    )
+    if (countSlides === data?.length) return
   }
 
   return (
@@ -49,7 +38,7 @@ const TogetherWithCarousel = () => {
               transform: `translateX(${offset}px)`,
             }}
           >
-            {togetherWith.map((item) => (
+            {data?.map((item) => (
               <TogetherWithItem
                 key={item.id}
                 data={item}
@@ -65,7 +54,7 @@ const TogetherWithCarousel = () => {
           cssStyles="top-[225px] -left-2 bg-white border-gold"
         />
         <ArrowNext
-          dataLenght={togetherWith.length}
+          dataLenght={data?.length}
           countSlides={countSlides}
           handleClick={handleNextClick}
           cssStyles="top-[225px] -right-2 bg-white border-gold"

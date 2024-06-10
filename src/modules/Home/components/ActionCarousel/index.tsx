@@ -12,7 +12,9 @@ const ActionCarousel = () => {
   const [offset, setOffset] = useState(0)
   const [countSlides, setCountSlides] = useState(5)
   const [itemWidth, setItemWidth] = useState(0)
-  const trackWidth = Math.ceil(itemWidth * actionFlowersData.length)
+  const trackWidth = Math.ceil(
+    actionFlowersData ? itemWidth * actionFlowersData?.length : 0
+  )
 
   const handlePrevClick = () => {
     if (!offset) return
@@ -21,7 +23,7 @@ const ActionCarousel = () => {
   }
 
   const handleNextClick = () => {
-    if (countSlides === actionFlowersData.length) return
+    if (countSlides === actionFlowersData?.length) return
     setOffset((prev) => prev - itemWidth)
     setCountSlides((prev) => prev + 1)
   }
@@ -65,7 +67,7 @@ const ActionCarousel = () => {
         />
         <ArrowNext
           countSlides={countSlides}
-          dataLenght={actionFlowersData.length}
+          dataLenght={actionFlowersData?.length}
           handleClick={handleNextClick}
           cssStyles="top-[225px] -right-2 bg-white border-gold"
         />

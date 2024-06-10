@@ -46,7 +46,7 @@ const FlowersItem: FC<IFlowersItemData> = ({
     dispatch(setFlowerItem(data))
   }
 
-  const addProcuctToCart = () => {
+  const addProductToCart = () => {
     dispatch(
       addItemToCart({
         product: data,
@@ -64,13 +64,13 @@ const FlowersItem: FC<IFlowersItemData> = ({
   }, [setItemWidth])
 
   useEffect(() => {
-    const found = cart.some((el) => el.product.id === id)
-
-    if (found) {
-      setIsAdded(true)
-    } else {
-      setIsAdded(false)
-    }
+    cart.map((el) => {
+      if (el.product.id === id) {
+        setIsAdded(true)
+      } else {
+        setIsAdded(false)
+      }
+    })
   }, [cart, id])
 
   return (
@@ -127,7 +127,7 @@ const FlowersItem: FC<IFlowersItemData> = ({
           <DarktBtn
             text="Add to cart"
             width="w-32"
-            handleClick={addProcuctToCart}
+            handleClick={addProductToCart}
           />
         ) : (
           <div className="w-full text-center bg-light py-4 rounded-xl">

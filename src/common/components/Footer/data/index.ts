@@ -15,10 +15,6 @@ export const forClientsNav = {
       navHref: 'contacts',
     },
     {
-      navItem: 'Replacement and return',
-      navHref: '',
-    },
-    {
       navItem: 'Promotions',
       navHref: 'promotions',
     },
@@ -35,10 +31,6 @@ export const forCompanyNav = {
     {
       navItem: 'Our shops',
       navHref: 'shops',
-    },
-    {
-      navItem: 'Reviews',
-      navHref: '',
     },
     {
       navItem: 'Portal',

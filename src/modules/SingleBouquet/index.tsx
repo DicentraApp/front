@@ -65,7 +65,9 @@ const SingleBouquet = () => {
             {imagesArray.map((img, i) => (
               <div
                 key={`${img}${i}`}
-                className={`${i === imgIndex ? 'opacity-100' : 'opacity-50'} h-36 w-full mb-3 cursor-pointer transition-all`}
+                className={`${
+                  i === imgIndex ? 'opacity-100' : 'opacity-50'
+                } h-36 w-full mb-3 cursor-pointer transition-all`}
                 onClick={() => handleImgPath(i, flowerItem.img)}
               >
                 <img
@@ -89,10 +91,10 @@ const SingleBouquet = () => {
           </div>
         </div>
 
-        {!flowerItem.togetherWith ? (
+        {!flowerItem?.togetherWith ? (
           <Chocolates />
         ) : (
-          <WithChocolates data={flowerItem} />
+          <WithChocolates item={flowerItem} />
         )}
       </div>
 

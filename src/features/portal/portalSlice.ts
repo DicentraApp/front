@@ -12,8 +12,8 @@ const portalSlice = createSlice({
     article: {},
   } as IInitialState,
   reducers: {
-    setArticle: (state, action: PayloadAction<IBlogItem>) => {
-      state.article = action.payload
+    setArticle: (state, { payload }: PayloadAction<IBlogItem>) => {
+      state.article = payload
     },
   },
 })

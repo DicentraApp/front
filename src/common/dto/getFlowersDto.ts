@@ -30,14 +30,14 @@ export interface IFlowerItem {
   name: string
   img: string
   price: number
-  inStock: boolean
+  inStock?: boolean
   IsBestsellers?: boolean | undefined
   isAction?: boolean | undefined
   actionPrice?: number | undefined
+  characteristic?: IFlowerChar
+  reviews?: IReviewItem[] | undefined
   togetherWith?: ITogetherWith
-  characteristic: IFlowerChar
-  reviews: IReviewItem[] | undefined
-  description: string
+  description?: string
 }
 
 export interface IFlowerKind {

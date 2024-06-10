@@ -42,17 +42,17 @@ const OrderSuccess: FC<OrderSuccessProps> = ({ resetSteps }) => {
           Order number: <span className="font-medium">{orderNumber}</span>
         </div>
         <div className="mb-2">
-          Customer: <span className="font-medium">{data.fullName}</span>
+          Customer: <span className="font-medium">{data?.fullName}</span>
         </div>
         <div className="mb-2">
-          Phone number: <span className="font-medium">+{data.phone}</span>
+          Phone number: <span className="font-medium">+{data?.phone}</span>
         </div>
         <div className="mb-2">
           Delivery:{' '}
           <span className="font-medium">
-            {delivery.method === 'byCourier'
-              ? `by courier, ${delivery.city}, ${delivery.street} street, ${delivery.number}`
-              : `in store, ${delivery.storeIn}, ${delivery.date}, ${delivery.hours}`}
+            {delivery?.method === 'byCourier'
+              ? `by courier, ${delivery?.city}, ${delivery?.street} street, ${delivery?.number}`
+              : `in store, ${delivery?.storeIn}, ${delivery?.date}, ${delivery?.hours}`}
             ,{' '}
           </span>
         </div>

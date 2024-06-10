@@ -37,15 +37,15 @@ const RegistrationForm = () => {
   const [passwordType, setPasswordType] = useState('password')
   const [confirmType, setConfirmType] = useState('password')
   const [phoneInput, setPhoneInput] = useState('')
-  const [phoneErorrMessage, setPhoneErorrMessage] = useState('')
+  const [phoneErrorMessage, setPhoneErrorMessage] = useState('')
 
   const handleChangeValue = (value: string) => {
     setPhoneInput(value)
 
     if (value.length < 12) {
-      setPhoneErorrMessage('Phone number too much short')
+      setPhoneErrorMessage('Phone number too much short')
     } else {
-      setPhoneErorrMessage('')
+      setPhoneErrorMessage('')
       dispatch(resetRegistrationError())
     }
   }
@@ -94,14 +94,18 @@ const RegistrationForm = () => {
         <Phone
           value={phoneInput}
           changeValue={(value) => handleChangeValue(value)}
-          borderColor={(phoneErorrMessage || registrationError) && '#dc2626'}
+          borderColor={(phoneErrorMessage || registrationError) && '#dc2626'}
         />
-        <ErrorInputMessage message={phoneErorrMessage || registrationError} />
+        <ErrorInputMessage message={phoneErrorMessage || registrationError} />
       </div>
 
       <div className="mb-4">
         <input
-          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${errors.name?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-transparent'}`}
+          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${
+            errors.name?.message
+              ? 'border-red-600 focus:outline-red-600'
+              : 'focus:outline-gold border-transparent'
+          }`}
           placeholder="Name"
           {...register('name')}
         />
@@ -110,7 +114,11 @@ const RegistrationForm = () => {
 
       <div className="mb-4">
         <input
-          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${errors.email?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-transparent'}`}
+          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${
+            errors.email?.message
+              ? 'border-red-600 focus:outline-red-600'
+              : 'focus:outline-gold border-transparent'
+          }`}
           type="email"
           {...register('email')}
           placeholder="Email (optional)"
@@ -120,7 +128,11 @@ const RegistrationForm = () => {
 
       <div className="mb-4">
         <PasswordInput
-          styles={`border border-[3px] ${errors.password?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-transparent'}`}
+          styles={`border border-[3px] ${
+            errors.password?.message
+              ? 'border-red-600 focus:outline-red-600'
+              : 'focus:outline-gold border-transparent'
+          }`}
           type={passwordType}
           placeholder="Password"
           setPasswordType={setPasswordType}
@@ -131,7 +143,11 @@ const RegistrationForm = () => {
 
       <div className="mb-5">
         <PasswordInput
-          styles={`border border-[3px] ${errors.confirmPassword?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-transparent'}`}
+          styles={`border border-[3px] ${
+            errors.confirmPassword?.message
+              ? 'border-red-600 focus:outline-red-600'
+              : 'focus:outline-gold border-transparent'
+          }`}
           type={confirmType}
           placeholder="Confirm password"
           setPasswordType={setConfirmType}

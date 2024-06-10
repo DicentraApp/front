@@ -11,18 +11,22 @@ export const selectedFlowers = (state: RootState) => {
 export const selectedActionFlowers = (state: RootState) => {
   const actionFlowersData: IActionFlowersData = []
 
-  state.flowers.list.forEach((item) => {
-    item.flowers.filter((f) => f.isAction && actionFlowersData.push(f))
-  })
-  return actionFlowersData
+  if (state.flowers.list) {
+    state.flowers.list.forEach((item) => {
+      item.flowers.forEach((f) => f.isAction && actionFlowersData.push(f))
+    })
+
+    return actionFlowersData
+  } else return null
 }
 
 export const selectedTogetherWithFlowers = (state: RootState) => {
   const togetherWithData: IActionFlowersData = []
 
-  state.flowers.list.forEach((item) =>
-    item.flowers.filter((f) => f.togetherWith && togetherWithData.push(f))
-  )
-
-  return togetherWithData
+  if (state.flowers.list) {
+    state.flowers.list.forEach((item) =>
+      item.flowers.forEach((f) => f.togetherWith && togetherWithData.push(f))
+    )
+    return togetherWithData
+  } else return null
 }

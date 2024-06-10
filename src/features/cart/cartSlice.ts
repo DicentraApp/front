@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IFlowerItem, ITogetherWith } from '@/common/dto/getFlowersDto'
 
-// export type Product = IFlowerItem | ITogetherWith
+export type Product = IFlowerItem | ITogetherWith
 
 export interface ProductWithCount {
-  product: IFlowerItem | ITogetherWith
+  product: Product
   count: number
   price: number
   priceWithCount: number
@@ -45,27 +45,27 @@ const cartSlice = createSlice({
           priceWithCount: payload.price,
         })
     },
-    deleteFromCart: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.filter((el) => el.product.id !== action.payload)
+    deleteFromCart: (state, { payload }: PayloadAction<string>) => {
+      state.cart = state.cart.filter((el) => el.product.id !== payload)
     },
-    setProductCountToUp: (state, action: PayloadAction<string>) => {
+    setProductCountToUp: (state, { payload }: PayloadAction<string>) => {
       state.cart.map((el) => {
-        if (el.product.id === action.payload) {
+        if (el.product.id === payload) {
           el.count += 1
           el.priceWithCount += el.price
         }
       })
     },
-    setProductCountToDown: (state, action: PayloadAction<string>) => {
+    setProductCountToDown: (state, { payload }: PayloadAction<string>) => {
       state.cart.map((el) => {
-        if (el.product.id === action.payload) {
+        if (el.product.id === payload) {
           el.count -= 1
           el.priceWithCount -= el.price
         }
       })
     },
-    setTotalPrice: (state, action: PayloadAction<number>) => {
-      state.totalPrice = action.payload
+    setTotalPrice: (state, { payload }: PayloadAction<number>) => {
+      state.totalPrice = payload
     },
     resetCart: (state) => {
       state.cart = []

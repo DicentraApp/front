@@ -1,8 +1,15 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
-import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { addItemToCart } from '@/features/cart/cartSlice'
-import { useAppDispatch } from '@/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { IFlowerItem } from '@/common/dto/getFlowersDto'
 
 interface ITogetherWithItem {
   data: IFlowerItem
@@ -10,15 +17,26 @@ interface ITogetherWithItem {
 }
 
 const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
-  const itemRef = useRef<HTMLDivElement | null>(null)
+  const { cart } = useAppSelector((state) => state.cart)
   const dispatch = useAppDispatch()
+
+  const [isAdded, setIsAdded] = useState(false)
+
+  const itemRef = useRef<HTMLDivElement | null>(null)
   const { img, name, togetherWith, price } = data
   const priceWithout = price + togetherWith!.price
   const priceWith = price + togetherWith!.actionPrice
   const saving = priceWithout - priceWith
 
   const addProductToCart = () => {
-    dispatch(addItemToCart(data))
+    dispatch(
+      addItemToCart({
+        product: data,
+        count: 1,
+        price: priceWith,
+        priceWithCount: priceWith,
+      })
+    )
   }
 
   useEffect(() => {
@@ -26,6 +44,15 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
       setItemWidth(itemRef!.current!.offsetWidth)
     } else return
   }, [setItemWidth])
+
+  useEffect(() => {
+    const found = cart.some((el) => el.product.id === data.id)
+    if (found) {
+      setIsAdded(true)
+    } else {
+      setIsAdded(false)
+    }
+  }, [cart, data.id])
 
   return (
     <div className="min-w-1/2 pr-4" ref={itemRef}>
@@ -61,7 +88,11 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
           </h3>
           <div className="text-center mb-4">
             <span
-              className={`${!togetherWith?.actionPrice ? 'text-dark' : 'mr-2 text-gold line-through'} font-semibold text-xl `}
+              className={`${
+                !togetherWith?.actionPrice
+                  ? 'text-dark'
+                  : 'mr-2 text-gold line-through'
+              } font-semibold text-xl `}
             >
               {togetherWith?.price}
             </span>
@@ -78,11 +109,18 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
           <span className="mr-3 text-gold line-through">{priceWithout}</span>
           <span className="text-dark ">{priceWith}</span> $
         </div>
-        <DarktBtn
-          text="Add to cart"
-          width="w-32"
-          handleClick={addProductToCart}
-        />
+
+        {isAdded ? (
+          <div className="h-12 w-32 flex items-center justify-center">
+            Added to cart
+          </div>
+        ) : (
+          <DarktBtn
+            text="Add to cart"
+            width="w-32"
+            handleClick={addProductToCart}
+          />
+        )}
       </div>
     </div>
   )

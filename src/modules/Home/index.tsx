@@ -10,10 +10,12 @@ import {
   introDataSecond,
   introDataThird,
   selectionFormData,
+  reviewsData,
 } from './data'
 import AboutFlowers from './components/AboutFlowers'
 import ReviewsCarousel from './components/ReviewsCarousel'
 import Blog from './components/Blog'
+import { portalData } from '../Portal/data'
 
 const Home = () => {
   return (
@@ -33,8 +35,8 @@ const Home = () => {
         title="Flowers are not just an occasion gift, they are another way to emphasize your uniqueness."
         data={introDataThird}
       />
-      <ReviewsCarousel />
-      <Blog title="Portal Dicentra" />
+      <ReviewsCarousel data={reviewsData} />
+      <Blog title="Portal Dicentra" data={portalData} />
     </div>
   )
 }

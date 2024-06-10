@@ -117,7 +117,7 @@ export const flowersData: IFlowersData = [
         img: 'mix-33.png',
         price: 10,
         IsBestsellers: true,
-        inStock: false,
+        inStock: true,
         characteristic: {
           height: 60,
           width: 40,
@@ -252,6 +252,14 @@ export const flowersData: IFlowersData = [
         price: 18,
         inStock: true,
         IsBestsellers: true,
+        togetherWith: {
+          id: '02',
+          name: 'Raffaello Piatta',
+          article: '0406',
+          price: 12,
+          actionPrice: 9,
+          img: 'raffaello-piatta.png',
+        },
         characteristic: {
           height: 70,
           width: 50,
@@ -330,16 +338,8 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 14 Tulips',
         img: 'tulips-14.png',
         price: 16,
-        inStock: false,
+        inStock: true,
         IsBestsellers: true,
-        togetherWith: {
-          id: '02',
-          name: 'Raffaello Piatta',
-          article: '0406',
-          price: 12,
-          actionPrice: 9,
-          img: 'raffaello-piatta.png',
-        },
         characteristic: {
           height: 80,
           width: 50,
@@ -455,7 +455,7 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 11 Peonies',
         img: 'peonies-11.png',
         price: 24,
-        inStock: false,
+        inStock: true,
         IsBestsellers: true,
         characteristic: {
           height: 60,
@@ -629,7 +629,7 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 43 Miranda',
         img: 'roses-miranda-43.png',
         price: 25,
-        inStock: false,
+        inStock: true,
         IsBestsellers: true,
         characteristic: {
           height: 80,
@@ -648,7 +648,7 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 44 Georgia',
         img: 'roses-georgia-44.png',
         price: 27,
-        inStock: true,
+        inStock: false,
         characteristic: {
           height: 70,
           width: 50,
@@ -700,7 +700,7 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 46 Grand Prix',
         img: 'roses-grandprix-46.png',
         price: 29,
-        inStock: false,
+        inStock: true,
         IsBestsellers: true,
         characteristic: {
           height: 70,
@@ -777,7 +777,7 @@ export const flowersData: IFlowersData = [
         name: 'Bouquet No. 49 Mondial',
         img: 'roses-mondial-49.png',
         price: 30,
-        inStock: true,
+        inStock: false,
         togetherWith: {
           id: '03',
           name: 'Fererro Rocher',

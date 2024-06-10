@@ -1,4 +1,4 @@
-import { IFlowerItem, ITogetherWith } from '@/common/dto/getFlowersDto'
+import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { FC } from 'react'
 import CartTableImgItem from './CartTableImgItem'
 import { Link } from 'react-router-dom'
@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/hooks/hooks'
 import { setFlowerItem } from '@/features/flowers/flowersSlice'
 
 interface CartTableImgProps {
-  item: IFlowerItem | ITogetherWith
+  item: IFlowerItem
 }
 
 const CartTableImg: FC<CartTableImgProps> = ({ item }) => {

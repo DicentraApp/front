@@ -7,7 +7,7 @@ import IntroItem from '@/modules/Home/components/Intro/components/IntroItem'
 
 const AboutBenefits = () => {
   return (
-    <div className="w-10/12 mx-auto ">
+    <div className="w-10/12 mx-auto mt-20">
       <h4 className="text-2xl font-medium text-dark mb-3 text-center">
         Our advantages
       </h4>

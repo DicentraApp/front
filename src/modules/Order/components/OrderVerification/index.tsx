@@ -47,23 +47,23 @@ const OrderVerification: FC<OrderVerificationProps> = ({
           <div className="border-b border-gold pb-3">
             <div className="mb-2 flex">
               <div className="w-1/3">Full name</div>
-              <p className="w-2/3">{data.fullName}</p>
+              <p className="w-2/3">{data?.fullName}</p>
             </div>
             <div className="mb-2 flex">
               <div className="w-1/3">Phone number</div>
-              <p className="w-2/3">+{data.phone}</p>
+              <p className="w-2/3">+{data?.phone}</p>
             </div>
             <div className="mb-2 flex">
               <div className="w-1/3">Email</div>
-              <p className="w-2/3">{data.email || '-'}</p>
+              <p className="w-2/3">{data?.email || '-'}</p>
             </div>
           </div>
           <div className="flex border-b border-gold py-3">
             <div className="w-1/3">Delivery</div>
             <p className="w-2/3">
-              {delivery.method === 'inStore'
-                ? `in store, ${delivery.storeIn}, ${delivery.date}, ${delivery.hours}`
-                : `by courier, ${delivery.city}, ${delivery.street} street, ${delivery.number}, ${delivery.recipient}`}
+              {delivery?.method === 'inStore'
+                ? `in store, ${delivery?.storeIn}, ${delivery?.date}, ${delivery?.hours}`
+                : `by courier, ${delivery?.city}, ${delivery?.street} street, ${delivery?.number}, ${delivery?.recipient}`}
             </p>
           </div>
           <div className="flex border-b border-gold py-3">
