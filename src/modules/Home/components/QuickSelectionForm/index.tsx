@@ -1,5 +1,9 @@
-import { FC, useState } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import QuickSelectionSelect from './components/QuickSelectionSelect'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { IFlowerItem, IFlowerKind } from '@/common/dto/getFlowersDto'
+import { setSelectedDataByForm } from '@/features/flowers/flowersSlice'
+import { useNavigate } from 'react-router-dom'
 
 interface IQuickSelectionForm {
   data: {
@@ -19,11 +23,59 @@ interface IQuickSelectionForm {
 }
 
 const QuickSelectionForm: FC<IQuickSelectionForm> = ({ data }) => {
-  const [formData, setFormData] = useState('')
+  const { list } = useAppSelector((state) => state.flowers)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    flowers: '',
+    events: '',
+    budget: '',
+  })
 
   const onOptionChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
-    setFormData(event.currentTarget.value)
-    console.log(formData)
+    const {
+      currentTarget: { name, value },
+    } = event
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const typeOfFlowers: IFlowerKind[] = []
+    list.forEach((item) => {
+      item.title.toLowerCase() === formData.flowers.toLowerCase()
+        ? typeOfFlowers.push(item)
+        : null
+    })
+
+    const eventsArr: IFlowerItem[] = []
+    typeOfFlowers.forEach((item) =>
+      item.flowers.forEach(
+        (f) =>
+          f.characteristic?.events.includes(formData.events) &&
+          eventsArr.push(f)
+      )
+    )
+
+    const pricesArr: IFlowerItem[] = []
+    eventsArr.forEach((item) => {
+      const prices = formData.budget.split(' ').filter((d) => d.search(/\D/g))
+      const low = +prices[0]
+      const high = +prices[1]
+      if (prices.length === 1) {
+        item.price >= low && pricesArr.push(item)
+      } else {
+        if (item.price >= low && item.price <= high) {
+          pricesArr.push(item)
+        } else return null
+      }
+    })
+
+    dispatch(setSelectedDataByForm(pricesArr))
+    navigate('selected-flowers')
+    setFormData({ flowers: '', events: '', budget: '' })
   }
 
   return (
@@ -36,16 +88,22 @@ const QuickSelectionForm: FC<IQuickSelectionForm> = ({ data }) => {
           Quick selection (we will select the ideal option for you)
         </p>
 
-        <form className="mt-11 w-10/12 flex justify-between mx-auto">
+        <form
+          className="mt-11 w-10/12 flex justify-between mx-auto"
+          onSubmit={handleSubmitForm}
+        >
           <QuickSelectionSelect
+            name="flowers"
             selectData={data.flowers}
             onChange={onOptionChangeHandler}
           />
           <QuickSelectionSelect
+            name="events"
             selectData={data.events}
             onChange={onOptionChangeHandler}
           />
           <QuickSelectionSelect
+            name="budget"
             selectData={data.budget}
             onChange={onOptionChangeHandler}
           />

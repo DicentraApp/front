@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
-import { BASE_URL } from '@/utils/constans'
 import Phone from './components/Phone'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { setQuickOrder } from '@/features/forms/formsSlice'
 
 const QuickOrderPhone = () => {
+  const dispatch = useAppDispatch()
+  const { cart } = useAppSelector((state) => state.cart)
   const [phone, setPhone] = useState('')
   const [title, setTitle] = useState('')
   const [isSend, setIsSend] = useState(false)
@@ -12,32 +15,20 @@ const QuickOrderPhone = () => {
     setPhone(value)
   }
 
-  const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    try {
-      const quick_order = {
-        id: crypto.randomUUID(),
-        phone,
-        numberOfOrder,
-      }
-
-      const res = await fetch(BASE_URL + '/quick_order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(quick_order),
-      })
-
-      if (res.status === 200) {
-        setTitle('Thank you for the order!')
-        setIsSend(true)
-      }
-    } catch (error) {
-      setIsSend(false)
-      setTitle('Some error! Please, try again')
+    const quick_order = {
+      id: crypto.randomUUID(),
+      phone,
+      numberOfOrder,
+      products: cart,
     }
+
+    dispatch(setQuickOrder(quick_order))
+
+    setTitle('Thank you for the order!')
+    setIsSend(true)
     setPhone('')
   }
 

@@ -7,11 +7,11 @@ interface INavigation {
   link: string
 }
 
-interface INavigationData {
+interface INavigationProps {
   data: INavigation[]
 }
 
-const Navigation: FC<INavigationData> = ({ data }) => {
+const Navigation: FC<INavigationProps> = ({ data }) => {
   return (
     <nav>
       <ul className="flex justify-between">

@@ -1,6 +1,13 @@
+import DarktBtn from '@/common/UI/Buttons/DarkBtn'
+import ErrorInputMessage from '@/common/UI/Inputs/ErrorInputMessage'
+import Input from '@/common/UI/Inputs/Input'
+import Phone from '@/common/components/QuickOrderPhone/components/Phone'
+import { setOrderByPhoto } from '@/features/forms/formsSlice'
+import { useAppDispatch } from '@/hooks/hooks'
 import { shortFileName } from '@/utils/helpers'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormEvent, useState } from 'react'
+import { CircularProgress } from '@mui/material'
+import { Dispatch, FC, FormEvent, SetStateAction, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -35,17 +42,22 @@ const imageSchema = z
 
 const detailsShema = z.object({
   name: z.string().min(2),
-  phone: z.string().min(10),
   photo: imageSchema,
 })
 
 type DetailsShemValues = z.infer<typeof detailsShema>
 
-const OrderByPhotoForm = () => {
+interface OrderByPhotoFormProps {
+  setStatusMessage: Dispatch<SetStateAction<string>>
+}
+
+const OrderByPhotoForm: FC<OrderByPhotoFormProps> = ({ setStatusMessage }) => {
+  const dispatch = useAppDispatch()
   const [fileName, setFileName] = useState('')
   const [file, setFile] = useState<File | undefined>()
-
-  // const navigate = useNavigate()
+  const [phoneInput, setPhoneInput] = useState('')
+  const [phoneErrorMessage, setPhoneErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -55,10 +67,10 @@ const OrderByPhotoForm = () => {
   } = useForm<DetailsShemValues>({
     defaultValues: {
       name: '',
-      phone: '',
       photo: null,
     },
     resolver: zodResolver(detailsShema),
+    mode: 'onChange',
   })
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
@@ -69,75 +81,76 @@ const OrderByPhotoForm = () => {
     setFileName(target.files[0].name)
   }
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      if (typeof file === 'undefined') return
+  const handleChangeValue = (value: string) => {
+    setPhoneInput(value)
 
-      const id = crypto.randomUUID()
-      const formData = new FormData()
-      formData.append('id', id)
-      formData.append('name', data.name)
-      formData.append('phone', data.phone)
-      formData.append('photo', file)
-
-      // const order = {
-      //   id: crypto.randomUUID(),
-      //   name: data.name,
-      //   phone: data.phone,
-      //   photo: file,
-      // }
-
-      const res = await fetch('http://localhost:5173/order_by_photo/success', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      })
-
-      if (res.status === 200) {
-        // navigate('success', { replace: true })
-        console.log('succes')
-      }
-    } catch (error) {
-      console.log(error)
+    if (value.length < 12) {
+      setPhoneErrorMessage('Phone number too much short')
+    } else {
+      setPhoneErrorMessage('')
     }
-    reset()
-    setFileName('')
+  }
+
+  const onSubmit = handleSubmit((data) => {
+    if (typeof file === 'undefined') return
+
+    if (!phoneInput) return setPhoneErrorMessage('Phone number is required!')
+
+    const order = {
+      id: crypto.randomUUID(),
+      name: data.name,
+      phoneNumber: phoneInput,
+      photo: file,
+    }
+
+    dispatch(setOrderByPhoto(order))
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+      setStatusMessage(
+        'Thank you! Your manager will contact you shortly to clarify details.'
+      )
+      reset()
+      setFileName('')
+      setPhoneInput('')
+    }, 600)
   })
 
   return (
-    <form className="w-[298px] mr-40" onSubmit={onSubmit} noValidate>
-      <div className="text-xs ml-5 text-red-600 h-4 mb-1">
-        {errors.name?.message}
-      </div>
-      <input
-        className="w-full py-3 px-5 mb-2 rounded-full bg-white border-none focus:outline-gold"
-        type="text"
+    <form className="w-[298px] mr-40" onSubmit={onSubmit}>
+      <Input
+        styles={`py-4
+          ${
+            errors.name?.message
+              ? 'border-red-600 focus:outline-red-600'
+              : 'focus:outline-gold border-transparent'
+          }
+            `}
         placeholder="Name"
-        {...register('name', { minLength: 2, required: 'Name is required!' })}
-      />
-
-      <div className="text-xs ml-5 text-red-600 h-4 mb-1">
-        {errors.phone?.message}
-      </div>
-      <input
-        className="w-full py-3 px-5 rounded-full bg-white border-none focus:outline-gold"
-        type="text"
-        placeholder="Phone"
-        {...register('phone', {
-          minLength: 10,
-          required: 'Phone number is required!',
-          onChange: (e) =>
-            (e.target.value = e.target.value.replace(/[^+\d]/g, '')),
+        {...register('name', {
+          onChange(event) {
+            event.target.value = event.target.value.replace(/[^a-zA-Z]+/g, '')
+          },
         })}
       />
-      <div className="text-center mt-6 text-xl text-dark font-medium">
+
+      <ErrorInputMessage message={errors.name?.message} />
+
+      <Phone
+        value={phoneInput}
+        borderColor={phoneErrorMessage && '#dc2626'}
+        changeValue={(value) => handleChangeValue(value)}
+      />
+
+      <ErrorInputMessage message={phoneErrorMessage} />
+
+      <div className="text-center mt-2 text-xl text-dark font-medium">
         Photo of the bouquet
       </div>
-      <div className="w-full mt-3 rounded-full relative">
+      <div className="w-full mt-2 rounded-full relative">
         <input
-          className="w-full absolute top-0 left-0 right-0 py-3 rounded-full bg-transparent border-none focus:outline-gold opacity-0 z-10"
+          className="w-full absolute top-0 left-0 right-0 py-4 rounded-full bg-transparent border-none focus:outline-gold opacity-0 z-10"
           type="file"
           accept="image/png, image/pdf, image/jpg"
           {...register('photo', {
@@ -156,21 +169,27 @@ const OrderByPhotoForm = () => {
       </div>
 
       {!errors.photo?.message ? (
-        <div className="text-md text-center mt-[70px]">
+        <div className="text-center mt-[60px]">
           Upload files (PNG, JPEG, PDF)
         </div>
       ) : (
-        <div className="text-xs text-center ml-5 text-red-600 h-4 mb-1 mt-[70px]">
+        <div className="text-center text-red-600 mt-[60px]">
           {errors.photo?.message.toString()}
         </div>
       )}
 
-      <button
-        className="mt-6 w-full py-3 text-center bg-dark text-white rounded-full text-md font-medium"
+      <DarktBtn
+        width="w-full mt-4 disabled:opacity-75 disabled:bg-dark"
         type="submit"
-      >
-        Find out the cost
-      </button>
+        text={
+          loading ? (
+            <CircularProgress color="primary" size={16} />
+          ) : (
+            'Find out the cost'
+          )
+        }
+        disabled={!fileName}
+      />
     </form>
   )
 }

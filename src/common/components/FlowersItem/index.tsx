@@ -76,7 +76,7 @@ const FlowersItem: FC<IFlowersItemData> = ({
   return (
     <div className="min-w-[254px] pr-[10px] mb-12" ref={itemRef}>
       <Link
-        className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative"
+        className="w-full h-[330px] bg-white flex items-center justify-center shadow-lg mb-4 relative hover:shadow-xl transition-all"
         to={`/bouquets/${id}`}
         onClick={handleLinkClick}
       >
@@ -133,14 +133,6 @@ const FlowersItem: FC<IFlowersItemData> = ({
           <div className="w-full text-center bg-light py-4 rounded-xl">
             Product temporarily absent
           </div>
-        )}
-        {inStock && (
-          <Link
-            to=""
-            className="text-gold mt-3 hover:text-btnPressedGold transition-all"
-          >
-            Quick order
-          </Link>
         )}
       </div>
     </div>

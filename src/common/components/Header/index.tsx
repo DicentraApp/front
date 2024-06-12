@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import Logo from './components/Logo'
-import Search from './components/Search'
 import UserIcon from './components/UserIcon'
 import CartIcon from './components/Cart'
 import Navigation from './components/Navigation'
@@ -23,7 +22,6 @@ export const Header: FC<HeaderProps> = () => {
             />
 
             <div className=" flex items-center justify-between">
-              <Search />
               <UserIcon />
               <CartIcon />
             </div>

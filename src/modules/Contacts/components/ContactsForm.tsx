@@ -1,33 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
-import { BASE_URL } from '@/utils/constans'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { CircularProgress } from '@mui/material'
+import { useAppDispatch } from '@/hooks/hooks'
+import { setContactsForm } from '@/features/forms/formsSlice'
+import Input from '@/common/UI/Inputs/Input'
+import ErrorInputMessage from '@/common/UI/Inputs/ErrorInputMessage'
 
 const detailsShema = z.object({
-  fullName: z.string().min(4).max(50),
-  phone: z.string().min(10),
+  fullName: z.string().min(2).max(50),
+  phone: z.string().min(12),
   comment: z.string(),
   email: z.string(),
 })
 
-enum State {
-  idle = 'idle',
-  loading = 'loading',
-  error = 'error',
-  resolve = 'resolve',
-}
-
 type DetailsShemValues = z.infer<typeof detailsShema>
 
 const ContactsForm = () => {
-  const [status, setStatus] = useState<State>(State.idle)
+  const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
   const {
     register,
     handleSubmit,
     reset,
+    clearErrors,
     formState: { errors },
   } = useForm<DetailsShemValues>({
     defaultValues: {
@@ -39,32 +38,26 @@ const ContactsForm = () => {
     resolver: zodResolver(detailsShema),
   })
 
-  const onSubmit = handleSubmit(async (data) => {
-    setStatus(State.loading)
+  const onSubmit = handleSubmit((data) => {
+    setSuccessMessage('')
 
-    try {
-      const newData = {
-        id: crypto.randomUUID(),
-        ...data,
-      }
-      const res = await fetch(BASE_URL + '/contacts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newData),
-      })
-
-      if (res.status === 200) {
-        setStatus(State.resolve)
-      }
-    } catch (error) {
-      setStatus(State.error)
+    const newData = {
+      id: crypto.randomUUID(),
+      ...data,
     }
 
-    reset()
-    setTimeout(() => setStatus(State.idle), 3000)
+    dispatch(setContactsForm(newData))
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      reset()
+      setSuccessMessage('Thank you! Expect a call within an hour!')
+    }, 400)
   })
+
+  useEffect(() => {
+    setSuccessMessage('')
+  }, [])
 
   return (
     <div className="w-8/12 mx-auto">
@@ -74,44 +67,46 @@ const ContactsForm = () => {
       <form className="mt-8" onSubmit={onSubmit}>
         <div className="flex mb-4">
           <div className="w-6/12 mr-4">
-            <input
-              className={`w-full rounded-full py-3 px-5 border-none font-roboto focus:outline-gold ${errors.fullName?.message ? 'focus:outline-red-600' : 'focus:outline-gold'}`}
-              type="text"
+            <Input
+              styles={
+                errors.fullName?.message
+                  ? 'border-red-600 focus:outline-red-600'
+                  : 'focus:outline-gold border-transparent'
+              }
               placeholder="First and last name"
-              required
               {...register('fullName', {
                 onChange: (e) =>
                   (e.target.value = e.target.value.replace(/[^a-zA-Z]+/g, '')),
               })}
+              onBlur={() => clearErrors('fullName')}
             />
-            <div className="text-xs ml-5 text-red-600 h-4 my-1">
-              {errors.fullName?.message}
-            </div>
+            <ErrorInputMessage message={errors.fullName?.message} />
 
-            <input
-              className={`w-full rounded-full py-3 px-5 border-none font-roboto ${errors.phone?.message ? 'focus:outline-red-600' : 'focus:outline-gold'}`}
-              type="text"
+            <Input
+              styles={
+                errors.phone?.message
+                  ? 'focus:outline-red-600'
+                  : 'focus:outline-gold'
+              }
               placeholder="Phone number"
-              required
               {...register('phone', {
                 onChange: (e) =>
                   (e.target.value = e.target.value.replace(/[^+\d]/g, '')),
               })}
+              onBlur={() => clearErrors('phone')}
             />
-            <div className="text-xs ml-5 text-red-600 h-4 my-1">
-              {errors.phone?.message}
-            </div>
+            <ErrorInputMessage message={errors.phone?.message} />
 
-            <input
-              className="w-full rounded-full py-3 px-5 border-none font-roboto focus:outline-gold"
-              type="text"
+            <Input
+              styles={'focus:outline-gold'}
+              type="email"
               placeholder="Email (optional)"
               {...register('email')}
             />
           </div>
           <div className="w-6/12">
             <textarea
-              className="w-full h-48 py-4 px-5 border-none rounded-3xl font-roboto focus:outline-gold resize-none"
+              className="w-full h-52 py-4 px-5 border-none rounded-3xl font-roboto focus:outline-gold resize-none"
               placeholder="Comment (optional)"
               {...register('comment')}
             />
@@ -121,25 +116,11 @@ const ContactsForm = () => {
           width="w-40 h-12"
           type="submit"
           text={
-            status === State.loading ? (
-              <CircularProgress color="primary" size={16} />
-            ) : (
-              'Send'
-            )
+            loading ? <CircularProgress color="primary" size={16} /> : 'Send'
           }
         />
 
-        {status === State.resolve && (
-          <span className="ml-32">
-            Thank you! Expect a call within an hour!
-          </span>
-        )}
-
-        {status === State.error && (
-          <span className="text-red-600 ml-32">
-            Something went wrong! Please, try again!
-          </span>
-        )}
+        {successMessage && <span className="ml-32">{successMessage}</span>}
       </form>
     </div>
   )

@@ -1,14 +1,14 @@
 export const shippingData = {
   mainImgPath: 'shipping.jpg',
   describing:
-    'Delivery to the cities of Kyiv and Lviv works every day around the clock!',
+    'Delivery to the cities of Kyiv, Lviv and Kharkiv works every day from 8:00 to 22:00',
   title: 'Delivery',
   textBegin:
     'The order must be placed at least 2 hours before the time you want to receive it',
   textItems: [
-    'when ordering up to $15 during the day from 8:00 to 22:00, delivery cost is $7;',
-    'when ordering from 15 UAH - free;',
-    'at night from 22:00 to 8:00 delivery cost 15 $',
+    'when ordering up to $ 25 during the day from 8:00 to 20:00, delivery cost is 12 $;',
+    'when ordering from 25 $ - free;',
+    'at night from 20:00 to 22:00 delivery cost 25 $',
   ],
   textAlarm: 'For overnight delivery, order must be placed before 20:00!!!',
   textFinish:

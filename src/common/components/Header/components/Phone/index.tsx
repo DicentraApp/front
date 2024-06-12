@@ -1,16 +1,16 @@
+import { FC } from 'react'
 import { setBackCallModal } from '@/features/modal/modalSlice'
 import { useAppDispatch } from '@/hooks/hooks'
-import { FC } from 'react'
 
-interface IPhone {
+interface PhoneProps {
   phoneNumber: string
 }
 
-const Phone: FC<IPhone> = ({ phoneNumber }) => {
+const Phone: FC<PhoneProps> = ({ phoneNumber }) => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-start">
       <a
         className="font-ubuntu font-light text-base text-dark"
         href={`tel:${phoneNumber.replace(/[^\w\s]/gi, '')}`}
@@ -18,7 +18,7 @@ const Phone: FC<IPhone> = ({ phoneNumber }) => {
         {phoneNumber}
       </a>
       <button
-        className="text-gold text-center -mt-1 hover:text-btnPressedGold transition-all"
+        className="tracking-widest text-gold text-sm uppercase hover:text-btnPressedGold transition-all"
         onClick={() => dispatch(setBackCallModal(true))}
       >
         Back call

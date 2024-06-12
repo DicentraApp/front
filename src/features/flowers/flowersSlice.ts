@@ -11,6 +11,7 @@ export interface IInitialState {
   flowers: IFlowerItem[] | []
   flowerItem: IFlowerItem
   priceWithCount: number
+  selectedFlowersByForm: IFlowerItem[] | []
   isLoading: boolean
 }
 
@@ -20,6 +21,7 @@ const flowersSlice = createSlice({
     list: [],
     flowers: [],
     flowerItem: {},
+    selectedFlowersByForm: [],
     priceWithCount: 0,
     isLoading: false,
   } as IInitialState,
@@ -47,6 +49,12 @@ const flowersSlice = createSlice({
       } else {
         state.priceWithCount += state.flowerItem.price
       }
+    },
+    setSelectedDataByForm: (
+      state,
+      { payload }: PayloadAction<IFlowerItem[]>
+    ) => {
+      state.selectedFlowersByForm = payload
     },
     minusPriceWithCount: (state) => {
       if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
@@ -76,6 +84,7 @@ export const {
   addPriceWithCount,
   minusPriceWithCount,
   setPriceWithCount,
+  setSelectedDataByForm,
   addReview,
 } = flowersSlice.actions
 

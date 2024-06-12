@@ -72,10 +72,21 @@ const OrderPayment = () => {
         </label>
         <div>
           <Input
-            styles={`${errors.cardOwner?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-light'}`}
+            styles={`${
+              errors.cardOwner?.message
+                ? 'border-red-600 focus:outline-red-600'
+                : 'focus:outline-gold border-light'
+            }`}
             placeholder="John Doe"
             id="cardOwner"
-            {...register('cardOwner')}
+            {...register('cardOwner', {
+              onChange(event) {
+                event.target.value = event.target.value.replace(
+                  /[^a-zA-Z]+/g,
+                  ''
+                )
+              },
+            })}
             style={{ width: '250px' }}
           />
           <ErrorInputMessage message={errors.cardOwner?.message} />
@@ -87,7 +98,11 @@ const OrderPayment = () => {
         </label>
         <div>
           <Input
-            styles={`${errors.cardNumber?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-light'}`}
+            styles={`${
+              errors.cardNumber?.message
+                ? 'border-red-600 focus:outline-red-600'
+                : 'focus:outline-gold border-light'
+            }`}
             placeholder="XXXX XXXX XXXX XXXX"
             id="cardNumber"
             {...register('cardNumber', {
@@ -114,7 +129,11 @@ const OrderPayment = () => {
         <div>
           <Input
             id="cardExpiration"
-            styles={`${errors.cardExpiration?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-light'}`}
+            styles={`${
+              errors.cardExpiration?.message
+                ? 'border-red-600 focus:outline-red-600'
+                : 'focus:outline-gold border-light'
+            }`}
             placeholder="MM / YY"
             {...register('cardExpiration', {
               onChange(event) {
@@ -137,7 +156,11 @@ const OrderPayment = () => {
 
         <div>
           <Input
-            styles={`${errors.cardCvv?.message ? 'border-red-600 focus:outline-red-600' : 'focus:outline-gold border-light'}`}
+            styles={`${
+              errors.cardCvv?.message
+                ? 'border-red-600 focus:outline-red-600'
+                : 'focus:outline-gold border-light'
+            }`}
             placeholder="XXX"
             id="cardCvv"
             {...register('cardCvv', {

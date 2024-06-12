@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
-import { useAppDispatch } from '@/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { addItemToCart } from '@/features/cart/cartSlice'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 
@@ -10,6 +10,9 @@ interface ITogetherWithItem {
 
 const WithChocolates: FC<ITogetherWithItem> = ({ item }) => {
   const dispatch = useAppDispatch()
+  const { cart } = useAppSelector((state) => state.cart)
+
+  const [isAdded, setIsAdded] = useState(false)
 
   const priceWithout = item.price! + item?.togetherWith!.price
   const priceWith = item!.price! + item!.togetherWith!.actionPrice!
@@ -25,6 +28,16 @@ const WithChocolates: FC<ITogetherWithItem> = ({ item }) => {
       })
     )
   }
+
+  useEffect(() => {
+    cart.map((el) => {
+      if (el.product.id === item.id) {
+        setIsAdded(true)
+      } else {
+        setIsAdded(false)
+      }
+    })
+  }, [cart, item.id])
 
   return (
     <div className="my-24 bg-white text-dark p-10" key={item.id}>
@@ -93,11 +106,18 @@ const WithChocolates: FC<ITogetherWithItem> = ({ item }) => {
             <span className="mr-3 text-gold line-through">{priceWithout}</span>
             <span className="text-dark ">{priceWith}</span> $
           </div>
-          <DarktBtn
-            text="Add to cart"
-            width="w-32"
-            handleClick={addProductToCart}
-          />
+
+          {isAdded ? (
+            <div className="h-12 w-32 flex items-center justify-center">
+              Added to cart
+            </div>
+          ) : (
+            <DarktBtn
+              text="Add to cart"
+              width="w-32"
+              handleClick={addProductToCart}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -1,29 +1,29 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { ISliderItem } from '@/common/dto/getSliderDto'
 
 import '../slider.css'
 
-interface ISliderItem {
-  bg: string
-  img: string
+interface ISliderItemProps {
+  item: ISliderItem
   activeClass: boolean
   next: () => void
   prev: () => void
 }
 
-const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
+const SliderItem: FC<ISliderItemProps> = ({ item, activeClass, next, prev }) => {
   return (
     <div
       className={`${activeClass ? 'active-slider' : 'hidden'} transition-all relative h-full w-full`}
     >
       <div
-        className={`${activeClass ? 'active-content' : 'translate-y-full'} ${bg} w-2/6 flex items-center justify-center transition-all`}
+        className={`${activeClass ? 'active-content' : 'translate-y-full'} ${item.bg} w-2/6 flex items-center justify-center transition-all`}
       >
         <div className="w-80 text-light">
           <h2 className="font-black text-3xl mb-5 font-ubuntu">
             Only the best bouquets!
           </h2>
-          <p className="text-base font-light mb-12">24/7 delivery</p>
+          <p className="text-base font-light mb-12">{item.text}</p>
           <Link
             className="py-4 px-9 bg-gold rounded-26 font-normal"
             to={'/bouquets'}
@@ -33,8 +33,8 @@ const SliderItem: FC<ISliderItem> = ({ bg, img, activeClass, next, prev }) => {
         </div>
       </div>
       <img
-        className={`${activeClass ? 'active-img' : '-translate-y-full'} ${bg} transition-all w-4/6 object-cover`}
-        src={`images/slider/${img}.jpg`}
+        className={`${activeClass ? 'active-img' : '-translate-y-full'} ${item.bg} transition-all w-4/6 object-cover`}
+        src={`/images/slider/${item.img}.jpg`}
       />
 
       <div className="absolute bottom-20 left-1/4 pl-12 flex z-30">

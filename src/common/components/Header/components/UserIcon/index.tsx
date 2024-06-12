@@ -16,9 +16,13 @@ const UserIcon = () => {
   }
 
   return (
-    <button className="ml-4" onClick={handleOpenUser}>
+    <button className="ml-5" onClick={handleOpenUser}>
       {!currentUser ? (
-        <img src="/images/icons/icon_user.svg" alt="user" />
+        <img
+          className="w-5 h-5 object-cover"
+          src="/images/icons/icon_user.svg"
+          alt="user"
+        />
       ) : (
         <div className="rounded-full bg-light p-2 flex items-center justify-center">
           <img src="/images/icons/icon_user.svg" alt="user" />

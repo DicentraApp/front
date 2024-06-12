@@ -8,6 +8,7 @@ import ErrorInputMessage from '@/common/UI/Inputs/ErrorInputMessage'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { resetRegistrationError, setUsers } from '@/features/users/usersSlice'
 import PasswordInput from '@/common/UI/Inputs/PasswordInput'
+import Input from '@/common/UI/Inputs/Input'
 
 const detailsShema = z
   .object({
@@ -100,25 +101,29 @@ const RegistrationForm = () => {
       </div>
 
       <div className="mb-4">
-        <input
-          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${
+        <Input
+          styles={
             errors.name?.message
               ? 'border-red-600 focus:outline-red-600'
               : 'focus:outline-gold border-transparent'
-          }`}
+          }
           placeholder="Name"
-          {...register('name')}
+          {...register('name', {
+            onChange(event) {
+              event.target.value = event.target.value.replace(/[^a-zA-Z]+/g, '')
+            },
+          })}
         />
         <ErrorInputMessage message={errors.name?.message} />
       </div>
 
       <div className="mb-4">
-        <input
-          className={`w-full font-roboto text-md bg-white py-3 px-5 rounded-full border border-[3px] focus:outline-gold ${
+        <Input
+          styles={
             errors.email?.message
               ? 'border-red-600 focus:outline-red-600'
               : 'focus:outline-gold border-transparent'
-          }`}
+          }
           type="email"
           {...register('email')}
           placeholder="Email (optional)"

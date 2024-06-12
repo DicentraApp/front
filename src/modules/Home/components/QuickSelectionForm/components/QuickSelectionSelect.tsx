@@ -6,19 +6,23 @@ interface IQuickSelectionSelect {
     data: string[]
   }
   onChange: ChangeEventHandler<HTMLSelectElement>
+  name: string
 }
 
 const QuickSelectionSelect: FC<IQuickSelectionSelect> = ({
   selectData,
   onChange,
+  name,
 }) => {
   return (
     <select
       className="focus:ring-transparent focus:outline-none text-textGrey font-light p-5 w-[270px] border-none text-base font-ubuntu rounded-xl"
-      name="flowers"
+      name={name}
       onChange={onChange}
     >
-      <option>{selectData.title}</option>
+      <option className="font-light text-gray-400" value={''} aria-label="None">
+        {selectData.title}
+      </option>
       {selectData.data.map((option, i) => (
         <option key={option + i} value={option}>
           {option}

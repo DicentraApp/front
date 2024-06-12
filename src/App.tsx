@@ -17,6 +17,7 @@ import Login from './modules/Login'
 import Registration from './modules/Registration'
 import MyProfile from './modules/MyProfile'
 import Order from './modules/Order'
+import SelectedFlowers from './modules/SelectedFlowers'
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         element: <Order />,
         path: 'order',
+      },
+      {
+        element: <SelectedFlowers />,
+        path: 'selected-flowers',
       },
     ],
   },
