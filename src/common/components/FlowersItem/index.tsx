@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { IFlowerItem } from '@/common/dto/getFlowersDto'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
@@ -13,7 +6,7 @@ import { setFlowerItem } from '@/features/flowers/flowersSlice'
 import DarktBtn from '../../UI/Buttons/DarkBtn'
 import { CircularProgress } from '@mui/material'
 import { addItemToCart } from '@/features/cart/cartSlice'
-import { currentPrice } from '@/utils/helpers'
+import { isAddedToCart } from '@/utils/helpers'
 
 interface IFlowersItemData {
   data: IFlowerItem
@@ -30,8 +23,8 @@ const FlowersItem: FC<IFlowersItemData> = ({
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state.cart)
 
-  const [isAdded, setIsAdded] = useState(false)
-  const priceEnd = currentPrice(data)
+  const isAdded = isAddedToCart(id, cart)
+  const priceEnd = actionPrice ? actionPrice : price
 
   const itemRef = useRef<HTMLDivElement | null>(null)
 
@@ -50,6 +43,7 @@ const FlowersItem: FC<IFlowersItemData> = ({
     dispatch(
       addItemToCart({
         product: data,
+        withTogether: false,
         count: 1,
         price: priceEnd,
         priceWithCount: priceEnd,
@@ -62,16 +56,6 @@ const FlowersItem: FC<IFlowersItemData> = ({
       setItemWidth(itemRef!.current!.offsetWidth)
     } else return
   }, [setItemWidth])
-
-  useEffect(() => {
-    cart.map((el) => {
-      if (el.product.id === id) {
-        setIsAdded(true)
-      } else {
-        setIsAdded(false)
-      }
-    })
-  }, [cart, id])
 
   return (
     <div className="min-w-[254px] pr-[10px] mb-12" ref={itemRef}>
@@ -110,7 +94,9 @@ const FlowersItem: FC<IFlowersItemData> = ({
       </Link>
       <div className="text-center mb-4">
         <span
-          className={`${!actionPrice ? 'text-dark' : 'mr-2 text-gold line-through'} font-semibold text-xl `}
+          className={`${
+            !actionPrice ? 'text-dark' : 'mr-2 text-gold line-through'
+          } font-semibold text-xl `}
         >
           {price}
         </span>

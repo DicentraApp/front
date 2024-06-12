@@ -23,8 +23,11 @@ const OrderProducts = () => {
           overflowY: cart.length > 3 ? 'scroll' : 'unset',
         }}
       >
-        {cart.map(({ product, priceWithCount, count }) => (
-          <div key={product.id} className="mb-4 flex items-center w-full">
+        {cart.map(({ product, priceWithCount, count, withTogether }, i) => (
+          <div
+            key={`${product.id}${i}`}
+            className="mb-5 flex items-center w-full"
+          >
             <div className="w-1/3 h-28 flex justify-center items-center mr-3">
               <img
                 className="w-full h-full object-contain"
@@ -33,9 +36,10 @@ const OrderProducts = () => {
               />
             </div>
             <div className="font-light w-2/3">
-              <h4 className="mb-1">{product.name}</h4>
+              <h4>{product.name}</h4>
               <span className="text-sm">Vendor code: {product.article}</span>
-              <div className="flex mt-3">
+              {withTogether && <div className="text-sm">With chocolates </div>}
+              <div className="flex mt-2">
                 <span>q-ty: {count}</span>
                 <div className="ml-5">
                   Price: <span className="font-medium">{priceWithCount} $</span>

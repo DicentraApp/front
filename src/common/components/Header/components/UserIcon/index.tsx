@@ -24,7 +24,7 @@ const UserIcon = () => {
           alt="user"
         />
       ) : (
-        <div className="rounded-full bg-light p-2 flex items-center justify-center">
+        <div className="rounded-full bg-rose p-2 flex items-center justify-center">
           <img src="/images/icons/icon_user.svg" alt="user" />
         </div>
       )}

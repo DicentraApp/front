@@ -4,9 +4,15 @@ import { IFlowerItem, ITogetherWith } from '@/common/dto/getFlowersDto'
 
 export type Product = IFlowerItem | ITogetherWith
 
+interface IDeleteData {
+  id: string
+  withTogether: boolean | undefined
+}
+
 export interface ProductWithCount {
   product: Product
   count: number
+  withTogether?: boolean
   price: number
   priceWithCount: number
 }
@@ -25,7 +31,7 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart: (state, { payload }: PayloadAction<ProductWithCount>) => {
       const found = state.cart.find(
-        (el) => el.product.id === payload.product.id
+        (el) => el.product.id === payload.product.id && !payload.withTogether
       )
 
       if (found) {
@@ -45,23 +51,33 @@ const cartSlice = createSlice({
           priceWithCount: payload.price,
         })
     },
-    deleteFromCart: (state, { payload }: PayloadAction<string>) => {
-      state.cart = state.cart.filter((el) => el.product.id !== payload)
+    deleteFromCart: (state, { payload }: PayloadAction<IDeleteData>) => {
+      state.cart = state.cart.filter(
+        (el) =>
+          el.withTogether != payload.withTogether ||
+          el.product.id !== payload.id
+      )
     },
-    setProductCountToUp: (state, { payload }: PayloadAction<string>) => {
+    setProductCountToUp: (state, { payload }: PayloadAction<IDeleteData>) => {
       state.cart.map((el) => {
-        if (el.product.id === payload) {
+        if (
+          el.withTogether == payload.withTogether &&
+          el.product.id === payload.id
+        ) {
           el.count += 1
           el.priceWithCount += el.price
-        }
+        } else return state
       })
     },
-    setProductCountToDown: (state, { payload }: PayloadAction<string>) => {
+    setProductCountToDown: (state, { payload }: PayloadAction<IDeleteData>) => {
       state.cart.map((el) => {
-        if (el.product.id === payload) {
+        if (
+          el.withTogether == payload.withTogether &&
+          el.product.id === payload.id
+        ) {
           el.count -= 1
           el.priceWithCount -= el.price
-        }
+        } else return state
       })
     },
     setTotalPrice: (state, { payload }: PayloadAction<number>) => {

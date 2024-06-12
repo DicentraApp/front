@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import SliderItem from './components/SliderItem'
 import { ISliderData } from '@/common/dto/getSliderDto'
 
@@ -24,20 +24,6 @@ const Slider: FC<ISlider> = ({ data }) => {
       setSlider(index - 1)
     }
   }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (slider === 0) {
-        setSlider(data.length - 1)
-      } else if (slider === data.length - 1) {
-        setSlider(0)
-      } else {
-        setSlider(slider + 1)
-      }
-    }, 3500)
-
-    return () => clearTimeout(timeout)
-  }, [slider, data.length])
 
   return (
     <div className="w-full mb-32 pt-32 h-screen overflow-hidden">

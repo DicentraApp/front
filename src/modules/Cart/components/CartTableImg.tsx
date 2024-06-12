@@ -7,9 +7,10 @@ import { setFlowerItem } from '@/features/flowers/flowersSlice'
 
 interface CartTableImgProps {
   item: IFlowerItem
+  withTogether: boolean | undefined
 }
 
-const CartTableImg: FC<CartTableImgProps> = ({ item }) => {
+const CartTableImg: FC<CartTableImgProps> = ({ item, withTogether }) => {
   const isBouquet = item.name.toLowerCase().includes('bouquet')
   const dispatch = useAppDispatch()
 
@@ -19,7 +20,7 @@ const CartTableImg: FC<CartTableImgProps> = ({ item }) => {
 
   return (
     <>
-      {!item?.togetherWith ? (
+      {!withTogether ? (
         isBouquet ? (
           <Link to={`/bouquets/${item.id}`} onClick={handleOpenSingleBouquet}>
             <CartTableImgItem
@@ -46,10 +47,11 @@ const CartTableImg: FC<CartTableImgProps> = ({ item }) => {
           </Link>
 
           <div className="mx-8 text-2xl">+</div>
+
           <CartTableImgItem
-            name={item.togetherWith.name}
-            article={item.togetherWith.article}
-            img={item.togetherWith.img}
+            name={item!.togetherWith!.name}
+            article={item!.togetherWith!.article}
+            img={item!.togetherWith!.img}
           />
         </div>
       )}

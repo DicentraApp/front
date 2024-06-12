@@ -32,6 +32,7 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
     dispatch(
       addItemToCart({
         product: data,
+        withTogether: true,
         count: 1,
         price: priceWith,
         priceWithCount: priceWith,
@@ -46,7 +47,9 @@ const TogetherWithItem: FC<ITogetherWithItem> = ({ data, setItemWidth }) => {
   }, [setItemWidth])
 
   useEffect(() => {
-    const found = cart.some((el) => el.product.id === data.id)
+    const found = cart.some(
+      (el) => el.product.id === data.id && el.withTogether
+    )
     if (found) {
       setIsAdded(true)
     } else {

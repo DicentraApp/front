@@ -1,5 +1,5 @@
 import GoldBtn from '@/common/UI/Buttons/GoldBtn'
-import { setReviewsModal } from '@/features/modal/modalSlice'
+import { setLoginModal, setReviewsModal } from '@/features/modal/modalSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import TotalRating from './TotalRating'
 import ReviewsItem from './ReviewsItem'
@@ -9,14 +9,19 @@ const ReviewsList = () => {
   const {
     flowerItem: { reviews },
   } = useAppSelector((state) => state.flowers)
+  const { currentUser } = useAppSelector((state) => state.users)
 
   const handleAddReview = () => {
-    dispatch(setReviewsModal(true))
+    if (!currentUser) {
+      dispatch(setLoginModal(true))
+    } else {
+      dispatch(setReviewsModal(true))
+    }
   }
 
   return (
     <div className="font-roboto relative -mt-4 mx-auto border border-gold py-12 px-24">
-      <div className="flex items-center justify-between mb-4 mr-2">
+      <div className="flex items-center justify-between mb-4 mr-4">
         <h2 className="font-medium text-3xl">Reviews</h2>
         <GoldBtn
           text="Write a review"
@@ -27,7 +32,7 @@ const ReviewsList = () => {
 
       <TotalRating />
 
-      <div className="mt-6">
+      <div className="mt-6 mr-1">
         {reviews?.map((review) => (
           <ReviewsItem key={review.userID} review={review} />
         ))}

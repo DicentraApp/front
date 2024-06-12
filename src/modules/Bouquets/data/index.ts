@@ -18,7 +18,7 @@ export const flowersData: IFlowersData = [
           id: '01',
           name: 'Fererro Rocher Heart',
           price: 17,
-          article: '0405',
+          article: 405,
           actionPrice: 13,
           img: 'ferrero-heart.png',
         },
@@ -38,13 +38,24 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Grandmother',
             'Engagement',
+            'Mother',
             'Discharge from maternity hospital',
             'Girlfriend',
             'Wedding anniversary',
             'Sister',
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'May 13, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -103,10 +114,30 @@ export const flowersData: IFlowersData = [
             'Reconciliation',
             'Girlfriend',
             'Sister',
+            'Mother',
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Julia T.',
+            comment:
+              'The flowers are wonderful. The price/quality fully corresponds. People are professionals in their field, they advised a good bouquet, if necessary, you can choose any composition (bouquet) to your taste.',
+            createdAt: 'April 19, 2024',
+          },
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 4,
+            name: 'Oleksandr Tkach',
+            comment:
+              'The delivery is very fast, the e-mail notification is also very impressive, it is very convenient, and the most important impression is as if they were just cut. Bravo, I really experienced high-quality services from you. Thank you! The next bouquet is only yours',
+            createdAt: 'April 10, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -201,7 +232,17 @@ export const flowersData: IFlowersData = [
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Tetiana Mucha',
+            comment:
+              'Thank you very much! As always (I have been using your services for a long time), I am very satisfied and grateful to your company for the delivery of flowers and gifts to my loved ones. You are very responsible and fulfill orders efficiently, I always recommend your services if someone asks me if I know a flower delivery company in Ukraine. God grant that people in our country have more good and joyful events and occasions to give flowers and gifts, and that accordingly you have as many regular and satisfied customers as possible!',
+            createdAt: 'April 1, 2024',
+          },
+        ],
         description:
           'Peach has a soft and warm hue that symbolizes peace, gratitude and sincerity. They are ideal for expressing gratitude or acknowledging warm feelings. Peach roses can also symbolize modesty. Peach flowers are often used in wedding bouquets as they can symbolize everlasting love and harmony. They can also be a wonderful gift as a token of gratitude or to express warmth.',
       },
@@ -236,11 +277,31 @@ export const flowersData: IFlowersData = [
             'Reconciliation',
             'Birthday',
             'Girlfriend',
+            'Mother',
             'Sister',
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Tetiana Mucha',
+            comment:
+              "Thank you very much for the delivery! The flowers were delivered on time, I am satisfied! Everything is great! Order, you won't regret it!",
+            createdAt: 'March 29, 2024',
+          },
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 4,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'March 23, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -255,7 +316,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '02',
           name: 'Raffaello Piatta',
-          article: '0406',
+          article: 406,
           price: 12,
           actionPrice: 9,
           img: 'raffaello-piatta.png',
@@ -300,6 +361,7 @@ export const flowersData: IFlowersData = [
             'To beloved girlfriend',
             'Birthday',
             'Sister',
+            'Mother',
             "Valentine's Day",
           ],
         },
@@ -323,6 +385,7 @@ export const flowersData: IFlowersData = [
           events: [
             'To beloved girlfriend',
             'Birthday',
+            'Mother',
             'Girlfriend',
             'Sister',
             'Reconciliation',
@@ -349,6 +412,7 @@ export const flowersData: IFlowersData = [
             'To beloved girlfriend',
             'Birthday',
             'Grandmother',
+            'Mother',
             'Girlfriend',
             'Sister',
             "Valentine's Day",
@@ -408,12 +472,32 @@ export const flowersData: IFlowersData = [
             'Reconciliation',
             'Birthday',
             'Engagement',
+            'Mother',
             'Girlfriend',
             'Wedding Anniversary',
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Julia T.',
+            comment:
+              'The flowers are wonderful. The price/quality fully corresponds. People are professionals in their field, they advised a good bouquet, if necessary, you can choose any composition (bouquet) to your taste.',
+            createdAt: 'April 19, 2024',
+          },
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 4,
+            name: 'Oleksandr Tkach',
+            comment:
+              'The delivery is very fast, the e-mail notification is also very impressive, it is very convenient, and the most important impression is as if they were just cut. Bravo, I really experienced high-quality services from you. Thank you! The next bouquet is only yours',
+            createdAt: 'April 10, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -466,12 +550,23 @@ export const flowersData: IFlowersData = [
             'To beloved girlfriend',
             'Reconciliation',
             'Grandmother',
+            'Mother',
             'Girlfriend',
             'Sister',
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Daniela Gella',
+            comment:
+              'Thank you very much, on my birthday I always give my mother flowers and sweets, unfortunately we are now separated by thousands of kilometers, but you helped make it so that it was not felt, despite the weather. They were delivered very quickly, the flowers are very beautiful as in the picture. Thank you',
+            createdAt: 'May 3, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -505,7 +600,17 @@ export const flowersData: IFlowersData = [
             'Sister',
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Mykhajlo R.',
+            comment:
+              "Thank you for the surprise, my wife was delighted ... and it's nice that the courier adjusted. During which my wife said ... I'm making another order ../",
+            createdAt: 'May 9, 2024',
+          },
+        ],
         description:
           'Rainbow dyeing techniques can include a variety of colors. They can symbolize joy, fun and uniqueness. Mixed ones can symbolize different emotions and feelings. The meaning will depend on the specific flowers used in the bouquet.',
       },
@@ -553,6 +658,7 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Grandmother',
             'Engagement',
+            'Mother',
             'Discharge from maternity hospital',
             'Girlfriend',
             'Wedding Anniversary',
@@ -583,7 +689,7 @@ export const flowersData: IFlowersData = [
           width: 60,
           color: ['Cream'],
           compound: ['Cream roses (35 pc)', 'Ribbon (1 pc)'],
-          events: ['Birthday', 'Engagement', 'Wedding Anniversary'],
+          events: ['Birthday', 'Engagement', 'Wedding Anniversary', 'Mother'],
         },
         reviews: [],
         description:
@@ -614,7 +720,17 @@ export const flowersData: IFlowersData = [
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Mykhajlo R.',
+            comment:
+              "Thank you for the surprise, my wife was delighted ... and it's nice that the courier adjusted. During which my wife said ... I'm making another order ../",
+            createdAt: 'May 9, 2024',
+          },
+        ],
         description:
           'Pink roses are a symbol of love, sympathy and admiration. This is a great gift for a first date. If light pink buds are associated with romance, then bright and dark ones are associated with respect and friendship.',
       },
@@ -633,7 +749,26 @@ export const flowersData: IFlowersData = [
           compound: ['Yellow roses (35 pc)', 'Ribbon (1 pc)'],
           events: ['Sister', 'Girlfriend', 'Reconciliation'],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Tetiana Mucha',
+            comment:
+              "Thank you very much for the delivery! The flowers were delivered on time, I am satisfied! Everything is great! Order, you won't regret it!",
+            createdAt: 'March 29, 2024',
+          },
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'March 23, 2024',
+          },
+        ],
         description:
           'The color yellow was attributed to the meaning of breaking a romantic relationship. However, such an unambiguous interpretation of yellow flowers did not last long. Sun-hued roses are too beautiful to convey a message of separation. Therefore, by the 20th century, the meaning of yellow roses changed: bouquets began to represent friendship, joy and success.',
       },
@@ -654,6 +789,7 @@ export const flowersData: IFlowersData = [
             'Reconciliation',
             'Birthday',
             'Engagement',
+            'Mother',
             'Wedding Anniversary',
             'Sister',
             "Valentine's Day",
@@ -683,6 +819,7 @@ export const flowersData: IFlowersData = [
             'Engagement',
             'Wedding Anniversary',
             'Sister',
+            'Mother',
           ],
         },
         reviews: [],
@@ -734,9 +871,20 @@ export const flowersData: IFlowersData = [
             'Engagement',
             'Wedding Anniversary',
             "Valentine's Day",
+            'Mother',
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'May 13, 2024',
+          },
+        ],
         description:
           'Snow-white roses are delicate and elegant flowers that symbolize sincere love, loyalty and deep respect. Elegant white roses are perfect for expressing deep respect, respect, sympathy and, of course, love.',
       },
@@ -762,7 +910,26 @@ export const flowersData: IFlowersData = [
             "Valentine's Day",
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: crypto.randomUUID(),
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Tetiana Mucha',
+            comment:
+              "Thank you very much for the delivery! The flowers were delivered on time, I am satisfied! Everything is great! Order, you won't regret it!",
+            createdAt: 'March 29, 2024',
+          },
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 4,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'March 23, 2024',
+          },
+        ],
         description:
           'Pink roses are a symbol of love, sympathy and admiration. This is a great gift for a first date. If light pink buds are associated with romance, then bright and dark ones are associated with respect and friendship.',
       },
@@ -776,7 +943,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '03',
           name: 'Fererro Rocher',
-          article: '0407',
+          article: 407,
           price: 14,
           actionPrice: 10,
           img: 'ferrero-rocher.png',
@@ -793,6 +960,7 @@ export const flowersData: IFlowersData = [
             'Engagement',
             'Wedding Anniversary',
             "Valentine's Day",
+            'Mother',
           ],
         },
         reviews: [],
@@ -851,6 +1019,7 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Engagement',
             "Valentine's Day",
+            'Mother',
           ],
         },
         reviews: [],
@@ -867,7 +1036,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '04',
           name: 'Raffaello',
-          article: '0408',
+          article: 408,
           price: 10,
           actionPrice: 7,
           img: 'raffaello.png',
@@ -915,6 +1084,7 @@ export const flowersData: IFlowersData = [
             'Engagement',
             'Sister',
             'Girlfriend',
+            'Mother',
           ],
         },
         reviews: [],
@@ -932,7 +1102,7 @@ export const flowersData: IFlowersData = [
           id: '01',
           name: 'Fererro Rocher Heart',
           price: 17,
-          article: '0405',
+          article: 405,
           actionPrice: 13,
           img: 'ferrero-heart.png',
         },
@@ -968,7 +1138,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '05',
           name: 'Fererro Rocher Collection',
-          article: '0409',
+          article: 409,
           price: 16,
           actionPrice: 12,
           img: 'ferrero-t15.png',
@@ -990,6 +1160,7 @@ export const flowersData: IFlowersData = [
             'Sister',
             'Girlfriend',
             'Grandmother',
+            'Mother',
           ],
         },
         reviews: [],
@@ -1024,6 +1195,7 @@ export const flowersData: IFlowersData = [
             'Engagement',
             'Sister',
             'Girlfriend',
+            'Mother',
           ],
         },
         reviews: [],
@@ -1047,7 +1219,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '02',
           name: 'Raffaello Piatta',
-          article: '0406',
+          article: 406,
           price: 12,
           actionPrice: 9,
           img: 'raffaello-piatta.png',
@@ -1069,6 +1241,7 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Engagement',
             'Sister',
+            'Mother',
             'Girlfriend',
             'Discharge from maternity hospital',
             'Wedding Anniversary',
@@ -1088,7 +1261,7 @@ export const flowersData: IFlowersData = [
         togetherWith: {
           id: '03',
           name: 'Fererro Rocher',
-          article: '0407',
+          article: 407,
           price: 14,
           actionPrice: 10,
           img: 'ferrero-rocher.png',
@@ -1135,6 +1308,7 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Engagement',
             'Sister',
+            'Mother',
             'Girlfriend',
             'Discharge from maternity hospital',
             'Wedding Anniversary',
@@ -1168,10 +1342,21 @@ export const flowersData: IFlowersData = [
             'Birthday',
             'Sister',
             'Girlfriend',
+            'Mother',
             'Discharge from maternity hospital',
           ],
         },
-        reviews: [],
+        reviews: [
+          {
+            userID: '01',
+            flowerID: crypto.randomUUID(),
+            rating: 5,
+            name: 'Oksana Bura',
+            comment:
+              'I ordered a bouquet for my daughter. The birthday girl is very satisfied with the bouquet, the roses are fresh, fragrant and beautiful. Thank you for such a great opportunity to give flowers to a loved one at a distance.',
+            createdAt: 'May 24, 2024',
+          },
+        ],
         description:
           'A bouquet of white chrysanthemums symbolizes fidelity, devotion, purity of thoughts; Purple and lilac flowers are best given to a loved one - a friend; It is recommended to give yellow chrysanthemums to women to whom you want to confess your love.',
       },

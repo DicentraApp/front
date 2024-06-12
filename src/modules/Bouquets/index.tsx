@@ -26,6 +26,7 @@ const Bouquets = () => {
 
   const handleSelectedPrice = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.currentTarget.value)
+    setLoading(true)
 
     if (typeof dataKind?.flowers !== 'undefined') {
       if (e.currentTarget.value === 'from increasing') {
@@ -58,6 +59,8 @@ const Bouquets = () => {
         })
       }
     }
+
+    setTimeout(() => setLoading(false), 300)
   }
 
   useEffect(() => {

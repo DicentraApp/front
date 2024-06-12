@@ -19,11 +19,20 @@ const CartTable = () => {
   const { cart } = useAppSelector((state) => state.cart)
   const dispatch = useAppDispatch()
 
-  const handleCountToDown = (id: string, count: number) => {
+  const handleCountToDown = (
+    id: string,
+    count: number,
+    withTogether: boolean
+  ) => {
     if (count === 1) {
       return
     } else {
-      dispatch(setProductCountToDown(id))
+      dispatch(
+        setProductCountToDown({
+          id: id,
+          withTogether: withTogether ? withTogether : false,
+        })
+      )
     }
   }
 
@@ -46,36 +55,58 @@ const CartTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {cart.map(({ product, count, price, priceWithCount }) => {
-            return (
-              <TableRow key={product.id}>
-                <TableCell>
-                  <CartTableImg item={product} />
-                </TableCell>
-                <TableCell
-                  className="w-[158px] text-xl font-medium"
-                  align="center"
-                >
-                  <div className="text-xl font-medium">{price} $</div>
-                </TableCell>
-                <TableCell className="w-[158px]" align="center">
-                  <CountInput
-                    count={count}
-                    countToDown={() => handleCountToDown(product.id, count)}
-                    countToUp={() => dispatch(setProductCountToUp(product.id))}
-                  />
-                </TableCell>
-                <TableCell className="w-[158px]" align="center">
-                  <div className="text-xl font-medium">{priceWithCount} $</div>
-                </TableCell>
-                <TableCell align="center">
-                  <button onClick={() => dispatch(deleteFromCart(product.id))}>
-                    <img src="/images/icons/basket.svg" alt="basket.svg" />
-                  </button>
-                </TableCell>
-              </TableRow>
-            )
-          })}
+          {cart.map(
+            ({ product, count, price, priceWithCount, withTogether }, i) => {
+              return (
+                <TableRow key={`${product.id}${i}`}>
+                  <TableCell>
+                    <CartTableImg item={product} withTogether={withTogether} />
+                  </TableCell>
+                  <TableCell
+                    className="w-[158px] text-xl font-medium"
+                    align="center"
+                  >
+                    <div className="text-xl font-medium">{price} $</div>
+                  </TableCell>
+                  <TableCell className="w-[158px]" align="center">
+                    <CountInput
+                      count={count}
+                      countToDown={() =>
+                        handleCountToDown(product.id, count, withTogether!)
+                      }
+                      countToUp={() =>
+                        dispatch(
+                          setProductCountToUp({
+                            id: product.id,
+                            withTogether: withTogether ? withTogether : false,
+                          })
+                        )
+                      }
+                    />
+                  </TableCell>
+                  <TableCell className="w-[158px]" align="center">
+                    <div className="text-xl font-medium">
+                      {priceWithCount} $
+                    </div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          deleteFromCart({
+                            id: product.id,
+                            withTogether: withTogether ? withTogether : false,
+                          })
+                        )
+                      }
+                    >
+                      <img src="/images/icons/basket.svg" alt="basket.svg" />
+                    </button>
+                  </TableCell>
+                </TableRow>
+              )
+            }
+          )}
         </TableBody>
       </Table>
     </TableContainer>

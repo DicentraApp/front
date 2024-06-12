@@ -16,6 +16,7 @@ const Phone: FC<PhoneProps> = ({ value, changeValue, borderColor }) => {
       country={'ua'}
       onlyCountries={['ua', 'cz']}
       regions={'europe'}
+      placeholder="phone number"
       searchClass="border-0 focus:outline-transparent"
       inputStyle={{
         fontSize: 16,
@@ -23,7 +24,9 @@ const Phone: FC<PhoneProps> = ({ value, changeValue, borderColor }) => {
         background: '#fff',
         borderWidth: '3px',
         borderRadius: '30px',
-        borderColor: `${borderColor ? borderColor : phoneFocus ? '#b69b89' : 'transparent'}`,
+        borderColor: `${
+          borderColor ? borderColor : phoneFocus ? '#b69b89' : 'transparent'
+        }`,
         outline: 'transparent',
         width: '100%',
       }}

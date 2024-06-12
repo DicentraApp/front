@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import DarktBtn from '@/common/UI/Buttons/DarkBtn'
 import { addItemToCart } from '@/features/cart/cartSlice'
 import CountInput from '@/common/UI/Inputs/CountInput'
-import { currentPrice, isAddedToCart } from '@/utils/helpers'
+import { isAddedToCart } from '@/utils/helpers'
 
 const Count = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +17,9 @@ const Count = () => {
   const [count, setCount] = useState(1)
 
   const isAdded = isAddedToCart(flowerItem.id, cart)
-  const price = currentPrice(flowerItem)
+  const price = flowerItem.actionPrice
+    ? flowerItem.actionPrice
+    : flowerItem.price
 
   const handleCountToDown = () => {
     if (count === 1) return
@@ -34,6 +36,7 @@ const Count = () => {
     dispatch(
       addItemToCart({
         product: flowerItem,
+        withTogether: false,
         count,
         price,
         priceWithCount: price * count,

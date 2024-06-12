@@ -21,7 +21,7 @@ const ReviewsModalForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: currentUser!.name || '',
+      name: currentUser?.name || '',
       comment: '',
     },
   })

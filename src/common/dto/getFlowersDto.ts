@@ -18,7 +18,7 @@ interface IFlowerChar {
 export interface ITogetherWith {
   id: string
   name: string
-  article: number | string
+  article: number
   price: number
   actionPrice: number
   img: string

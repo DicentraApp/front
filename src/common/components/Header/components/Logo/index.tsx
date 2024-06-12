@@ -1,18 +1,9 @@
-import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-interface LogoProps {
-  imageLogoPath: string
-  subtitleLogo: string
-}
-
-const Logo: FC<LogoProps> = ({ imageLogoPath, subtitleLogo }) => {
+const Logo = () => {
   return (
-    <Link to="/" className="relative h-14 w-52 mr-8">
-      <img src={imageLogoPath} alt="Logo" />
-      <span className="absolute right-1.5 bottom-2 uppercase text-xs tracking-widest font-ubuntu font-light text-dark">
-        {subtitleLogo}
-      </span>
+    <Link to="/" className="relative h-14 w-52 mr-12">
+      <img src="/images/logo/logo-3.png" alt="Logo" />
     </Link>
   )
 }

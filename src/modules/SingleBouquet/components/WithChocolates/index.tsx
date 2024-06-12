@@ -19,9 +19,11 @@ const WithChocolates: FC<ITogetherWithItem> = ({ item }) => {
   const saving = priceWithout - priceWith
 
   const addProductToCart = () => {
+    setIsAdded(true)
     dispatch(
       addItemToCart({
         product: item,
+        withTogether: true,
         count: 1,
         price: priceWith,
         priceWithCount: priceWith,
@@ -31,7 +33,7 @@ const WithChocolates: FC<ITogetherWithItem> = ({ item }) => {
 
   useEffect(() => {
     cart.map((el) => {
-      if (el.product.id === item.id) {
+      if (el.product.id === item.id && el.withTogether) {
         setIsAdded(true)
       } else {
         setIsAdded(false)
