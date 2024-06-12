@@ -17,7 +17,7 @@ import Login from './modules/Login'
 import Registration from './modules/Registration'
 import MyProfile from './modules/MyProfile'
 import Order from './modules/Order'
-import SelectedFlowers from './modules/SelectedFlowers'
+import SelectedFlowers from './modules/Search'
 
 const router = createBrowserRouter([
   {

@@ -35,7 +35,7 @@ const InStore: FC<InStoreProps> = ({ data, handleChangeData }) => {
           className="w-56 focus:outline-gold bg-white px-5 py-3 rounded-3xl"
           onChange={handleChangeData}
         >
-          <option aria-label="None" value={''}>
+          <option className="text-gray-400" aria-label="None" value={''}>
             Select a store
           </option>
           {storesArray.map((c) => (
@@ -71,7 +71,7 @@ const InStore: FC<InStoreProps> = ({ data, handleChangeData }) => {
           className="w-56 focus:outline-gold bg-white px-5 py-3 rounded-3xl"
           onChange={handleChangeData}
         >
-          <option aria-label="None" value={''}>
+          <option className="text-gray-400" aria-label="None" value={''}>
             Select hours
           </option>
           {hoursArray.map((h) => (

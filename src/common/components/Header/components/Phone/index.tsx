@@ -18,10 +18,10 @@ const Phone: FC<PhoneProps> = ({ phoneNumber }) => {
         {phoneNumber}
       </a>
       <button
-        className="tracking-widest text-gold text-sm uppercase hover:text-btnPressedGold transition-all"
+        className="font-ubuntu text-gold mx-auto text-sm uppercase hover:text-btnPressedGold transition-all"
         onClick={() => dispatch(setBackCallModal(true))}
       >
-        Back call
+        order a call back
       </button>
     </div>
   )
