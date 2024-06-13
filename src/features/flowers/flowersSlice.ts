@@ -7,24 +7,30 @@ import {
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface IInitialState {
-  list: IFlowersData | []
-  flowers: IFlowerItem[] | []
-  flowerItem: IFlowerItem
+  list: IFlowersData
+  flowers: IFlowerItem[]
+  flowerItem: IFlowerItem | null
   priceWithCount: number
-  selectedFlowersByForm: IFlowerItem[] | []
+  actionFlowersData: IFlowerItem[]
+  togetherWithData: IFlowerItem[]
+  selectedFlowersByForm: IFlowerItem[]
   isLoading: boolean
+}
+
+const initialState: IInitialState = {
+  list: [],
+  flowers: [],
+  flowerItem: null,
+  actionFlowersData: [],
+  togetherWithData: [],
+  selectedFlowersByForm: [],
+  priceWithCount: 0,
+  isLoading: false,
 }
 
 const flowersSlice = createSlice({
   name: '@@flowers',
-  initialState: {
-    list: [],
-    flowers: [],
-    flowerItem: {},
-    selectedFlowersByForm: [],
-    priceWithCount: 0,
-    isLoading: false,
-  } as IInitialState,
+  initialState,
   reducers: {
     getFlowers: (state, { payload }: PayloadAction<IFlowersData>) => {
       state.list = payload
@@ -37,18 +43,34 @@ const flowersSlice = createSlice({
       state.flowerItem = payload
     },
     setPriceWithCount: (state) => {
-      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
-        state.priceWithCount = state.flowerItem.actionPrice
+      if (state.flowerItem?.isAction && state.flowerItem?.actionPrice) {
+        state.priceWithCount = state.flowerItem?.actionPrice
       } else {
-        state.priceWithCount = state.flowerItem.price
+        state.priceWithCount = state.flowerItem!.price
       }
     },
     addPriceWithCount: (state) => {
-      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
-        state.priceWithCount += state.flowerItem.actionPrice
+      if (state.flowerItem?.isAction && state.flowerItem?.actionPrice) {
+        state.priceWithCount += state.flowerItem?.actionPrice
       } else {
-        state.priceWithCount += state.flowerItem.price
+        state.priceWithCount += state.flowerItem!.price
       }
+    },
+    setActionFlowers: (state) => {
+      state.list.forEach((item) => {
+        item?.flowers.forEach((f) => {
+          if (f.isAction) {
+            state.actionFlowersData.push(f)
+          } else return
+        })
+      })
+    },
+    setTogetherWithFlowers: (state) => {
+      state.list.forEach((item) =>
+        item.flowers.forEach(
+          (f) => f.togetherWith && state.togetherWithData.push(f)
+        )
+      )
     },
     setSelectedDataByForm: (
       state,
@@ -57,14 +79,14 @@ const flowersSlice = createSlice({
       state.selectedFlowersByForm = payload
     },
     minusPriceWithCount: (state) => {
-      if (state.flowerItem.isAction && state.flowerItem.actionPrice) {
-        state.priceWithCount -= state.flowerItem.actionPrice
+      if (state.flowerItem?.isAction && state.flowerItem?.actionPrice) {
+        state.priceWithCount -= state.flowerItem?.actionPrice
       } else {
-        state.priceWithCount -= state.flowerItem.price
+        state.priceWithCount -= state.flowerItem!.price
       }
     },
     addReview: (state, { payload }: PayloadAction<IReviewItem>) => {
-      state.flowerItem.reviews?.push(payload)
+      state.flowerItem?.reviews?.push(payload)
 
       state.list.map((item) => {
         item.flowers.map((f) => {
@@ -84,6 +106,8 @@ export const {
   addPriceWithCount,
   minusPriceWithCount,
   setPriceWithCount,
+  setTogetherWithFlowers,
+  setActionFlowers,
   setSelectedDataByForm,
   addReview,
 } = flowersSlice.actions

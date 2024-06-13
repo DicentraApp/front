@@ -1,23 +1,23 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './common/components/Layout'
-import Home from './modules/Home'
-import OrderByPhoto from './modules/OrderByPhoto'
-import Portal from './modules/Portal'
-import SinglePortal from './modules/SinglePortal'
-import PageNotFound from './modules/PageNotFound'
-import ShippingAndPayment from './modules/ShippingAndPayment'
-import Shops from './modules/Shops'
-import Contacts from './modules/Contacts'
-import AboutUs from './modules/AboutUs'
-import Promotions from './modules/Promotions'
-import Bouquets from './modules/Bouquets'
-import SingleBouquet from './modules/SingleBouquet'
-import Cart from './modules/Cart'
-import Login from './modules/Login'
-import Registration from './modules/Registration'
-import MyProfile from './modules/MyProfile'
-import Order from './modules/Order'
-import SelectedFlowers from './modules/Search'
+import Home from './pages/Home'
+import OrderByPhoto from './pages/OrderByPhoto'
+import Portal from './pages/Portal'
+import SinglePortal from './pages/SinglePortal'
+import PageNotFound from './pages/PageNotFound'
+import ShippingAndPayment from './pages/ShippingAndPayment'
+import Shops from './pages/Shops'
+import Contacts from './pages/Contacts'
+import AboutUs from './pages/AboutUs'
+import Promotions from './pages/Promotions'
+import Bouquets from './pages/Bouquets'
+import SingleBouquet from './pages/SingleBouquet'
+import Cart from './pages/Cart'
+import Login from './pages/Login'
+import Registration from './pages/Registration'
+import MyProfile from './pages/MyProfile'
+import Order from './pages/Order'
+import SelectedFlowers from './pages/Search'
 
 const router = createBrowserRouter([
   {
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
       },
       {
         element: <MyProfile />,
-        path: 'my-profile',
+        path: 'my_profile',
       },
       {
         element: <Order />,
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
       },
       {
         element: <SelectedFlowers />,
-        path: 'selected-flowers',
+        path: 'selected_flowers',
       },
     ],
   },

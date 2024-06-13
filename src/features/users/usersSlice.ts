@@ -66,7 +66,6 @@ const usersSlice = createSlice({
       state.users.map((user) => {
         if (user.id == payload.userID) {
           user.reviews?.push(payload)
-          // state.currentUser?.reviews?.push(payload)
         } else return user
       })
     },

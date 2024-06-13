@@ -1,5 +1,5 @@
-import { Drawer } from '@mui/material'
 import { FC } from 'react'
+import { Drawer } from '@mui/material'
 
 interface ModalProps {
   children: JSX.Element

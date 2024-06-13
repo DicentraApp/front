@@ -1,30 +1,18 @@
-import { FC } from 'react'
-import LogoContent, { ILogoContentProps } from './components/LogoContent'
-import FooterNavigation, {
-  IFooterNavProps,
-} from './components/FooterNavigation'
+import LogoContent from './components/LogoContent'
+import FooterNavigation from './components/FooterNavigation'
 import FooterInput from './components/FooterInput'
 import FooterCopy from './components/FooterCopy'
+import { forClientsNav, forCompanyNav, logoContentData } from './data'
 
-interface IFooterProps {
-  logoContentData: ILogoContentProps
-  navForClients: IFooterNavProps
-  navForCompany: IFooterNavProps
-}
-
-const Footer: FC<IFooterProps> = ({
-  logoContentData,
-  navForClients,
-  navForCompany,
-}) => {
+const Footer = () => {
   return (
     <footer className="bg-selection-form text-light py-12 font-roboto">
       <div className="container">
         <div className="flex justify-between">
           <LogoContent {...logoContentData} />
 
-          <FooterNavigation {...navForClients} />
-          <FooterNavigation {...navForCompany} />
+          <FooterNavigation {...forClientsNav} />
+          <FooterNavigation {...forCompanyNav} />
 
           <FooterInput />
         </div>

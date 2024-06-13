@@ -7,6 +7,7 @@ import { getBackCall } from '@/features/forms/formsSlice'
 import { setBackCallModal } from '@/features/modal/modalSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import { useEffect, useState } from 'react'
+import ModalCallBackText from './components/ModalCallBackText'
 
 const ModalBackCall = () => {
   const { backCall } = useAppSelector((state) => state.modal)
@@ -76,12 +77,10 @@ const ModalBackCall = () => {
     >
       <div className="text-dark">
         {statusMessage ? (
-          <p className="mb-10 text-center font-ubuntu">{statusMessage}</p>
+          <ModalCallBackText text={statusMessage} />
         ) : (
           <>
-            <p className="mb-10 text-center font-ubuntu">
-              Enter your name and phone number, we will contact you shortly
-            </p>
+            <ModalCallBackText text="Enter your name and phone number, we will contact you shortly" />
             <form>
               <div className="mb-2">
                 <Input

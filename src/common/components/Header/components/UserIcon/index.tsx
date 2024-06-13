@@ -9,7 +9,7 @@ const UserIcon = () => {
 
   const handleOpenUser = () => {
     if (currentUser) {
-      navigate('/my-profile')
+      navigate('/my_profile')
     } else {
       dispatch(setLoginModal(true))
     }

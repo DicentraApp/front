@@ -1,8 +1,8 @@
+import { FormEvent, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getNews } from '@/features/forms/formsSlice'
 import { useAppDispatch } from '@/hooks/hooks'
 import { CircularProgress } from '@mui/material'
-import { FormEvent, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 const FooterInput = () => {
   const [email, setEmail] = useState('')

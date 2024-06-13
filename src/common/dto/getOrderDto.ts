@@ -12,24 +12,6 @@ export interface IUserData {
   email: string
 }
 
-// export interface DeliveryMethodByCourier {
-//   city: string
-//   street: string
-//   number: string
-//   wishes?: string
-// }
-
-// export interface DeliveryMethodInStore {
-//   city: string
-//   date: string
-//   hours: string
-// }
-
-// export interface IUserDeliveryMethod {
-//   byCourier?: DeliveryMethodByCourier
-//   inStore?: DeliveryMethodInStore
-// }
-
 export interface RecipientData {
   name: string
   phone: string
