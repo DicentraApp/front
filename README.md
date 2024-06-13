@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# Dicentra Flowers showPackages
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Created for portfolio.
 
-Currently, two official plugins are available:
+To view the site: https://olha-maievska.github.io/DicentraApp/front
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The site uses client-side state instead of a server. An update with server-side integration is expected soon.
 
-## Expanding the ESLint configuration
+The site does not have responsive design, as it was created to demonstrate frontend development skills rather than typical web layout.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Technologies Used:
 
-- Configure the top-level `parserOptions` property like this:
+- React
+- TypeScript
+- Redux Toolkit
+- React Router Dom
+- React Hook Form
+- Tailwind
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+#### Commands:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+`npm run dev` - runs the application in development mode;
+`npm run build` - builds the application in production mode;
+`npm run deploy` - deploy the application;
+
+#### Project Structure:
+
+- `public`
+  - `images` - folder with all images
+  - `404.html` - redirect to 404 page
+  - `favicon.ico` - favicon;
+- `src` - project's source code;
+  - `common` - commom components and dto;
+  - `features` - state management;
+  - `hooks` - custom hooks;
+  - `pages` - React components tied to router routes;
+  - `utils` - helper reusable functions;
+- `App.js` - main component;
+- `index.css` - root stylesheet file;
+- `main.tsx` - root component of the React application;
+- `vite-env.d.ts`
+- `.eslintrc.cjs`
+- `.gitignore` - Git ignore configuration;
+- `index.html` - main html file
+- `package-lock.json` - hidden lock file;
+- `package.json` - version management file;
+- `postcss.config.js`
+- `README.md`
+- `tailwind.config.ts`
+- `tsconfig.json`
+- `tsconfig.node.json`
+- `tsconfig.paths.json`
+- `vite.config.ts`
