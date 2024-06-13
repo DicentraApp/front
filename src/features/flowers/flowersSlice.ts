@@ -57,13 +57,11 @@ const flowersSlice = createSlice({
       }
     },
     setActionFlowers: (state) => {
-      state.list.forEach((item) => {
-        item?.flowers.forEach((f) => {
-          if (f.isAction) {
-            state.actionFlowersData.push(f)
-          } else return
-        })
-      })
+      state.list.forEach((item) =>
+        item?.flowers.forEach(
+          (f) => f.isAction && state.actionFlowersData.push(f)
+        )
+      )
     },
     setTogetherWithFlowers: (state) => {
       state.list.forEach((item) =>

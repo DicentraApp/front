@@ -13,7 +13,7 @@ import { formsReducer } from './forms/formsSlice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['portal', 'cart', 'modal', 'users', 'order'],
+  whitelist: ['portal', 'cart', 'modal', 'users', 'order', 'flowers'],
 }
 
 const rootReducer = combineReducers({
